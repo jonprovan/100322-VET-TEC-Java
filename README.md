@@ -1,6 +1,7 @@
 # 100322-VET-TEC-Java
 
-SkillStorm VET TEC Java<br>
+SkillStorm VET TEC Java
+
 Start Date:<br>
 10/03/22
 
