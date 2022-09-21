@@ -1,9 +1,9 @@
 # 100322-VET-TEC-Java
 
 SkillStorm VET TEC Java<br>
-Start Date:
+Start Date:<br>
 10/03/22
 
-Instructors:
-Erica Hicks
+Instructors:<br>
+Erica Hicks<br>
 Jon Provan
