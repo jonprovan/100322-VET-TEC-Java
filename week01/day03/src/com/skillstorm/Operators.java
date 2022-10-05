@@ -127,7 +127,7 @@ public class Operators {
 		String myLastName = "Larryson";
 		String myHatSize = "XL"; // an array of chars, | X | L |, indexes start at 0, so | X (0) | L (1) |
 		
-		if (myName == "Larry" && myAge == 21 || myLastName == "Larryson" && myHatSize.indexOf('X') == 1) {
+		if (myName == "Larry" && myAge == 21 || myLastName == "Larryson" && myHatSize.indexOf('L') == 1 && myHatSize.charAt(0) == 'X') {
 			System.out.println("Everything checks out.");
 		} else if (myName == "Larry") {
 			System.out.println("Hey, Larry...no such luck this time.");
