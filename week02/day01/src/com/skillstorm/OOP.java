@@ -69,6 +69,11 @@ public class OOP {
 		 * 
 		 */
 		
+		System.out.println(PoliceOfficer.isUpstanding);
+		PoliceOfficer.graduate();
+		
+		System.out.println();
+		
 		PoliceOfficer policeOfficerOne = new PoliceOfficer();
 		PoliceOfficer policeOfficerTwo = new PoliceOfficer(false);
 		PoliceOfficer policeOfficerThree = new PoliceOfficer(true, "Glock", "Black", (byte)46);
@@ -81,7 +86,41 @@ public class OOP {
 		System.out.println(policeOfficerThree.uniformColor);
 		System.out.println(policeOfficerThree.age);
 		
+		System.out.println();
 		
+		// incorrect way to call a static variable
+		System.out.println(policeOfficerOne.isUpstanding);
+		System.out.println(policeOfficerTwo.isUpstanding);
+		
+		// incorrect way to change a static variable
+		policeOfficerOne.isUpstanding = false;
+		
+		System.out.println(policeOfficerOne.isUpstanding);
+		System.out.println(policeOfficerTwo.isUpstanding);
+		
+		// correct way to call a static variable = ClassName.variableName
+		PoliceOfficer.isUpstanding = true;
+		
+		System.out.println(PoliceOfficer.isUpstanding);
+		
+		// returning a String to use in another variable
+		String result = policeOfficerThree.checkUpstandingness();
+		System.out.println(result);
+		
+		// can't do this because DISTRICT is a final variable
+		// PoliceOfficer.DISTRICT = "East New York";
+		System.out.println(PoliceOfficer.DISTRICT);
+		
+		// non-properly-encapsulated way of changing property values
+		System.out.println(policeOfficerTwo.uniformColor);
+		policeOfficerTwo.uniformColor = "Red";
+		System.out.println(policeOfficerTwo.uniformColor);
+		
+		// even with the final keyword, you CAN change the properties of an Object
+		// you just can't change the Object the variable is pointing to
+		final PoliceOfficer policeOfficerFour = new PoliceOfficer();
+		policeOfficerFour.uniformColor = "Bronze";
+		System.out.println(policeOfficerFour.uniformColor);
 		
 
 	}
