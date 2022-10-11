@@ -8,6 +8,11 @@ public class Inheritance {
 		
 		// Inheritance Examples
 		
+		Animal.drink();
+		HoneyBadger.drink();
+		
+		System.out.println();
+		
 		Animal animalOne = new Animal(true, "Black", "Omnivore");
 		
 		System.out.println(animalOne.hasLegs + " " + animalOne.color + " " + animalOne.diet);
@@ -72,6 +77,12 @@ public class Inheritance {
 		
 		System.out.println();
 		
+		// COVARIANCE
+		// when something can be two things at once
+		// enables us to group Objects together that are inherited from the same source
+		// all Objects we create are technically covariant (inherit from Object class at some level)
+		// not so useful, though, so we create other inheritance trees to isolate related Objects
+		
 		// reference type = HoneyBadger
 		HoneyBadger hbOne = new HoneyBadger();
 		
@@ -91,8 +102,8 @@ public class Inheritance {
 		LinkedList<HoneyBadger> hbll = new LinkedList<HoneyBadger>();
 		
 		// cannot add different Object types to a Collection
-//		hbll.add(hbOne);
-//		hbll.add(inheritance);
+		// hbll.add(hbOne);
+		// hbll.add(inheritance);
 		
 		LinkedList<Animal> animalList = new LinkedList<Animal>();
 		
@@ -100,6 +111,14 @@ public class Inheritance {
 		animalList.add(hbOne);
 		animalList.add(animalOne);
 		animalList.add(dogOne);
+		
+		
+		// static methods DO NOT override
+		Animal hbThree = (Animal)(new HoneyBadger());
+		
+		HoneyBadger hbFour = (HoneyBadger) hbThree; 
+		
+		hbFour.drink();
 		
 		
 	}
