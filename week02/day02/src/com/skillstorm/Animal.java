@@ -35,4 +35,11 @@ public class Animal {
 		System.out.println("I am an Animal, and now I am full.");
 	}
 	
+	public static void drink() {
+		System.out.println("Glub, glub...Animal like drink.");
+	}
+	
+	
+	
+	
 }
