@@ -13,7 +13,7 @@ public class WrapperClasses {
 		
 		Integer ageInt = new Integer(23);
 		// can do it like this, not as clear when analyzing the code
-//		Integer myInt2 = 5;
+		// Integer myInt2 = 5;
 		
 		System.out.println(ageInt);
 		
