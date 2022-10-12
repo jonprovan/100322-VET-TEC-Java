@@ -22,16 +22,20 @@ public class Horse {
 		return "Horse [name=" + name + ", amountOfHair=" + amountOfHair + "]";
 	}
 
+	// return value is Horse, because we need our next method in the chain to operate on a Horse object
 	public Horse addHair(int newHair) {
 		amountOfHair = amountOfHair + newHair;
+		// we return the same Horse object we fed in, so we can keep operating on it
 		return this;
 	}
 	
+	// same thing here
 	public Horse addLotsOfHair(int newHair) {
 		amountOfHair = amountOfHair + (newHair * 10);
 		return this;
 	}
 	
+	// even though this one was last in our original chain, we still return our Horse, so we can do these in any order
 	public Horse addAnInsaneAmountOfHair(int newHair) {
 		amountOfHair = amountOfHair + (newHair * 1000);
 		return this;
