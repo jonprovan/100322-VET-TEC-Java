@@ -34,6 +34,8 @@ public class Encapsulation extends Shoe {
 		 * -- Car myCar = new Car();
 		 * 		I can change myCar's color from Mustang, even if it were in a different package
 		 * 		because Mustang is a subclass of Car
+		 * -- CANNOT create a new instance of the superclass in the subclass and expect to be able to access protected variables/methods
+		 * -- can ONLY access the protected variables/methods of a specific Object's specific parent Object
 		 * 
 		 * default (nothing)
 		 * -- any class within the same package can access this property or method

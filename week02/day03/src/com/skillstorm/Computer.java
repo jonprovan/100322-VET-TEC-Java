@@ -7,7 +7,7 @@ public class Computer {
 	// all are going be private, only accessible from within the class
 	
 	private byte ramAmount;
-	private String storageAmount;
+	String storageAmount;
 	private boolean laptop;
 	private String os;
 	private String gpuBrand;
