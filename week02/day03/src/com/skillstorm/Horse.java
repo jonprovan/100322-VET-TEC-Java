@@ -15,7 +15,7 @@ public class Horse {
 	}
 
 	// overrides Object's toString() method
-	// be default, just prints out the memory location of the Object
+	// by default, just prints out the memory location of the Object
 
 	@Override
 	public String toString() {
