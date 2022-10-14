@@ -13,6 +13,7 @@ public class PoliceOfficer {
 	
 	// "final" keyword
 	// once initialized, the value assigned to a "final" variable CANNOT be changed
+	// class constant
 	final public static String DISTRICT = "West New York";
 	
 	// instance variables

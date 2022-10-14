@@ -69,6 +69,7 @@ public class OOP {
 		 * 
 		 */
 		
+		// static properties and methods DO NOT need an instance of that Object created to be accessed/run
 		System.out.println(PoliceOfficer.isUpstanding);
 		PoliceOfficer.graduate();
 		

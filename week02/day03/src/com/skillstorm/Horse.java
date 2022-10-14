@@ -40,5 +40,10 @@ public class Horse {
 		amountOfHair = amountOfHair + (newHair * 1000);
 		return this;
 	}
+	
+	public Horse setName(String name) {
+		this.name = name;
+		return this;
+	}
 
 }

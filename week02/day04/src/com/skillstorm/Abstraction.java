@@ -75,11 +75,12 @@ public class Abstraction {
 		
 		System.out.println();
 		
-		Person nurseWithProperties = new Nurse("Sarah", (byte)32, "R.N.");
+		Person nurseWithProperties = new Nurse("Sarah", (byte)32, "R.N.", "White Pointy");
 		
 		System.out.println(nurseWithProperties.getName());
 		System.out.println(nurseWithProperties.getAge());
 		System.out.println(((Professional)nurseWithProperties).getDegreeName());
+		System.out.println(((Nurse)nurseWithProperties).getHatType());
 		
 		System.out.println();
 		
@@ -139,7 +140,7 @@ public class Abstraction {
 		
 		MusicalInstrument[] myInstruments = { myGuitar, myOtherGuitar, (MusicalInstrument)myAdditionalGuitar };
 		
-		
+		System.out.println(nurseWithProperties);
 
 	}
 

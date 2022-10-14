@@ -31,6 +31,11 @@ public class Animal {
 		System.out.println("Generic Animal Noise");
 	}
 	
+	// RUNTIME POLYMORPHISM
+	// same as method overriding
+	// we have an eat() method here AND in our Dog class, which inherits from Animal
+	// when the program runs, it decides which method it's going to run, based on what class we're running it on
+	// if it's an Animal, it'll run the Animal version, if it's a Dog (even though a Dog IS AN Animal), it'll run the Dog version
 	public void eat() {
 		System.out.println("I am an Animal, and now I am full.");
 	}

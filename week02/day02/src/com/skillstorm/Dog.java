@@ -47,10 +47,16 @@ public class Dog extends Animal {
 		System.out.println("I am a Dog, and I just ran toward the Frisbee!");
 	}
 	
+	// COMPILE-TIME POLYMORPHISM
+	// same as method overloading
+	// there are two versions of the speak() method, one with no parameters, one with an int -- speak() vs. speak (int numberOfTimes)
+	// at compile time, the class already knows the difference
 	public void speak() {
 		System.out.println("Arf!");
 	}
 	
+	// RUNTIME POLYMORPHISM
+	// (see the eat() method in the Animal class)
 	public void eat() {
 		System.out.println("Kibbles 'n Bits 'n Bits 'n Bits...");
 	}

@@ -51,7 +51,7 @@ public class MethodChaining {
 		Horse greatHorse = new Horse("Johnny One-Shoe", 1);
 		System.out.println(greatHorse.toString());
 		
-		greatHorse.addAnInsaneAmountOfHair(34).addHair(2).addHair(79).addLotsOfHair(809);
+		greatHorse.addAnInsaneAmountOfHair(34).addHair(2).setName("Isaac").addHair(79).addLotsOfHair(809);
 		System.out.println(greatHorse.toString());
 		
 		System.out.println();
