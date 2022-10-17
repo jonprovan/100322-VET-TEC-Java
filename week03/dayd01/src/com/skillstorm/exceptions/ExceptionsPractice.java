@@ -120,9 +120,16 @@ public class ExceptionsPractice {
 
 		// Example 5: Using a try-catch to continue code after the error is thrown
 		
+		// Two Important key words to know
+		//  1. throw -- we use to throw an exception 
+		//  2. throws -- we use to declare that the method might throw the exception
+		
+		// Examples of where we could use illegal argument exception
+		// -- when a user hands in an invalid value
+		
 		try {
 			divide( 1 , 0);
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getClass());
 			System.out.println(e.getMessage());
 		}
@@ -134,20 +141,113 @@ public class ExceptionsPractice {
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		/*
 		 * Finally Block:
+		 * - a block that runs in both situations
+		 *      1. if the try block throws and exception and jumps to the catch block
+		 *      2. if the try block does not throw an exception and skips the catch block
+		 * - a good place to close database connections or any other resources that might be left open
+		 *    if the method stops execution due to an exception
+		 * 
 		 */
+		
+		try {
+			System.out.println("--> In the try block");
+			File myFile = new File("somefile.txt"); // This file may not exist, 
+			myScanner = new Scanner(myFile); // This Scanner is trying to read from a file
+//			myScanner = new Scanner(System.in); 
+//			System.out.println("Yay! Found my file!");
+		} catch (Exception e) {
+			System.out.println("--> In the catch block");
+			// TODO Auto-generated catch block
+			myScanner = new Scanner("This is my awesome text to read in."); // recovering from exception thrown
+		} finally {
+			System.out.println("--> In the finally block");
+			System.out.println(myScanner.next());
+			myScanner.close();
+		}
 		
 		/*
-		 * Multiple Catch Blocks:
+		 * Try-Catch 
+		 * vs
+		 * If-Else
+		 * -- example: searching an array for a value that is not found returns -1
+		 *             this is using a special value to indicate to the user something went wrong
+		 * -- try-catch will force the user to handle that case
+		 *                   - it helps the user identify earlier where the error in their logic is
+		 * 
+		 * 
 		 */
 		
+		
+		
+		/*
+		 * Multiple Catches -- uses the same recovery mechanism for both situations
+		 * and 
+		 * Multiple Catch Blocks: -- allows unique recovery mechanisms for each situation
+		 * 
+		 * 
+		 */
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
+		try {
+			// something
+//			throwRandomException();
+		} catch (ArithmeticException|NullPointerException|ArrayIndexOutOfBoundsException e) {
+			// some code
+			System.out.println(e.getClass());
+		}
+		
+		try {
+			// something
+			throwRandomException();
+//		} catch (Exception e) { // ORDER MATTERS -- more specific exceptions must be handled first
+//			System.out.println("Idunno what happened");
+		} catch (ArithmeticException e) {
+			// some code
+			System.out.println("are you bad at math?");
+		} catch (NullPointerException e) {
+			// some other code
+			System.out.println("sorry there is nothing there");
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// some other code
+			System.out.println("sorry can't get that for ya");
+		} catch (Exception e) {
+			System.out.println("Idunno what happened");
+		}
 		
 		System.out.println("End of main. Program terminating.");
 		
+	} // end of main method
+	
+	public static void divide(int a, int b) throws IllegalArgumentException {
+		try {
+			System.out.println(a + " / " + b + " = " + (a / b));
+		} catch (ArithmeticException e) {
+			// Constructor
+						//  IllegalArgumentException(String message, Throwable cause)
+						//	     Constructs a new exception with the specified detail message and cause.
+						
+			throw new IllegalArgumentException("Please enter a valid divisor.", e);
+		}
 	}
 	
-	public static void divide(int a, int b) {
-		
-		System.out.println(a + " / " + b + " = " + (a / b));
+	public static void throwRandomException() {
+		int someNumber = (int) Math.floor(Math.random() * 10);
+		if (someNumber < 4) {
+			throw new ArithmeticException();
+		} else if (someNumber < 8) {
+			throw new NullPointerException();
+		} else {
+			throw new ArrayIndexOutOfBoundsException();
+		}
 	}
-
+	
 }
