@@ -25,7 +25,7 @@ public class Rectangle {
 		return this.height;
 	}
 	
-	public double getWidth(double value) {
+	public double getWidth() {
 		return this.width;
 	}
 	
