@@ -27,6 +27,7 @@ public class Meeting {
 			// --------------------------
 			// increment the numPeople
 			numPeople++;
+			System.out.println("The meeting now has " + numPeople + " attendees");
 		} catch(ArrayIndexOutOfBoundsException e) {
 			throw new JoinMeetingException("The meeting is full.");
 		} 
