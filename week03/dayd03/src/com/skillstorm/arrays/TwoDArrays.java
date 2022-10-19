@@ -18,12 +18,18 @@ public class TwoDArrays {
 //		System.out.println(example2[0].length); // DOES NOT WORK
 		//                 -----------
 		//                    null
-		example2[0][0] = 127;
-		System.out.println("length of example 2's first inner array is now " + example2[0].length);
-		example2[0][1] = 127;
-		System.out.println("length of example 2's first inner array is now " + example2[0].length);
-		example2[0][2] = 127;
-		System.out.println("length of example 2's first inner array is now " + example2[0].length);
+		
+		
+		//DOES NOT WORK - MUST SET SIZE FIRST
+//		example2[0][0] = 127;
+//		System.out.println("length of example 2's first inner array is now " + example2[0].length);
+//		example2[0][1] = 127;
+//		System.out.println("length of example 2's first inner array is now " + example2[0].length);
+//		example2[0][2] = 127;
+//		System.out.println("length of example 2's first inner array is now " + example2[0].length);
+		
+		
+		
 //		// JAGGED ARRAY EXAMPLE
 //		example2[0] = new int[2];
 //		example[1] = new int[100];
