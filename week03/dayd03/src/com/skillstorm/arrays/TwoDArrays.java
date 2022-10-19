@@ -95,8 +95,22 @@ public class TwoDArrays {
 			System.out.print(innerArray3[i] + " ");
 		}
 		
-		// LEAST VERBOSE VERSION
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// LEAST VERBOSE VERSION
+		for (int i = 0; i < numbers2.length; i++) {
+			for (int j = 0; j < numbers[i].length; j++) {
+				System.out.println(numbers[i][j]);
+			}
+		}
 		
 	}
 	
