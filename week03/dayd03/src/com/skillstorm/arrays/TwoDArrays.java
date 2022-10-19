@@ -83,21 +83,23 @@ public class TwoDArrays {
 		
 		
 		// DO NOT COPY PASTE CODE - INSTEAD PUT THIS IN A HELPER METHOD
-		for (int i = 0; i < innerArray1.length; i++) {
-			System.out.print(innerArray1[i] + " ");
-		}
+//		for (int i = 0; i < innerArray1.length; i++) {
+//			System.out.print(innerArray1[i] + " ");
+//		}
+//		System.out.println();
+//		for (int i = 0; i < innerArray2.length; i++) {
+//			System.out.print(innerArray2[i] + " ");
+//		}
+//		System.out.println();
+//		for (int i = 0; i < innerArray3.length; i++) {
+//			System.out.print(innerArray3[i] + " ");
+//		}
+		
+		
+		
 		System.out.println();
-		for (int i = 0; i < innerArray2.length; i++) {
-			System.out.print(innerArray2[i] + " ");
-		}
 		System.out.println();
-		for (int i = 0; i < innerArray3.length; i++) {
-			System.out.print(innerArray3[i] + " ");
-		}
-		
-		
-		
-		
+		System.out.println();
 		
 		
 		
@@ -106,9 +108,11 @@ public class TwoDArrays {
 		
 		
 		// LEAST VERBOSE VERSION
+		System.out.println("numbers2.length = " + numbers2.length);
 		for (int i = 0; i < numbers2.length; i++) {
-			for (int j = 0; j < numbers[i].length; j++) {
-				System.out.println(numbers[i][j]);
+			System.out.println("numbers2[" + i + "].length " + numbers2[i].length);
+			for (int j = 0; j < numbers2[i].length; j++) {
+				System.out.println(numbers2[i][j]);
 			}
 		}
 		
