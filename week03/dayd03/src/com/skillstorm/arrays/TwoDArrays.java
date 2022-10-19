@@ -122,7 +122,16 @@ public class TwoDArrays {
 		// System.out.println(sum(numbers));
 //		System.out.println(count(numbers)); // I expect 6
 //		System.out.println(count(numbers2));
-		System.out.println(average(numbers));
+		// System.out.println(average(numbers));
+		
+		String[][] people = { { "Joe", "Kenny", "Nita", "Naruto" } , 
+				              { "Boots", "Waldo" } , 
+				              { "Jon", "Erica", "Miles"} };
+		
+		System.out.println("Where is Waldo?");
+		int[] result = whereIsWaldo(people);
+		System.out.println("row = " + result[0]);
+		System.out.println("col = " + result[1]);
 		
 	}// end of main
 	
