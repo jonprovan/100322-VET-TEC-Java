@@ -117,9 +117,11 @@ public class TwoDArrays {
 //		}
 		
 		// prettier print
-		prettyPrint(numbers2);
+//		prettyPrint(numbers2);
 		
-	}
+		System.out.println(sum(numbers));
+		
+	}// end of main
 	
 	
 	
@@ -141,8 +143,15 @@ public class TwoDArrays {
 	}
 	
 	private static int sum(int[][] numbers) {
-		// TODO add up all the elements in the array
-		return 0;
+		int result = 0;
+		for (int i = 0; i < numbers.length; i++) {
+			for (int j = 0; j < numbers[i].length; j++) {
+				result += numbers[i][j];
+			}
+			
+		}
+		
+		return result;
 	}
 
 }
