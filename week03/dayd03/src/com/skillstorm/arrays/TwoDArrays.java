@@ -108,16 +108,41 @@ public class TwoDArrays {
 		
 		
 		// LEAST VERBOSE VERSION
-		System.out.println("numbers2.length = " + numbers2.length);
-		for (int i = 0; i < numbers2.length; i++) {
-			System.out.println("numbers2[" + i + "].length " + numbers2[i].length);
-			for (int j = 0; j < numbers2[i].length; j++) {
-				System.out.println(numbers2[i][j]);
-			}
-		}
+//		System.out.println("numbers2.length = " + numbers2.length);
+//		for (int i = 0; i < numbers2.length; i++) {
+//			System.out.println("numbers2[" + i + "].length " + numbers2[i].length);
+//			for (int j = 0; j < numbers2[i].length; j++) {
+//				System.out.println(numbers2[i][j]);
+//			}
+//		}
+		
+		// prettier print
+		prettyPrint(numbers2);
 		
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	// helper function
+	private static void prettyPrint(int[][] numbers) {
+		for (int i = 0; i < numbers.length; i++) {
+			for (int j = 0; j < numbers[i].length; j++) {
+				System.out.print(numbers[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	private static int sum(int[][] numbers) {
+		// TODO add up all the elements in the array
+		return 0;
+	}
 
 }
