@@ -23,6 +23,7 @@ public class SuperHero {
 		this.indestructable =  indestructable;
 	}
 	
+	// Methods
 	public void fly(String weather) throws Exception {
 		if (weather.equals("Rainy")) {
 //			throw new Exception("Bad weather"); // I want to be more specific than this and throw my own exception type
