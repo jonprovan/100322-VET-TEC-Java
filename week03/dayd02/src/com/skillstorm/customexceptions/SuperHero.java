@@ -1,7 +1,27 @@
 package com.skillstorm.customexceptions;
 
 public class SuperHero {
+	
+	//Properties
 	private boolean indestructable; 
+	
+	// Constructors
+	public SuperHero() {
+		this.indestructable = true;
+	}
+	
+	public SuperHero(boolean indestructable) {
+		this.indestructable = indestructable;
+	}
+	
+	// getters and setters
+	public boolean isIndestructable() { // naming convention for getter is getPropertyNmae or isPropertyName for booleans
+		return this.indestructable;
+	}
+	
+	public void setIndestructable(boolean indestructable) {
+		this.indestructable =  indestructable;
+	}
 	
 	public void fly(String weather) throws Exception {
 		if (weather.equals("Rainy")) {
@@ -19,14 +39,7 @@ public class SuperHero {
 		System.out.println("Justice is served!");
 	}
 	
-	// getters and setters
-	public boolean isIndestructable() { // naming convention for getter is getPropertyNmae or isPropertyName for booleans
-		return this.indestructable;
-	}
-	
-	public void setIndestructable(boolean indestructable) {
-		this.indestructable =  indestructable;
-	}
+
 	
 
 }
