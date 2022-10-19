@@ -12,18 +12,18 @@ public class NestedLoops {
 		}
 		
 		for (int round = 0; round < 4; round++) {
-			System.out.println("Round number " + round);
+			System.out.println("Round number " + (round + 1));
 			// pushups
 			for (int rep = 0; rep < 10; rep++) {
-				System.out.println("Doing pushup number " + rep);
+				System.out.println("Doing pushup number " + (rep + 1));
 			}
 			// high jumper
 			for (int rep = 0; rep < 10; rep++) {
-				System.out.println("Doing high jumper number " + rep);
+				System.out.println("Doing high jumper number " + (rep + 1));
 			}
 			// burpees
 			for (int rep = 0; rep < 8; rep++) {
-				System.out.println("Doing burpee number " + rep);
+				System.out.println("Doing burpee number " + (rep + 1));
 			}
 			System.out.println("-----------------------------");
 		}
