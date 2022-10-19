@@ -201,5 +201,26 @@ public class TwoDArrays {
 		result = (double) sum / count;
 		return result;
 	}
+	
+	// this will return the row and column like { 0 , 0 } so [ row , col ]
+	// returns the location of the FIRST Waldo
+	public static int[] whereIsWaldo(String[][] people) {
+		int row = 0;
+		int col = 0;
+		
+		for (int i = 0; i < people.length; i++) {
+			
+			for (int j = 0; j < people[i].length ; j++) {
+				if ("Waldo".equals(people[i][j])) {
+					row = i;
+					col = j;
+					int[] result = { row , col };
+					return result;
+				}
+			} // end inner-loop
+			
+		} // end outer-loop
+		return null;
+	}
 
 }
