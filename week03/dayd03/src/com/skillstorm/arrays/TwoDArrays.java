@@ -119,7 +119,9 @@ public class TwoDArrays {
 		// prettier print
 //		prettyPrint(numbers2);
 		
-		System.out.println(sum(numbers));
+		// System.out.println(sum(numbers));
+		System.out.println(count(numbers)); // I expect 6
+		System.out.println(count(numbers2));
 		
 	}// end of main
 	
@@ -147,6 +149,20 @@ public class TwoDArrays {
 		for (int i = 0; i < numbers.length; i++) {
 			for (int j = 0; j < numbers[i].length; j++) {
 				result += numbers[i][j];
+			}
+			
+		}
+		
+		return result;
+	}
+	
+	private static int count(int[][] numbers) {
+		int result = 0;
+		
+		for (int i = 0; i < numbers.length; i++) {
+			
+			for (int j = 0; j < numbers[i].length; j++) {
+				result += 1;
 			}
 			
 		}
