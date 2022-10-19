@@ -120,8 +120,9 @@ public class TwoDArrays {
 //		prettyPrint(numbers2);
 		
 		// System.out.println(sum(numbers));
-		System.out.println(count(numbers)); // I expect 6
-		System.out.println(count(numbers2));
+//		System.out.println(count(numbers)); // I expect 6
+//		System.out.println(count(numbers2));
+		System.out.println(average(numbers));
 		
 	}// end of main
 	
@@ -156,7 +157,7 @@ public class TwoDArrays {
 		return result;
 	}
 	
-	private static int count(int[][] numbers) {
+	private static int count(int[][] numbers) { // rows * cols = count
 		int result = 0;
 		
 		for (int i = 0; i < numbers.length; i++) {
@@ -167,6 +168,37 @@ public class TwoDArrays {
 			
 		}
 		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static double average(int[][] numbers) {
+		
+		double result = 0;
+		int sum = 0; // sum(numbers)
+		int count = 0; // count(numbers)
+		
+		for (int i = 0; i < numbers.length; i++ ) {
+			
+			for (int j = 0; j < numbers[i].length ; j++) {
+				
+				sum += numbers[i][j];
+				count++;
+			}
+			
+		}
+		
+		result = sum / count;
 		return result;
 	}
 
