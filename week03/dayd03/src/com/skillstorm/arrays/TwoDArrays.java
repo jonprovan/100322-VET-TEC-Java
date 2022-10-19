@@ -198,7 +198,7 @@ public class TwoDArrays {
 			
 		}
 		
-		result = sum / count;
+		result = (double) sum / count;
 		return result;
 	}
 
