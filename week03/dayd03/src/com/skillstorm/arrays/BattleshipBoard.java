@@ -30,14 +30,24 @@ public class BattleshipBoard {
 		if ( col < 0 || col >= COLS )
 			throw new Exception("Column must be between 0 and " + COLS);
 		
-
-		boolean hit = gameBoard[row][col].equals("ship");
+		String contents = gameBoard[row][col];
+		if (contents == null) {
+			gameBoard[row][col] = "miss";
+			return false;
+		}
+		
+		boolean hit = contents.equals("ship");
 		if (hit) {
 			gameBoard[row][col] = "hit";
+			return true;
 		} else {
-			gameBoard[row][col] = "miss";
+			if (contents.equals("hit") || contents.equals("miss"))
+				throw new Exception("You already gessed this and it was " + contents);
 		}
-		return hit;
+		System.out.println("Something unexpected happened. We should never get here");
+		// ternary operator
+//		String happy = (0 > 1) ? "Yes" : "No";
+		return false;
 	}
 	
 	// Test
@@ -49,8 +59,10 @@ public class BattleshipBoard {
 			System.out.println("Guess 4, 9 is a hit?" + guess);
 			boolean guess1 = board.isHit(0,0); // miss
 			System.out.println("Guess 0, 0 is a hit? " + guess1);
-			boolean guess4 = board.isHit(10, 10); // exception
-			System.out.println("Guess 10, 10 is a hit?" + guess4);
+//			boolean guess4 = board.isHit(10, 10); // exception
+//			System.out.println("Guess 10, 10 is a hit?" + guess4);
+			boolean guess2 = board.isHit(4, 9);
+			System.out.println("Guess 4, 9 is a hit?" + guess);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
