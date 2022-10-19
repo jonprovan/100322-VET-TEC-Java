@@ -125,13 +125,17 @@ public class TwoDArrays {
 		// System.out.println(average(numbers));
 		
 		String[][] people = { { "Joe", "Kenny", "Nita", "Naruto" } , 
-				              { "Boots", "Waldo" } , 
-				              { "Jon", "Erica", "Miles"} };
+				              { "Boots" } , 
+				              { "Jon", "Erica", "Miles", "Waldo"} };
 		
 		System.out.println("Where is Waldo?");
 		int[] result = whereIsWaldo(people);
-		System.out.println("row = " + result[0]);
-		System.out.println("col = " + result[1]);
+		try {
+			System.out.println("row = " + result[0]);
+			System.out.println("col = " + result[1]);
+		} catch (NullPointerException e) {
+			System.out.println("Did not find Waldo :(");
+		}
 		
 	}// end of main
 	
