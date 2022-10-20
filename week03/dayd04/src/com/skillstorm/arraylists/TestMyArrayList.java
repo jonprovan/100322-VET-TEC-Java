@@ -31,7 +31,7 @@ public class TestMyArrayList {
 		animals.remove("cat");
 		System.out.println(animals);
 		animals.remove(null);
-		System.out.println(animals);
-	}
+		System.out.println(animals);	
+		}
 
 }
