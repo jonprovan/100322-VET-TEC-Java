@@ -78,6 +78,24 @@ public class ArrayListsPractice {
 		numbers.addAll(numbers2);
 		System.out.println(numbers);
 		
+		numbers.add(1, Integer.valueOf(27));
+		System.out.println(numbers.size());
+		numbers.add(numbers.size(), Integer.valueOf(1000));
+		System.out.println(numbers.size());
+		System.out.println(numbers);
+		// remove by value
+		numbers.remove(Integer.valueOf(1));
+		
+		// remove by index
+		//numbers.remove(1); 
+		System.out.println(numbers);
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -123,6 +141,50 @@ public class ArrayListsPractice {
 		//people.removeAll(people); // inefficient 
 //		people.clear();
 //		System.out.println(people);
-	}
+		
+		// set OVERWRITES the value   vs  add INSERTS the value
+		people.set(0, "Jaqueline");
+		System.out.println(people);
+		
+		people.set(1, "Juliet");
+		System.out.println(people);
+		
+		System.out.println(people.get(2));
+		
+		System.out.println(people.get(people.size() - 1));
+		
+		System.out.println("size = " + people.size());
+		
+		int middle = people.size() / 2; 
+		
+		System.out.println("middle = " + middle);
+		System.out.println(people.get(middle));
+		
+		System.out.println(people.indexOf("Jameson"));
+		System.out.println(people.indexOf("Jon")); // -1 means NOT FOUND
+		
+		// indexOf with duplicates
+		people.set(middle, "Jon");
+		people.set(people.size() - 1, "Jon");
+		System.out.println(people);
+		System.out.println("Found Jon at index " + people.indexOf("Jon"));
+		
+		
+		// contains
+		System.out.println("Is Jon in the list? " + people.contains("Jon"));
+		System.out.println("Is Jesus here? " + people.contains("Jesus"));
+		
+		System.out.println(people);
+		
+		ArrayList<String> keepers = new ArrayList<>();
+		keepers.add("Jimmerson");
+		keepers.add("Jameson");
+		keepers.add("Jon");
+		people.retainAll(keepers);
+		System.out.println(people);
+		
+		// retain range -- PROTECTED only accessible if we create MyArrayList extends ArrayList
+		// people.retainRange(0, 3);
+	} // end main
 
 }
