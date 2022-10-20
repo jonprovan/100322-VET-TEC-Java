@@ -23,6 +23,8 @@ public class PetOwner {
 	// no setter bc unwanted 
 	
 	public void adopt(String pet) {
+		if (pet ==null || pet.isEmpty()) // don't add invalid values
+			return;
 		this.pets.add(pet);
 	}
 

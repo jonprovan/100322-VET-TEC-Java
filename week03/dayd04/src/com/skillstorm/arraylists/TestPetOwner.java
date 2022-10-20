@@ -21,6 +21,10 @@ public class TestPetOwner {
 		
 		pets.remove("Bau the Dog");
 		System.out.println(lamar.getPets());
+		
+		erica.adopt("");
+		System.out.println(erica.getPets());
+		
 	}
 
 }
