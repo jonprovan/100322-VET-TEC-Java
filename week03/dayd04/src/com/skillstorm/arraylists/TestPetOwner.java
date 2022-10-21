@@ -24,7 +24,7 @@ public class TestPetOwner {
 		
 		erica.adopt("");
 		System.out.println(erica.getPets());
-		
+		System.out.println(erica);
 	}
 
 }
