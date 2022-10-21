@@ -27,29 +27,33 @@ public class CalculatingBigO {
 			System.out.println("meow"); // 2n -- O(n)
 		}
 		
-		// input         :  1    2     3  ... n   
-		// operations run:  2    4     6  ... 2n  --- O(n)
+		// input         :  1    2     3    4     ... n   
+		// operations run:  2    4     6    8     ... 2n  --- O(n)
 		
 		// 
-		int n = 10000000;
+		n = 10000000;
 		for (int i = 0; i < n; i += 2) { // the loop executes n/2 ---O(n)
 			System.out.println(i); // one instruction is run in the loop
 		}
 		
-		int n = 1000;
+		n = 1000;
 		for (int i = 1; i < n; i *= 2) { // the loop executes i = 1, 2, 4, 16, ... i = 1024 --> the loop runs 2 * 2 * 2 * 2 ... = 1024  ---> 2^? = 1024 -->logx(n)
 			System.out.println(i); // one instruction is run in the loop
 		}
 		
-		
-		// workout example
-		for (int rounds = 0; rounds < x; rounds++) {
+		// O( x*y + x*z ) -- x(y+z)
+		// workout example -- instructions inside nested loops run x * y times where x is the outer loop count and y is the inner loop count
+		int x = 5;
+		int y = 20;
+		int z = 30;
+		for (int rounds = 0; rounds < x; rounds++) { // --- name convention is n but don't get stuck on that use the number of variables as inputs
 			// each exercise we did a different number of times
-			for (int pushupRep = 0; pushupRep < y; pushUpRep++) {
-				System.out.println("pushup");
+			for (int pushupRep = 0; pushupRep < y; pushupRep++) {
+				System.out.println("pushup"); // this instructions runs y-times every thime the outer loop runs -- x * y
+				
 			}
-			for (int situpRep = 0; situpRep < z; sitUpRep++ ) {
-				System.out.println("situp");
+			for (int situpRep = 0; situpRep < z; situpRep++ ) {
+				System.out.println("situp"); // z * x
 			}
 		}
 		
