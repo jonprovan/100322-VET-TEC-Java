@@ -10,5 +10,20 @@ public class Color {
 		this.name = name;
 		this.opacity = opacity;
 	}
+	
+	// COPY CONSTRUCTOR
+	public Color(Color other) {
+		this.name = other.name;
+		this.opacity = other.opacity;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return name + " with an opacity of " + opacity;
+	}
 
 }
