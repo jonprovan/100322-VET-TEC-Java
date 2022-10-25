@@ -17,12 +17,16 @@ public class MyLinkedList<T> {
 	
 	// could include these OR derive them through other means
 	// private Node<T> tail;
-	// private int size;
+	// private int size; // we have now created a method to get this = size()
 	
+	// "default" constructor creates an empty list
 	public MyLinkedList() {
 		super();
 	}
 	
+	// to add a node to our list
+	// this is a factory design pattern
+	// the "user" does not even know that Nodes exist OR what type of node is being created
 	public void add(T thing) {
 		
 		if (head == null) {
@@ -39,10 +43,71 @@ public class MyLinkedList<T> {
 				lastNodeFinder = lastNodeFinder.getNext();
 			}
 			
+			// when we find the last node, we create a new node with our parameter's value and point the last node to it
 			Node<T> newNode = new Node<T>(thing);
 			lastNodeFinder.setNext(newNode);
 			
 		}
 	}
+	
+	// we don't have size as a parameter, because we can "easily" derive it
+	// can simply call this method whenever we need the size
+	public int size() {
+		
+		// similar logic to our add() method
+		if (head == null) {
+			return 0;
+		} else {
+			// counting the Nodes as we move through the list
+			int size = 1;
+			Node<T> counterNode = this.head;
+			
+			while (counterNode.getNext() != null) {
+				counterNode = counterNode.getNext();
+				size++;
+			}
+			
+			return size;
+		}
+	}
+	
+	public T get(int index) {
+		
+		if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException("The given index is outside the bounds of this MyLinkedList.");
+		} else {
+			
+			int currentIndex = 0;
+			Node<T> getterNode = this.head;
+			
+			while (getterNode != null) {
+				
+				if (index == currentIndex) {
+					return getterNode.getValue();
+				} else {
+					getterNode = getterNode.getNext();
+					currentIndex++;
+				}
+			
+			}
+			
+			return null; // we'll never reach this, but Java doesn't know that and is expecting a return of some kind
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

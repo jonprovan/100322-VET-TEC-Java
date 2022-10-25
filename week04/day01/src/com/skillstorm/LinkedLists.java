@@ -104,7 +104,11 @@ public class LinkedLists {
 //		
 //		LinkedList<String> stringList = new LinkedList<>();
 		
+		myStringList.add(null);
 		
+		System.out.println(myStringList);
+		
+		System.out.println(myStringList.indexOf("Earlobe Wax"));
 	}
 
 }

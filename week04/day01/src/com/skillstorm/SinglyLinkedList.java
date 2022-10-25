@@ -28,6 +28,31 @@ public class SinglyLinkedList {
 		
 		// ...can NOT do this, because myFunNode requires a Node of String type to be next
 		// myFunNode.setNext(myNumericallyFunNode);
+		
+		System.out.println();
+		
+		MyLinkedList<String> stringList = new MyLinkedList<String>();
+		
+		stringList.add("It don't mean a thing if it ain't got that String.");
+		stringList.add("Theory");
+		stringList.add("-a-ling");
+		stringList.add(null);
+		stringList.add("It don't mean a thing if it ain't got that String.");
+		stringList.add("Theory");
+		stringList.add("-a-ling");
+		stringList.add(null);
+		stringList.add("It don't mean a thing if it ain't got that String.");
+		stringList.add("Theory");
+		stringList.add("HUZZAH!!!");
+		stringList.add("-a-ling");
+		stringList.add(null);
+		
+		
+		System.out.println(stringList.size());
+		
+		System.out.println(stringList.get(10));
+		
+		
 
 	}
 
