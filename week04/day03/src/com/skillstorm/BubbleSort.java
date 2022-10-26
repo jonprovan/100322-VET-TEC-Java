@@ -1,6 +1,7 @@
 package com.skillstorm;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 public class BubbleSort {
 	
@@ -50,16 +51,42 @@ public class BubbleSort {
 	
 		LinkedList<Integer> myEmptyList = null;
 		bubbleSort(myEmptyList);
+		
+		LinkedList<Integer> myGiantList = new LinkedList<Integer>();
+		
+		for (int i = 0; i < 100; i++) {
+			myGiantList.add(new Random().nextInt(1000));
+		}
+		
+		System.out.println();
+		
+		System.out.println("myGiantList of 100 random numbers 0-999:");
+		System.out.println(myGiantList);
+		
+		System.out.println();
+		
+		bubbleSort(myGiantList);
+		
+		System.out.println("myGiantList after being bubble-sorted:");
+		System.out.println(myGiantList);
+		
+		
 	}
 	
 	public static void bubbleSort(LinkedList<Integer> integerList) {
 		
+		// checking to see if the user gave us a null list object
 		if (integerList != null) {
 			
+			// this loop refers to each pass through the list; we need one fewer than the list's size to fully sort
 			for (int j = 0; j < integerList.size() - 1; j++) {
 
+				// this loop refers to the swaps within each pass; we need one for each pair, so one fewer than the list's size 
 				for (int i = 0; i < (integerList.size() - 1); i++) {
+					
+					// if the one we're on is greater than the next one...
 					if (integerList.get(i) > integerList.get(i + 1)) {
+						// ...remove it and insert it after the next one
 						integerList.add(i + 1, integerList.remove(i));
 					}
 				}
