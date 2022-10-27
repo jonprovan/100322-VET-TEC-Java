@@ -7,6 +7,7 @@ import java.util.Deque;
 // BUT if you're importing everything from another package in your project, for instance, this makes a lot of sense
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -146,6 +147,59 @@ public class Review {
 		 * 
 		 */
 		
+		
+		// QUESTION 8
+		
+		LinkedList<String> myTowelsAgain = new LinkedList<String>();
+		
+		myTowelsAgain.add("Towel Of Powel");
+		myTowelsAgain.add("Dry Sense Of Humor");
+		myTowelsAgain.add("Fluffernutter");
+		myTowelsAgain.add("Cotten To It");
+		myTowelsAgain.add("Silky Bizness");
+		
+		int index = 1;
+		
+		System.out.println(myTowelsAgain.get(index));
+		
+		// can do this to just use the current index and refer to the next one
+		System.out.println(myTowelsAgain.get(++index));
+		
+		
+		System.out.println();
+		
+		// can do this also -- creates a ListIterator that remembers where we are in our list
+		ListIterator<String> towelIterator = myTowelsAgain.listIterator();
+		
+		// can just call .next() or .previous() to get next/previous items
+		// this also advances the "cursor" to the next/previous item
+		System.out.println(towelIterator.next());
+		System.out.println(towelIterator.next());
+		System.out.println(towelIterator.next());
+		System.out.println(towelIterator.next());
+		System.out.println(towelIterator.next());
+		System.out.println(towelIterator.previous());
+		System.out.println(towelIterator.previous());
+		System.out.println(towelIterator.previous());
+		System.out.println(towelIterator.previous());
+		System.out.println(towelIterator.previous());
+		
+		
+		// QUESTION 9
+		/*
+		 * Insertion Sort -- sort items as they're put into a list
+		 * -- when the item is added, the sorting process executes and places the item in the proper slot
+		 * 
+		 * Bubble Sort -- sort ALL items already in a list
+		 * -- iterates through the list, checking each pair
+		 * -- then repeats this process until all items are in the proper order
+		 * 
+		 * Insertion sort is faster, because it only has to go through once
+		 * -- BUT, if you have a list that's unsorted, the insertion sort doesn't really work1
+		 * 
+		 * Without checking along the way, we need at least .size() - 1 passes to guarantee we'll be fully sorted
+		 * -- if we check, it COULD be as little as one pass
+		 */
 		
 	}
 	
