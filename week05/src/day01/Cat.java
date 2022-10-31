@@ -7,16 +7,18 @@ public class Cat {
 	// TODO fully encapsulate it
 	String name;
 	String owner;
+	Toy toy;
 	
-	public Cat(String name, String owner) {
+	public Cat(String name, String owner, Toy toy) {
 		this.name = name;
 		this.owner = owner;
+		this.toy = toy;
 	}
 
 	// HOW WE WILL USE THIS
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, owner); 
+		return Objects.hash(name, owner, toy); 
 	}
 
 	@Override
