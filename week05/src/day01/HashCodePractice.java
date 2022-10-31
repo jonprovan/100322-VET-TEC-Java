@@ -38,8 +38,26 @@ public class HashCodePractice {
 		boolean isBoots = cats.contains(new Cat("Boots", "Erica", toy2));
 		System.out.println("Is Boots in the set? " + isBoots);
 		
-		// 
+		// QUIZ - HASHCODES
+		// Q1: Which is a legal (equals contract) hash code method?
+		/*
+		 * (a) Random r = new Random(); return r.nextInt(100); -- violates bc identical objs diff hash code
+		 * (b) return 1; -- valid everything goes to the same bin BUT not good 
+		 * (c) return (int) System.currentTimeMillis(); -- violates bc identical objs diff hash code AND not deterministic
+		 * (d) return (int) this.getClass().getName().charAt(0); -- not unique BUT valid (should use ALL PROPERTIES)
+		 */
 		
+		// Q2: Given two objects have the same hash code, which can we imply
+		/*
+		 *  [ ] must be equal
+			[x] might be equal 
+			[ ] must not be equal
+		 * 
+		 */
+		
+		// Q3: Objects.hash(dog1) == Objects.hashCode(dog1)
+		// (a) true
+		// (b) false --- because [ dog1 ] array does not have the same hash code as dog1
 	}
 
 }
