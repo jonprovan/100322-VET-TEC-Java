@@ -114,7 +114,7 @@ public class RecursionPractice {
 			// step 3: concatenate lasta character to result of reversing the rest
 			String result = word.charAt(word.length() - 1) + reverse(substring);
 			//                                               ----------------
-			//                                                 MAGIC!
+			//                                                   MAGIC!
 		}
 		return word;
 	}
@@ -134,8 +134,8 @@ public class RecursionPractice {
 			return "";
 		} else {
 			String result =  word.charAt(index) +  recursiveReverseV2(word, index - 1);
-			//         ------------------    -------------------
-			//                                   MAGIC!
+			//               ------------------    -------------------
+			//                                          MAGIC!
 			System.out.println(result);
 			return result;
 		}
