@@ -47,11 +47,9 @@ public class RecursionPractice {
 		
 		
 		// EXAMPLE 3 - sum an array
+		int[] nums = { 1, 3, 8, 20, 2, 7 } ;
 		
-		
-		
-		
-		
+		System.out.println(sumArrayRecursive(nums, 0));
 		
 	}
 	
@@ -119,6 +117,27 @@ public class RecursionPractice {
 		}
 	}
 	
+	
+	
+	
+	/// XAMPLE 3 ---- SUM AN ARRAY!!!!
+	public static int sumArrayRecursive(int[] nums, int index) {
+		System.out.println("index = " + index);
+		/// BASE CASE!
+		if (index > nums.length - 1) {
+			System.out.println(0);
+			return 0;
+		} else {
+		/// DEFINITION
+			int current = nums[index];
+			int restOfIt = sumArrayRecursive(nums, index + 1);
+			//              -------------------------------- 
+			System.out.print(current + " + " + restOfIt + " = ");
+			int result = current + restOfIt;
+			System.out.println(result);
+			return result;
+		}
+	}
 	
 	
 
