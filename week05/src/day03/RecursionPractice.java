@@ -40,6 +40,9 @@ public class RecursionPractice {
 		
 		// EXAMPLE 2 - reverse a string
 		
+		
+		recursiveReverseV2(hello, hello.length() - 1);
+		
 	}
 	
 	// DRY = don't repeat yourself
@@ -80,8 +83,28 @@ public class RecursionPractice {
 			String substring = word.substring(0, lastIndex);
 			// step 3: concatenate lasta character to result of reversing the rest
 			String result = word.charAt(word.length() - 1) + reverse(substring);
+			//                                               ----------------
+			//                                                 MAGIC!
 		}
 		return word;
 	}
+	
+	
+	
+	
+	
+	
+	// REVERSE MORE LIKE A WHILE LOOP --- RECURSIVE VERSION
+	public static String recursiveReverseV2(String word, int index) {
+		if (index < 0) // STOPS when index = -1
+			return "";
+		else
+			return word.charAt(index) +  recursiveReverseV2(word, index - 1);
+		//         ------------------    -------------------
+		//                                   MAGIC!
+	}
+	
+	
+	
 
 }
