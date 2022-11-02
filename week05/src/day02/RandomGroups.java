@@ -71,7 +71,7 @@ public class RandomGroups {
 		int groupNumber = 0;
 		while (!names.isEmpty() ) {
 			System.out.print(groupNumber + " ");
-			groupNumber = ++groupNumber % 11; // 0 -> 0 , 1 -> 1, ... , 10 -> 10, 11 -> 0
+			groupNumber = ++groupNumber % 8; // 0 -> 0 , 1 -> 1, ... , 10 -> 10, 11 -> 0
 			String name = names.remove(randomGenerator.nextInt(names.size()));
 			System.out.println(name);
 			// Step 1: GET the LinkedList
