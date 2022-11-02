@@ -25,7 +25,7 @@ public class RecursionPractice {
 	public static void main(String[] args) {
 //		doStuff();
 //		factorial(3);
-//		System.out.println(factorial(3));
+		System.out.println(factorial(3));
 //		System.out.println(reverse("hello"));
 		
 		
@@ -43,6 +43,16 @@ public class RecursionPractice {
 		
 		recursiveReverseV2(hello, hello.length() - 1);
 		
+		
+		
+		
+		// EXAMPLE 3 - sum an array
+		
+		
+		
+		
+		
+		
 	}
 	
 	// DRY = don't repeat yourself
@@ -55,7 +65,7 @@ public class RecursionPractice {
 	}
 	
 	public static int factorial(int n) {
-		//System.out.println("n = " + n);
+		// System.out.println("n = " + n);
 		if (n == 0)
 			return 1;
 		else 
@@ -96,12 +106,17 @@ public class RecursionPractice {
 	
 	// REVERSE MORE LIKE A WHILE LOOP --- RECURSIVE VERSION
 	public static String recursiveReverseV2(String word, int index) {
-		if (index < 0) // STOPS when index = -1
+		System.out.println("index = " + index);
+		if (index < 0) {// STOPS when index = -1
+			System.out.println("");
 			return "";
-		else
-			return word.charAt(index) +  recursiveReverseV2(word, index - 1);
-		//         ------------------    -------------------
-		//                                   MAGIC!
+		} else {
+			String result =  word.charAt(index) +  recursiveReverseV2(word, index - 1);
+			//         ------------------    -------------------
+			//                                   MAGIC!
+			System.out.println(result);
+			return result;
+		}
 	}
 	
 	
