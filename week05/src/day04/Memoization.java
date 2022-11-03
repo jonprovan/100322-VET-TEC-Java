@@ -2,6 +2,8 @@ package day04;
 
 public class Memoization {
 	
+	
+	
 	/* 
 	 * What is memoization? -- memorizing (aka caching) the values to avoid re-caluculating them over and over
 	 */
@@ -42,8 +44,8 @@ public class Memoization {
 		
 		
 		
-		
-		return fibNm1 + fibNm2;
+		fibs[n] = fibNm1 + fibNm2;
+		return fibs[n];
 	}
 	
 	
