@@ -1,5 +1,7 @@
 package day04;
 
+import java.util.Arrays;
+
 public class Memoization {
 	
 	
@@ -98,32 +100,6 @@ public class Memoization {
 		System.out.println("time take was " + seconds + " seconds!");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
