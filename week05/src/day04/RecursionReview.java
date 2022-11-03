@@ -2,6 +2,7 @@ package day04;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class RecursionReview {
 	
@@ -123,7 +124,50 @@ public class RecursionReview {
 	
 	
 	
-	// EXAMPLE 3 - find IF the list contains a given String
+	// EXAMPLE 3 - find IF the list contains a given String 
+	public static boolean contains(List<String> words, String searchTerm) {
+		return helpSearch(words, searchTerm, 0);
+	}
+	
+	private static boolean helpSearch(List<String> words, String searchTerm, int index) {
+		// BASE CASE
+		if (index > words.size() - 1)
+			// failure
+			return false;
+		else if (searchTerm.equals(words.get(index)))
+			// success
+			return true;
+		// RECURSIVE CALL
+		else {
+			// if it's not me, KEEP CHECKING ...
+			return helpSearch(words, searchTerm, index + 1);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
@@ -209,6 +253,14 @@ public class RecursionReview {
 		
 		
 		
+		// test search for String
+		List<String> namesToSearch = new ArrayList<>();
+		namesToSearch.add(null);
+		namesToSearch.add("Dory");
+		namesToSearch.add("Bruce");
+		namesToSearch.add("Nemo");
+		namesToSearch.add("Darla");
+		System.out.println("Found nemo? " + contains(namesToSearch, "Nemo"));
 		
 		
 		
@@ -221,6 +273,8 @@ public class RecursionReview {
 		
 		
 		
-	}
+		
+		
+	} // end main
 
-}
+} // end class
