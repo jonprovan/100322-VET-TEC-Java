@@ -1,10 +1,22 @@
 package day03;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class RecursionPractice {
+	
+	// If we ask you to write a recursive function
+	// LinkedList -- use option 2: update the list 
+	// ArrayList/arrays =- use option 1: update an index
+	public Cat findFattestCat(Cat[] cats) {
+		return findFattestCatRecursve(cats, 0);
+	}
+	
+	private Cat findFattestCatRecursve(Cat[] cats, int index) {
+		return new Cat("Boots", 10);
+	}
 	
 	/*
 	 * What is recursion?
@@ -17,7 +29,8 @@ public class RecursionPractice {
 	 * BASE CASE 
 	 * - havea road when to stop
 	 */
-	
+
+
 	/*
 	 * WHEN TO USE RECURSION?
 	 * - anything you can do recursively you can do iteratively
@@ -63,7 +76,7 @@ public class RecursionPractice {
 		Cat cat3 = new Cat("Incineroar", 10);
 		Cat cat4 = new Cat("Barney", new Random().nextInt(100));
 		Cat[] cats = { cat, cat2, cat3, cat4 }; // 
-		LinkedList<Cat> catList = new LinkedList<>(Arrays.asList(cats));
+		ArrayList<Cat> catList = new ArrayList<>(Arrays.asList(cats));
 		
 		// call the method
 		Cat best = findCutestCat(catList, 0);
@@ -164,7 +177,7 @@ public class RecursionPractice {
 	}
 	
 	// 
-	public static Cat findCutestCat(LinkedList<Cat> cats, int index) {
+	public static Cat findCutestCat(ArrayList<Cat> cats, int index) {
 		// base case
 		if (cats == null)
 			return null; // TODOD something smarter
