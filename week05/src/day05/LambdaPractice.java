@@ -1,5 +1,7 @@
 package day05;
 
+
+
 public class LambdaPractice {
 	/*
 	 * What is functional programming?
@@ -17,9 +19,6 @@ public class LambdaPractice {
 	 * 
 	 * 
 	 */
-
-	
-	
 	
 	
 	
