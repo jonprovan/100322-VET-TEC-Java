@@ -1,4 +1,4 @@
-package day04;
+package day05;
 
 public class Suit {
 
