@@ -1,0 +1,39 @@
+Review Questions
+----------------
+
+Hash Code / Hash Set / Hash Map / Hash Table
+
+Q1: Why is the under-the-hood hash table resized when it is 75% full?
+- too many collisions, slows down look-up times, so resizes
+
+Q: Hash Maps allow duplicate keys?
+no - what do they allow duplicates of? values - yes 
+
+Q: Can you store null in a Hash Set?
+- yes
+- multiplle null? no - it doesn't allow duplicates
+
+Q: Load the factor of a hash table by definition?
+load factor = occupied "buckets" / capacity
+
+Q: What is a hash code?
+int 
+
+Recursion / Memoization
+
+Q: What error if no base case in a recursive method?
+StackOverflowError
+
+Q: Why do we use memoization?
+- trade space efficiency for time efficiency
+- avoid recalculating values 
+- save time
+
+Q: Why do we use recursion?
+- sometimes too complex to do iteratively
+- same reason we use loops
+
+Q: What are two ways to keep track of how far you are in a list when recursively searching it?
+- use a index (like a while loop with a counter)
+- use the size of the list 
+

@@ -51,6 +51,10 @@ public class UsefulUsesOfLambdas {
 			return alteredState;
 		});
 		System.out.println(stateStreamAltered);
+		
+		for (Object state : stateStreamAltered.toArray()) {
+			System.out.println(state);
+		}
 	}
 
 }
