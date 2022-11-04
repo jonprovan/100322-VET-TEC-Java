@@ -1,6 +1,8 @@
+package day05;
 
+@FunctionalInterface
 public interface Calculation {
 
 	// method
-	                   // example implementations could be: __________
+	int calculate(int a, int b);                   // example implementations could be: __________
 }

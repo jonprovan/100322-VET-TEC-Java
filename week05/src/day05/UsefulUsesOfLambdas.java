@@ -45,7 +45,7 @@ public class UsefulUsesOfLambdas {
 		Stream<State> stateStream2 = states3.stream();
 		Stream<State> stateStreamAltered = stateStream2.map((state) -> {
 			String alteredName = state.getName().substring(0,2).toUpperCase();
-			int population = state.getPopultation();
+			int population = state.getPopulation();
 			int alteredSize = state.getSize();
 			State alteredState = new State(alteredName, population, alteredSize);
 			return alteredState;
