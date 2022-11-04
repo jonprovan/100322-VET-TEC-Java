@@ -58,7 +58,7 @@ public class State {
 	@Override
 	public String toString() {
 		NumberFormat nf = NumberFormat.getInstance(); // Using this to add commas to my printed numbers
-		return name +":" + nf.format(population) + ":" + nf.format(size); 
+		return name + ":" + nf.format(size); 
 	}
 
 }

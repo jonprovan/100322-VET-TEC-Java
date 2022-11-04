@@ -20,6 +20,20 @@ public class ActionExample {
 			System.out.print(n + " ");
 		}
 		
+		
+		// Define a different action
+		// squared
+		Action square = num -> num * num; // I can store a lambda in a variable!
+		// Equivalent to:
+//		 Action square = public int act(int num) {
+//		   return num * num;
+//		 }
+		result = doStuff(nums, square);
+		System.out.println();
+		for (int n : result) {
+			System.out.print(n + " ");
+		}
+		
 	}
 	
 
