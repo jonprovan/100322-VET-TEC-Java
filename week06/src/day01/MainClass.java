@@ -70,12 +70,17 @@ public class MainClass {
 		// STEP 2: MAP
 		Stream<AssignmentSubmission> updatedStream = submissionStream.map((submission) -> {
 			AssignmentSubmission updatedSubmission = new AssignmentSubmission();
+			
 			updatedSubmission.setStudent(submission.getStudent());
+			
 			updatedSubmission.setCheated(submission.getCheated());
+			
 			if (submission.getCheated())
 				updatedSubmission.setScore(0);
 			else 
 				updatedSubmission.setScore(submission.getScore());
+			
+			
 			return updatedSubmission;
 		});
 		List<AssignmentSubmission> updatedScores = updatedStream.collect(Collectors.toList());
