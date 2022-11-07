@@ -29,6 +29,7 @@ public class MakingStatesInLoop {
 			states[i]= new State(stateNames[i], population[i]);
 		}
 	}
+	
 	public static void main(String[] args) {
 		// convert array to linked list
 		List<State> allStates = new LinkedList<State>();
