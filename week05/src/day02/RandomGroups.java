@@ -27,7 +27,7 @@ public class RandomGroups {
 
 				"Aung",
 
-				"Lion",
+				//"Lion",
 
 				"Eric",
 
@@ -47,7 +47,7 @@ public class RandomGroups {
 
 				"Jordan",
 
-				"Aaliyah",
+				//"Aaliyah",
 
 				"Dylan",
 

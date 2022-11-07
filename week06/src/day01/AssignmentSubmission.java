@@ -1,9 +1,9 @@
 package day01;
 
 public class AssignmentSubmission {
-	int day; // of month 1-31
-	int month; // of year 1-12
-	int year; // 4-digit year 
+	String student; // name
+	int score; // 0 to 100
+	boolean cheated; // true means they cheated, false means they didn't
 	
 	
 }
