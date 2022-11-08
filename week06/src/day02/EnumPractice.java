@@ -1,9 +1,28 @@
 package day02;
 
 import java.util.Scanner;
-import day02.Day;
+
+import static day02.Day.*;
+
 
 public class EnumPractice {
+	
+	
+	public enum Planet { // Inner Class! -- don't need Planet.MERCURY -- we can just refer to MERCURY
+		MERCURY,          //              -- we can keep our enum within the class we use it
+		VENUS,
+		EARTH,
+		MARS,
+		JUPITER,
+		SATURN,
+		URANUS,
+		NEPTUNE // No semicolon necessary
+		
+	}
+	
+	int[] nums = {1,2,3}; // similar notation to our enum
+	
+	
 	
 	/*
 	 * What is an Enum?
@@ -27,7 +46,7 @@ public class EnumPractice {
 	public static void main(String[] args) {
 		
 	
-		Day today = Day.MONDAY; // instead of "Monday" or int 1 
+		Day today = MONDAY; // instead of "Monday" or int 1 
 		
 		// for each - print out all the values of Day
 		for (Day day : Day.values()) {
@@ -43,11 +62,30 @@ public class EnumPractice {
 		
 		// anywhere I use Day, I don't need to do validation anymore like I would with String day
 		
-		Color userColor = promptUserForColor();
+		Color userColor = promptUserForColor(); // method that returns our enum
+		System.out.println("You chose: " + userColor);
+		// String hexCode = getColorHexCode("purple") //does not work
+		String hexCode = getColorHexCode(userColor); // method that uses our enum
+		System.out.println("The hex value is " + hexCode);
 		
-		Color[] colors = Color.values();
-		Color color = colors[0];
 		
+//		Color[] colors = Color.values();
+//		Color color = colors[0]; // using ordinal to access
+		
+		System.out.println("Comparing Earth and Earth " + isFurtherFromSun(Planet.EARTH , Planet.EARTH));
+		System.out.println("Comparing Mercury and Venus " + isFurtherFromSun(Planet.MERCURY , Planet.VENUS));
+		System.out.println("Comparing Jupiter and Mars " + isFurtherFromSun(Planet.JUPITER , Planet.MARS));
+	}
+	
+	// returns TRUE if planet1 IS further thana planet2
+	public static boolean isFurtherFromSun(Planet planet1, Planet planet2) {
+		int planet1Ordinal = planet1.ordinal();
+		int planet2Ordinal = planet2.ordinal();
+		return planet1Ordinal > planet2Ordinal;
+	}
+	
+	public static String getColorHexCode(Color color) {
+		return color.getHexValue();
 	}
 	
 	public static Color promptUserForColor() {
@@ -59,6 +97,7 @@ public class EnumPractice {
 		String userEntry = input.nextLine();
 		// sanitize the string
 		userEntry = userEntry.toUpperCase().trim(); // store the result
+		input.close();
 		return Color.valueOf(userEntry);
 	}
 	
