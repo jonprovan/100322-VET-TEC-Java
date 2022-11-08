@@ -13,11 +13,17 @@ public class IteratorPractice {
 	 *          -- loops - while, for, for-each 
 	 *                - or recursion
 	 * - uses iteration (not recursion to traverse a collection)
-	 *      collection - list, set, array, map
+	 *      collection - generic list, set, array, map
 	 *      
 	 *      
 	 *  Pros - we can start and stop and continuing from where left off
-	 *       - we remove safely in the middle of iterating
+	 *       - we remove safely in the middle of iterating over LinkedList / ArrayList / HashSet / HashMap
+	 *       
+	 *  - UNLIKE STREAM we are operating on the list or collection ITSELF -- mutates the list
+	 *          - does not create a new list or collection
+	 *  
+	 *  EXPLORE ON YOUR OWN
+	 *  - ListIterator - can get previous 
 	 */
 	
 	public static void main(String[] args) {
