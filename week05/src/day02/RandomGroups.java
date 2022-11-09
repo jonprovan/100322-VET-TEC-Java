@@ -1,81 +1,83 @@
 package day02;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RandomGroups {
 
 	public static void main(String[] args) {
-		String[] people = {
-
-				"Brandon",
-
-				"Jason",
-
-				"Christopher",
-
-				"Edwin",
-
-				"Brian",
-
-				"Kirby",
-
-				"Preston",
-
-				"Aung",
-
-				//"Lion",
-
-				"Eric",
-
-				"Donavon",
-
-				"Raymond",
-
-				"Ernesto",
-
-				"NaDario",
-
-				"Victoria",
-
-				"Rob",
-
-				"Lamar",
-
-				"Jordan",
-
-				//"Aaliyah",
-
-				"Dylan",
-
-				"Rina",
-
-				"Artyom",
-
-				"Kelvin" };
-		LinkedList<String> names = new LinkedList<>(Arrays.asList(people));
+		// TODO make array of names out of the names.txt file
+//		String[] people = {};
+		
+		
+//		String[] people = {
+//				"Aaliyah",
+//				"Artyom",
+//				"Aung",
+//				"Brandon",
+//				"Brian",
+//				"Christopher",
+//				"Donavon",
+//				"Dylan",
+//				"Edwin",
+//				"Eric",
+//				"Ernesto",
+//				"Jason",
+//				"Jordan",
+//				"Kelvin",
+//				"Kirby",
+//				"Lamar",
+//				"NaDario",
+//				"Preston",
+//				"Raymond",
+//				"Rina",
+//				"Rob",
+//				"Victoria"
+//				};
+		LinkedList<String> names = readNames("./src/day02/names.csv");
 		createGroups(names);
 
 	}// end of main
 	
+	// GOAL: read the names in the file
+	public static LinkedList<String> readNames(String path) {
+		LinkedList<String> names = new LinkedList<>();
+		// using scanner bc small file
+		try (Scanner scanner = new Scanner(new File(path))) {
+			while (scanner.hasNextLine()) {
+				String name = scanner.nextLine();
+				names.add(name);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return names;
+	}
+	
+	
+	
+	
+	
 	public static void createGroups(LinkedList<String> names) {
-		int numGroups = 8;
+		int numPeoplePerGroup = 4;
+		int peopleHere = 22;
+		int numGroups = (int) Math.ceil((double) peopleHere / numPeoplePerGroup); // 22 / 4 = 5.5 --> 6 rooms
 		// HashMap -- use whatever key type you want -- 
 		HashMap<Integer, LinkedList<String>> groups = new HashMap<>(); // KEY-VALUE pairs -- KEY - INTEGER, VALUE - LINKEDLIST
 		for (int i = 1; i <= numGroups; i++) {
 			groups.put(i, new LinkedList<String>());
 		}
-		System.out.println(groups);
 		Random randomGenerator = new Random();
 		int groupNumber = 0;
 		while (!names.isEmpty() ) {
-			System.out.print(groupNumber + " ");
 			groupNumber = ++groupNumber % numGroups; // 0 -> 0 , 1 -> 1, ... , 10 -> 10, 11 -> 0
 			String name = names.remove(randomGenerator.nextInt(names.size()));
-			System.out.println(name);
 			// Step 1: GET the LinkedList
 			LinkedList<String> value = groups.get(groupNumber + 1);
 			// Step 2: ADD to the LinkedList
