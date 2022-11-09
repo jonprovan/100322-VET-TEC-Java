@@ -91,6 +91,9 @@ public class FileReaderPractice {
 	// create some objects -- create a Car class
 	// read from the file -- create a Scanner
 	public static LinkedList<Car> parseCarData(String path) {
+		// make sure the file is a .csv
+		if (!isCSV(path))
+			throw new IllegalArgumentException("File path must be a .csv file");
 		// create list
 		LinkedList<Car> cars = new LinkedList<>();
 		// use a scanner
@@ -108,7 +111,13 @@ public class FileReaderPractice {
 					if (cols.length >= 2) {
 						// create a car object
 						String name = cols[0];
-						int year = Integer.parseInt(cols[1]);
+						// make sure this is a number
+						int year;
+						try {
+							year = Integer.parseInt(cols[1]);
+						} catch (NumberFormatException e) {
+							year = 0;
+						}
 						Car car = new Car(name, year);
 						// add to list
 						cars.add(car);
@@ -120,5 +129,14 @@ public class FileReaderPractice {
 		}
 		// return the list
 		return cars;
+	}
+	
+	// test if a path is to a .csv file
+	private static boolean isCSV(String path) {
+		// check the extension
+		// use split on "."
+		String[] parts = path.split("\\."); // groceries.2022.12.12.csv -- { "groceries", "2022", "12", "12", "csv"}
+		                                    // csv won't work needs to be a file name AND extension { "csv' } // bad
+		return parts.length > 1 && parts[parts.length - 1].equals("csv");
 	}
 }
