@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 public class FileIOPractice {
 	
@@ -41,6 +42,11 @@ public class FileIOPractice {
 		writeMultipleLinestToFile("./src/day03/myfiles/test.txt", lines);
 		writeStringToFile("./src/day03/myfiles/test.txt", "up");
 		
+		saveCar("./src/day03/myfiles/cars.csv", new Car("Maserati", 2015));
+		
+		LinkedList<Car> cars = FileReaderPractice.parseCarData("./src/day03/myfiles/cars.csv");
+		
+		saveCars("./src/day03/myfiles/cars.csv", cars);
 	}
 	
 	public static void writeMultipleLinestToFile(String path, LinkedList<String> lines) {
@@ -131,4 +137,55 @@ public class FileIOPractice {
 			}
 		}
 	}
+	
+	
+	
+	/* 
+	 * Goal: Write a car to our csv file
+	 */
+	public static void saveCar(String path, Car car) {
+		// to write to a file
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) { // use APPEND mode -- second parameter true in FileWriter constructor
+			// String carString = car.toString(); // useful? no, wrong format
+			String carString = car.getCommaSeparatedValues();
+			// store it
+			writer.write("\n" + carString );
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	/*
+	 * Goal: Store all the Car objects in our list of cars to a .csv file
+	 */
+	public static void saveCars(String path, LinkedList<Car> cars) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) {
+			// loop through the list
+			Stream<Car> carStream = cars.stream();
+			carStream.forEach(car -> { // FUN PRACTICE WITH LAMBDAS -- feel free to stick to LOOPS!
+				// convert obj to string
+				String carString = car.getCommaSeparatedValues();
+				// store string
+				try {
+					writer.write("\n" + carString);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,0 +1,4 @@
+Class starts at:
+10:15
+
+- reading from a file!!!
