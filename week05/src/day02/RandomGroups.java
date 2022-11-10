@@ -3,6 +3,7 @@ package day02;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 public class RandomGroups {
 
 	public static void main(String[] args) {
+		
 		// TODO make array of names out of the names.txt file
 //		String[] people = {};
 		
@@ -41,6 +43,10 @@ public class RandomGroups {
 //				"Victoria"
 //				};
 		LinkedList<String> names = readNames("./src/day02/names.csv");
+		System.out.println(names);
+		Collections.shuffle(names);
+		System.out.println("Random order: ");
+		System.out.println(names);
 		createGroups(names);
 
 	}// end of main
