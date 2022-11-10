@@ -1,29 +1,48 @@
 package day01;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Objects;
 
 public class AssignmentSubmission {
+	
+	// due date and time
+	public static final LocalDateTime DUE_DATE = LocalDateTime.of(2022, 11, 8, 23, 59);
+	
 	
 	private String student; // name
 	private int score; // 0 to 100
 	private boolean cheated; // true means they cheated, false means they didn't
 	
+	// submission date and time
+	private LocalDateTime submittedAt;
+	
+	
 	public AssignmentSubmission() {
-		this("Test Student", 0, false);
+		this("Test Student", 0, false, DUE_DATE);
+	}
+	
+
+	public AssignmentSubmission(String student) {
+		this(student, 0, false, DUE_DATE.plusMinutes(1));
 	}
 	
 	public AssignmentSubmission(String student, int score) {
-		this(student, score, false);
-	}
-	
-	public AssignmentSubmission(String student) {
-		this(student, 0, false);
+		this(student, score, false, DUE_DATE);
 	}
 	
 	public AssignmentSubmission(String student, int score, boolean cheated) {
+		this(student, score, cheated, DUE_DATE);
+	}
+	
+	
+	public AssignmentSubmission(String student, int score, boolean cheated, LocalDateTime submittedAt) {
 		setStudent(student);
 		setScore(score);
 		setCheated(cheated);
+		setSubmittedAt(submittedAt);
 	}
 
 	public String getStudent() {
@@ -55,6 +74,35 @@ public class AssignmentSubmission {
 	public void setCheated(boolean cheated) {
 		this.cheated = cheated;
 	}
+	
+	public LocalDateTime getSubmittedAt() {
+		return submittedAt;
+	}
+	
+	public void setSubmittedAt(LocalDateTime submittedAt) {
+		// reject dates in the future
+//		LocalDateTime now = LocalDateTime.now();
+//		Period difference = Period.between(now, submittedAt);
+		
+		if (isInFuture(submittedAt))
+			throw new IllegalArgumentException("Cannot have future date and time");
+		
+		// TODO
+		
+		this.submittedAt = submittedAt;
+	}
+	
+	// true IF in future
+	private boolean isInFuture(LocalDateTime submittedAt) {
+		// step 1: get the seconds
+		// use Instant --- a Java class for working with Temporal objects
+		Instant nowInstant = Instant.now();
+		Instant submitionInstant = submittedAt.atZone(ZoneId.of("America/New_York")).toInstant();
+		
+		// step 2: use Instant class .isBefore(instant)
+		return nowInstant.isBefore(submitionInstant);
+	}
+	
 
 	@Override
 	public String toString() {

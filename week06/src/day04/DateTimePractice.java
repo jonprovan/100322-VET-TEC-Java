@@ -3,7 +3,10 @@ package day04;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
@@ -96,6 +99,42 @@ public class DateTimePractice {
 		// Example: get the day in california
 		LocalDate dayInCalifornia =  LocalDate.now(ZoneId.of("America/Los_Angeles"));
 		System.out.println(dayInCalifornia);
+		
+		// get all the zoneid's available
+		for (String zone : ZoneId.getAvailableZoneIds()) {
+			System.out.println(zone);
+		}
+		
+		// Goal: get the day in New Zealand right now
+		LocalDate dayInNewZealand = LocalDate.now(ZoneId.of("Australia/Lindeman"));
+		System.out.println(dayInNewZealand);
+		
+		// Example: LocalTime today
+		LocalTime timeNow = LocalTime.now(); // using 
+		System.out.println("Here it is " + timeNow);
+		
+		// Example: LocalTime today in Australia
+		LocalTime timeInAustralia = LocalTime.now(ZoneId.of("Australia/Lindeman"));
+		System.out.println("In Australia it is " + timeInAustralia);
+		
+		LocalDateTime timeDateNow = todayDate.atTime(timeNow);
+		System.out.println("To be exact, here it is now " + timeDateNow); // 2022-11-10T10:27:44.189 <--- uses "T" to separate date and time
+		
+		// Math with dates
+		// Period
+		// Duration 
+		// difference: Period of 1 day is NOT always 24 hours vs duration of 1 day is always 24 hours
+		LocalDate valentinesDay = LocalDate.of(2023, Month.FEBRUARY, 14);
+		Period daysTillValentinesDay = Period.between(todayDate, valentinesDay);
+		System.out.println(daysTillValentinesDay); // period itself
+		System.out.println("Time until Valentines Day is " + daysTillValentinesDay.getMonths() + " months " + daysTillValentinesDay.getDays() + " days"); // just the days 
+		
+		// get someones age from their DOB
+		LocalDate dateOfBirth = LocalDate.of(1963, Month.NOVEMBER, 22);
+		Period timeAlive = Period.between(dateOfBirth, todayDate);
+		System.out.println("Someone born on Nov 22, 1963 is now " + timeAlive.getYears());
+		
+		
 	}
 
 }

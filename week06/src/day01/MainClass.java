@@ -1,5 +1,9 @@
 package day01;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +13,7 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		List<AssignmentSubmission> submissions = 
-				Arrays.asList(new AssignmentSubmission("Sara", 80),
+				Arrays.asList(new AssignmentSubmission("Sara", 80, false, AssignmentSubmission.DUE_DATE.plusDays(1)),
 							  new AssignmentSubmission("Cara", 70),
 							  new AssignmentSubmission("Lara", 100, true),
 							  new AssignmentSubmission("Tara", 0)); // YOUR CODE HERE
@@ -85,6 +89,60 @@ public class MainClass {
 		});
 		List<AssignmentSubmission> updatedScores = updatedStream.collect(Collectors.toList());
 		System.out.println(updatedScores);
+		
+		
+		
+		// Problem 4: Set the scores of all the students who submitted late to be -5 points per day
+		// STEP 0: STREAM
+		Stream<AssignmentSubmission> lateStream = submissions.stream();
+		// STEP 1: MAP
+		Stream<AssignmentSubmission> updatedLateStream = lateStream.map((as) -> { 
+			// check if late
+			if (isLate(as)) {
+				int days = daysLate(as);
+				int pointsOff = days * 5;
+				int score = as.getScore();
+				if (pointsOff > score || days > 7) {
+					// set score to 0
+					as.setScore(0); // 
+				} else {
+					// set score to old - ptsoff
+					as.setScore(score - pointsOff); //
+				}
+			}
+			return as;
+		});
+		List<AssignmentSubmission> updatedLateScores = updatedLateStream.collect(Collectors.toList());
+		System.out.println(updatedLateScores);
+		
+		int days = daysLate(new AssignmentSubmission("Sara", 80, false, AssignmentSubmission.DUE_DATE.plusDays(1)));
+		System.out.println("days late is " + days);
+		
+	}
+	
+	public static boolean isLate(AssignmentSubmission submission) {
+		// Create two instances
+		// due date
+		// submission date
+		Instant submissionInstant = submission.getSubmittedAt().atZone(ZoneId.of("America/New_York")).toInstant();
+		Instant dueDateInstant = AssignmentSubmission.DUE_DATE.atZone(ZoneId.of("America/New_York")).toInstant();
+		
+		// compare
+		return dueDateInstant.isBefore(submissionInstant); // if submission was after dueDate return true
+	}
+	
+	// what to do if it isn't late? only call this if it isLate...
+	public static int daysLate(AssignmentSubmission submission) {
+		// what to do if it is over a month late and .getDays() returns 1 instead of 32 days?
+		// throw illegalargumentexception
+		
+		// Convert to LocalDate bc Period does not support time
+		LocalDate submitted = LocalDate.from(submission.getSubmittedAt());
+		LocalDate dueDate = LocalDate.from(AssignmentSubmission.DUE_DATE);
+		// get the Period between them
+		Period lateness = Period.between(dueDate, submitted);
+		// return the number of days
+		return lateness.getDays();
 	}
 
 }
