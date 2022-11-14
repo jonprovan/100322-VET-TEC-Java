@@ -1,0 +1,60 @@
+<!-- This is a comment in HTML. Does not display on the page itself. -->
+<!--
+    You can put as many lines as you like...
+    ...in between the comment markers.
+    Don't need to put something at the beginning of each line.
+-->
+<!-- EVERYTHING is visible in the source code. -->
+
+<!-- WHAT IS HTML? 
+
+    HTML = Hypertext Markup Language
+    Currently using HTML5
+    A set of standards, NOT a programming language
+-->
+
+<!DOCTYPE html> <!-- declare the document type -->
+
+<html lang="en"> <!-- tag for the html itself, this tag need to be closed, includes a property -->
+
+<head>
+    <!--
+        This is the head. The head tag is used to describe the HTML page. 
+        This data does NOT appear on the page itself (to the user).
+    -->
+    <title>HTML Basics</title> <!-- what you see in the brower bar or tab -->
+    <meta charset="utf-8" /> <!-- this is a self-closing tag; doesn't need a separate closing tag -->
+    <meta name="Author" content="Jon Provan" />
+    <meta name="Description" content="This is a page about HTML basics." />
+    <meta name="Keywords" content="HTML, head, body, comments" />
+</head>
+
+<body>
+    <!-- 
+        The body tag contains the actual content of the page.
+        It IS visible to your user.
+    -->
+    
+    <!-- HTML handles whitespace a little differently than Java. -->
+    <!-- All whitespace AFTER THE FIRST SPACE is ignored. -->
+    <!-- Returns are considered whitespace. -->
+
+    <p>Hello World!</p> <!-- each treated as its own paragraph -->
+    <p>Welcome to HTML!</p>
+
+    <p>
+        Hello World again!<br> <!-- manual line break between lines -->
+        Welcome again to HTML!
+    </p>
+
+    <!-- paragraph is a block tag, takes up all the horizontal space -->
+    <!-- some tags are "inline" tags, take up a block WITHIN a line -->
+
+    <p>
+        <!-- i and em both italicize by default, em is preferred -->
+        <!-- b and strong both bold by default, strong is preferred -->
+        Lorem <i>ipsum</i> <em>dolor</em> sit amet <b>consectetur</b> <strong>adipisicing</strong> elit. <sub>Deserunt</sub>, <sup>fugit</sup>! Accusantium quidem exercitationem non tenetur pariatur. Neque, corporis dolore assumenda accusamus quos eius cum veritatis, architecto, consequatur fugiat iure commodi!
+    </p>
+</body>
+
+</html> <!-- this closes the html tag -->
