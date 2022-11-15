@@ -1,0 +1,18 @@
+/*
+    This is an external stylesheet
+    Styles here will apply to ALL pages where we import this stylesheet
+    Follows the same format as the other styling locations
+*/
+
+body {
+    background-color: lightgray;
+    padding: 50px;
+}
+
+#nav-bar {
+    background-color: lightyellow; 
+}
+
+.img-border {
+    border: 5px solid black;
+}

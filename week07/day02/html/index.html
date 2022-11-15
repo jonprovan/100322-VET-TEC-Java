@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edwin's Tasty Market</title>
+
+    <!-- this is how you import a stylesheet -->
+    <link rel="stylesheet" href="stylesheets/market-styles.css" />
+
+    <style>
+        /* 
+            This is a CSS comment
+            Multi-line, like an HTML comment
+            The style tag goes in the head tag and puts us in CSS land
+
+            Can style a tag directly
+            Can create a CSS class that I can label different tags with
+            Can style by tag ID
+        */
+
+        /* styled by tag name */
+        /* just use the tag name itself before the curly braces */
+        h1 {
+            color: red;
+            font-size: 20px;
+        }
+
+        img {
+            width: 500px;
+        }
+
+        /* styled by class */
+        /* use a dot, then the class name, lowercase with dashes = best practice */
+        .font-italics {
+            font-style: italic;
+        }
+
+        .green-text {
+            color: green;
+        }
+
+        /* styled by ID */
+        /* use the pound sign, then the class name, same naming convention */
+        #nav-bar {
+           background-color: lightblue; 
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- semantic tag nav for our navigation bar -->
+    <nav id="nav-bar">
+        <a href="index.html">Home</a> --
+        <a href="about-us.html">About Us</a> --
+        <a href="our-products.html">Our Products</a>
+    </nav>
+
+    <!-- h1 tag for our page "title", the most important heading -->
+    <!-- CAN style tags directly using standard CSS syntax -->
+    <!-- style=" property name: property value; " -->
+    <!-- <h1 style="color: red; font-size: 20px; width: 50px;">Edwin's Tasty Market</h1> -->
+    <h1>Edwin's Tasty Market</h1>
+    <h1>Come and get some kumquats!</h1>
+
+    <!-- img tag with link to the image (local) and alt text for screen readers -->
+    <img class="img-border" src="images/home-main.jpg" alt="Edwin's Tasty Market Outdoors Photo" />
+
+    <!-- can apply multiple classes to a single tag, just list them with spaces between -->
+    <h3 class="font-italics green-text">What is this place?</h3>
+
+    <p class="font-italics">Edwin's Tasty Market is the premier source of kumquat varieties in the Northern Hemisphere.</p>
+    
+</body>
+
+</html>

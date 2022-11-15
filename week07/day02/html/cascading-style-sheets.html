@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascading Style Sheets</title>
+
+    <style>
+
+        /* this style applies to everything, in every tag, within main */
+        body, main {
+            font-style: italic;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+
+        body {
+            background-image: url("images/starry-sky.jpg");
+        }
+
+        /* background color has red, green, blue, and alpha channels
+        color -- 0 = none, 255 = full
+        alpha -- transparency, 1 = opaque, 0 = transparent */
+        main {
+            padding: 32px;
+            background-color: rgba(255, 255, 255, .8);
+            height: 100vh;
+        }
+
+        /* this overrides the styling in the parent tag */
+        article {
+            font-style: normal;
+        }
+
+        /* this overrides the styling in the parent tag, too
+           can be a class or ID style; works the same way */
+        section {
+            font-style: italic;
+        }
+
+        .awesome-heading {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 40px;
+            background-color: rgba(255, 235, 205, 0.8);
+            margin-left: 100px;
+            margin-right: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border: 3px solid #0f65c8;
+        }
+
+        /* this syntax styles all the p's inside of a section
+           -- even if they are inside another child tag */
+        section p {
+            color: red;
+        }
+
+        /* if i did this:
+        
+        section > p {}
+
+        it would apply ONLY to p tags that are DIRECT children of sections
+        */
+
+        .sun-image {
+            width: 250px;
+            float: right;
+            /* margin-left: 24px;
+            margin-bottom: 12px; 
+            the combo selector goes top, right, bottom, left */
+            margin: 0px 0px 12px 24px;
+        }
+
+        #planets-list {
+            float: right;
+            border: 3px solid #0f65c8;
+            background-color: rgba(255, 235, 205, 0.8);
+            padding-right: 32px;
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        nav {
+            background-color: rgb(230, 114, 26);
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0px;
+            padding: 16px 28px;
+            background-color: rgba(0, 0, 0, 0);
+
+            /* these control the timing of transitions to the hover state */
+            transition: color 0.3s;
+            transition: background-color 0.3s;
+        }
+
+        /* this creates a style for when I "hover" my mouse over the link */
+        nav a:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* this keeps track of the pages the user has visited
+           and displays this style for those links ONLY */
+
+        /* nav a:visited {
+            color: black;
+        } */
+
+    </style>
+
+</head>
+
+<body>
+    <!-- this area is for our nav bar -->
+    <nav>
+        <a href="index.html">Edwin's Tasty Market Homepage</a>
+        <a href="about-us.html">About Us</a>
+        <a href="our-products.html">Our Products</a>
+        <a href="css-box-model.html">CSS</a>
+    </nav>
+
+    <main>
+
+        <article>
+
+            <h1 class="awesome-heading">The Solar System</h1>
+
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis molestiae eveniet officia nihil? Repudiandae saepe harum eligendi! Natus officiis perspiciatis ut nesciunt nihil laudantium. Id, nisi! Accusamus quae esse ab.</p>
+
+            <section>
+                <img class="sun-image" src="images/the-sun.jpg" alt="The Sun, duh" />
+
+                <h2>The Sun</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam atque placeat exercitationem sint nostrum sequi minus iure odit, dolores reprehenderit eum eveniet temporibus asperiores quod nisi iusto vel ut error! Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quas, sit, unde enim porro cupiditate voluptates ratione totam saepe animi maiores sed reprehenderit reiciendis error consequatur placeat laboriosam, molestiae aperiam.
+                Nam consequatur numquam unde doloremque quidem tempora, inventore voluptatibus cumque voluptas tempore, nostrum eaque deleniti qui molestias. Necessitatibus omnis corporis unde laboriosam veniam quo qui rem, exercitationem deleniti magnam est!</p>
+            </section>
+
+            <section>
+                <aside id="planets-list">
+                    <ul>
+                        <li>Mercury</li>
+                        <li>Venus</li>
+                        <li>Earth</li>
+                        <li>Mars</li>
+                        <li>Jupiter</li>
+                        <li>Saturn</li>
+                        <li>Uranus</li>
+                        <li>Neptune</li>
+                    </ul>
+                </aside>
+
+                <h2>The Planets</h2>
+            
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt, distinctio quam rerum repellendus blanditiis corporis ab odio et, eveniet velit amet voluptatum necessitatibus reprehenderit inventore. Maiores obcaecati laudantium reprehenderit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident repudiandae dolorem illo inventore odio. Ut nostrum ab dolorum explicabo libero laborum culpa. Placeat soluta eos tempore! Quam temporibus a numquam? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed repudiandae, consequatur laboriosam placeat nihil laborum, earum ullam vitae eveniet repellendus molestias hic exercitationem voluptatum vero veniam ut dignissimos maxime temporibus!</p>
+
+                <footer>
+                    <p>Additional information about the planets goes here.</p>
+                </footer>
+            </section>
+
+        </article>
+
+    </main>
+    
+</body>
+
+</html>
