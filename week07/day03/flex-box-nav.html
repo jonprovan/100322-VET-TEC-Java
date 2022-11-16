@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Box Nav</title>
+
+    <style>
+
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            background-color: lightgray;
+        }
+
+        nav a {
+            display: inline-block;
+            text-align: center;
+            padding: 20px;
+            background-color: lightgray;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            min-width: 200px;
+        }
+
+        nav a:hover {
+            background-color: gray;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+        }
+
+        section {
+            padding: 24px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="flex-box.html">First Link</a>
+        <a href="flex-box.html">Second Link</a>
+        <a href="flex-box.html">Third Link</a>
+    </nav>
+
+    <main>
+        <!-- flex box will try and maintain an "even" height, so it'll adjust the column width to achieve this unless you specify content width in another style class/id/etc. -->
+        <section>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis deserunt perferendis nobis soluta, cum unde? Quis inventore a iste esse libero minima, repellat laborum temporibus accusamus aspernatur nostrum iure dicta.
+            Placeat blanditiis distinctio, odio facilis cupiditate dicta iste fuga id possimus officia ullam. Nemo, ad molestias. Praesentium nihil a perferendis nobis tempore distinctio explicabo, quod iure placeat eos, veniam magni?
+            Repellat libero sunt beatae incidunt dolorum exercitationem ad fugit dolores officiis id fugiat quod rem voluptatibus optio ipsum, magnam provident. Esse accusamus, magnam quae error eos veritatis architecto eveniet rerum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quaerat sunt tenetur quam, necessitatibus voluptatibus! Ducimus quidem officia ab, quam iusto culpa doloribus laudantium magnam, sunt totam aut consectetur dolores?
+            Facilis, vero? Quo obcaecati, voluptas nemo consequatur iste, ex eius totam deleniti assumenda saepe expedita nam accusantium modi numquam ab. Sequi veniam accusantium vitae nobis nemo quidem sunt repellendus! Praesentium.
+            Iusto officiis non accusantium ut quae dicta perferendis quisquam assumenda animi laborum deleniti, distinctio quidem doloremque architecto? Repellendus ut voluptatem similique, iure suscipit laudantium iusto pariatur, alias, facilis saepe atque!
+        </section>
+        <section>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt reprehenderit expedita temporibus modi velit, consequuntur odit a, neque tenetur soluta in ipsam illo cupiditate iusto perspiciatis quae quos porro dolorem?
+            Perferendis voluptate numquam a dolorum commodi recusandae modi placeat vitae perspiciatis ipsum! Enim vel neque tenetur veniam sit eligendi inventore. Voluptates, at ipsam. Maxime laboriosam soluta voluptatem inventore, debitis quam?
+            Nesciunt et aliquid voluptates, velit repudiandae, dolor saepe exercitationem voluptate dolores quam eius? Eos accusantium eius quo beatae cupiditate repudiandae iste est. Voluptas, eligendi quibusdam quo perferendis est ducimus esse.
+        </section>
+    </main>
+    
+</body>
+</html>

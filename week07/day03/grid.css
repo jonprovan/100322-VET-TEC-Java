@@ -1,0 +1,76 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.grid-container {
+    display: grid;
+    /* think of "fr" (fraction) like mixing a drink -- 3 parts this, 1 part that, 1 part the other thing, etc. */
+    grid-template-columns: 1fr 1fr 1fr; /* can also use percentages */
+    /* grid-template-rows: 3fr 5fr 2fr 2fr; */
+}
+
+.item {
+    display: flex;
+    font-size: 20px;
+    padding: 3em;
+    justify-content: center;
+    align-items: center;
+}
+
+.wide {
+    /*
+        imagine these indices as lines between the columns
+        1 is all the way on the left edge of the grid
+        2 is in between columns 1 and 2, and so forth 
+    */
+    grid-column: 1 / 3;
+    /* same thing without specifying a specific location in the grid */
+    /* grid-column: span 2; */
+}
+
+.tall {
+    grid-row: 3 / 5;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.purple {
+    background-color: purple;
+    color: white;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.aqua {
+    background-color: aqua;
+}
+
+.black {
+    background-color: black;
+    color: white;
+}
+
+.blanched-almond {
+    background-color: blanchedalmond;
+}
+
+.pink {
+    background-color: pink;
+}
