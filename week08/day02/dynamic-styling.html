@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Styling</title>
+
+    <style>
+        div {
+            display: inline-block;
+            margin: 5px;
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            background-color: white;
+        }
+    </style>
+
+    <script>
+        
+        function changeColor(color) {
+            // to change a single box via ID
+            // let box = document.getElementById('special-box');
+            // box.style.backgroundColor = color;
+
+            let boxes = document.getElementsByClassName('color-box');
+            for (let box of boxes) {
+                box.style.backgroundColor = color;
+            }
+        }
+
+        function changeBackground(image) {
+            let body = document.getElementsByTagName('body');
+            if (image)
+                body[0].style.backgroundImage = 'url(' + image + ')';
+            else
+                body[0].style.backgroundImage = 'none';
+        }
+
+    </script>
+
+    <!-- If I had a separate .js file, I could link it in like this -->
+    <!-- I can call and execute functions exactly the same way -->
+    <!-- <script type="text/javascript" src="change-color.js"></script> -->
+
+</head>
+<body>
+    
+    <div class="color-box" id="special-box"></div>
+    <div class="color-box"></div>
+    <div class="color-box"></div>
+
+    <section>
+        <button onclick="changeColor('red')">Red</button>
+        <button onclick="changeColor('yellow')">Yellow</button>
+        <button onclick="changeColor('#11d224')">Green</button>
+        <button onclick="changeBackground('fractal.png')">Change Background Image</button>
+        <button onclick="changeBackground()" >Clear Background Image</button>
+    </section>
+    
+
+</body>
+</html>
