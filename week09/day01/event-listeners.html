@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listeners</title>
+
+    <script>
+
+        let counter = 0;
+
+        function incrementCounter() {
+            counter++;
+            // the alert will pop a little window up on your page
+            // the message in the alert goes in the parentheses
+            // alert('The Counter is now: ' + counter);
+
+            // If we want our counter to display on our page, how do we get it there?
+            const counterDiv = document.getElementById('counter-div');
+            counterDiv.innerText = `The current value of counter is: ${counter}`;
+        }
+
+        // "cueing" off a specific element on the page
+        // let loadingDiv = document.getElementById('counter-div');
+        // loadingDiv.addEventListener('load', () => {
+        //     const listenerButton = document.getElementById('listener-button');
+        //     // when feeding a function through as a parameter in JS, don't include the ()
+        //     listenerButton.addEventListener('click', incrementCounter);
+        // })
+
+        // if we don't want to run a function directly on an action
+        // OR if the action we want to use to run the function isn't something the user
+        // is aware of, we can use an "event listener"
+        // the event listener takes in two parameters -- the event and the function
+
+        // we need an event to "cue" the listener to start listening
+        // the DOM = Document Object Model
+        // -- this is the data representation of the structure of our page
+        // -- consists of behind-the-scenes objects and nodes
+        window.addEventListener('DOMContentLoaded', () => {
+            const listenerButton = document.getElementById('listener-button');
+            // when feeding a function through as a parameter in JS, don't include the ()
+            listenerButton.addEventListener('click', incrementCounter);
+        })
+
+    </script>
+</head>
+<body>
+
+    <div id="counter-div" style="margin-bottom: 36px;">The current value of counter is: 0</div>
+
+    <button id="increment-button" onclick="incrementCounter()">Click Here To Increment The Counter</button>
+    <button id="listener-button">Click Here To Increment Also!</button>
+    
+</body>
+
+</html>
