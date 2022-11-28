@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script type="text/javascript" src="form.js"></script>
+</head>
+<body>
+
+    <form id="user-info-form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" />
+        </div>
+        <div>
+            <label for="date-of-birth">Date Of Birth:</label>
+            <input type="date" name="date-of-birth" />
+        </div>
+        <div>
+            <input type="radio" name="gender" value="Male" />
+            <label for="male">Male</label>
+        </div>
+        <div>
+            <input type="radio" name="gender" value="Female" />
+            <label for="female">Female</label>
+        </div>
+        <div>
+            <input type="radio" name="gender" value="Prefer not to answer" />
+            <label for="other">Other</label>
+        </div>
+        <div>
+            <label for="favorite-color">Favorite Color:</label>
+            <input type="color" name="favorite-color" />
+        </div>
+
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <table style="margin-top: 36px;">
+        <thead>
+            <th>Name</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Favorite Color</th>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+    
+</body>
+</html>

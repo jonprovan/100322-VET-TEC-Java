@@ -1,0 +1,12 @@
+#div-container {
+    display: flex;
+    flex-direction: column;
+    background-color: firebrick;
+    gap: 20px;
+}
+
+.square-div {
+    width: 100px;
+    height: 100px;
+    background-color: burlywood;
+}
