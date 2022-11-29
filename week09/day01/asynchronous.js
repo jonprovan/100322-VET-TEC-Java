@@ -24,7 +24,8 @@ console.log('Third Action');
 
 // this is sent last but its first occurence is before the section action's timeout elapses
 
-setInterval(() => {
+// to clear the interval later, we need to assign it to a variable
+let myInterval = setInterval(() => {
     console.log('Fourth Action');
     console.log(x);
 }, 1000);
@@ -36,3 +37,8 @@ setInterval(() => {
 //             console.log(x);
 //         }, ((i+1) * 1000));
 // }
+
+// clearing the interval we set earlier after 5 seconds
+setTimeout(() => {
+    clearInterval(myInterval);
+}, 5000);
