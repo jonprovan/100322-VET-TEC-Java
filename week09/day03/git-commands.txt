@@ -1,0 +1,21 @@
+GIT COMMANDS 
+
+-- git add . ===> this adds all new files and changes to current files to an upcoming commit 
+
+-- git commit -m "My message" ===> this bundles all the changes into a "commit" 
+    - a commit is like a snapchat of your projects at a given time
+    - the "-m" means that the text in quotes that follows is the messsage that will be attached to the commit 
+
+-- git push ===> pushes my current branch to the remote branch with the same name  
+-- git push origin main ===> pushes my current branch to the remote branch with the name at the end (in this case, main) 
+
+
+
+-- git branch ===> show me a list of all current local branches
+    -green one with a star is the one you're currently in 
+
+-- git branch <branchname> ===> creates a new branch with name <branchname> 
+
+-- git checkout <branchname> ===> switch to the branch with name <branchname> (remove the carats)
+
+-- git branch -d <branchname>
