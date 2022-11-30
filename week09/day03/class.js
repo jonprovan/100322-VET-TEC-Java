@@ -115,3 +115,34 @@ console.log(Dinosaur.EXTINCT);
 // console.log(duckbill.EXTINCT);
 
 Dinosaur.declareExtinctionStatus();
+
+
+class Pterodactyl extends Dinosaur {
+    // new properties
+    beakLength;
+
+    constructor(name, beakLength) {
+        // pass along values to our Dinosaur constructor
+        super(name, 'Carnivore', 2, true);
+        // set new properties
+        this.beakLength = beakLength;
+    }
+
+    // overriding snackTime() from Dinosaur
+    snackTime() {
+        console.log('Gimme dat fish.'.toUpperCase());
+    }
+}
+
+let terry = new Pterodactyl('Terry', '20 inches');
+
+console.log(terry);
+console.log(terry.diet);
+terry.snackTime();
+tRex.snackTime();
+
+// instance __proto__ equals class prototype
+console.log(terry.__proto__ === Pterodactyl.prototype);
+
+// what is the prototype of the prototype?
+console.log(Pterodactyl.prototype.__proto__ === Dinosaur.prototype);
