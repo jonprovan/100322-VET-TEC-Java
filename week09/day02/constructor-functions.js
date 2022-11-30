@@ -34,6 +34,7 @@ function BetterHyena(name, evil, numberOfTeeth) {
     this.name = name;
     this.evil = evil;
     this.numberOfTeeth = numberOfTeeth;
+    this.otherLaugh = () => console.log('Ha-hoo!');
 }
 
 // this creates an instance of BetterHyena
@@ -96,3 +97,5 @@ BetterHyena.prototype.funny = true;
 for (let property in betterHyena1) {
     console.log(`${property}: ${betterHyena1[property]}`);
 }
+
+console.log(betterHyena1);
