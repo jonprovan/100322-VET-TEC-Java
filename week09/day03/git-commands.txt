@@ -18,4 +18,6 @@ GIT COMMANDS 
 
 -- git checkout <branchname> ===> switch to the branch with name <branchname> (remove the carats)
 
+-- git checkout -b <branchname> ===> creates a new branch with name <branchname> and switches to it
+
 -- git branch -d <branchname>
