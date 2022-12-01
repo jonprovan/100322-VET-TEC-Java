@@ -18,18 +18,18 @@
  */
 
 // to create an async function, just tack the keyword async onto the beginning
-async function myAsyncFunction() {
-    console.log('Welcome to the United States of Asyncmerica!');
-    return "What do I return?"; // an async function returns a promise, either fulfilled or rejected
-}
+// async function myAsyncFunction() {
+//     console.log('Welcome to the United States of Asyncmerica!');
+//     return "What do I return?"; // an async function returns a promise, either fulfilled or rejected
+// }
 
-console.log(myAsyncFunction());
+// console.log(myAsyncFunction());
 
-const myReturnedPromise = myAsyncFunction();
+// const myReturnedPromise = myAsyncFunction();
 
-myReturnedPromise.then((data) => console.log(data)).catch((error) => console.log(error));
+// myReturnedPromise.then((data) => console.log(data)).catch((error) => console.log(error));
 
-console.log();
+// console.log();
 
 // THE AWAIT KEYWORD
 // the await keyword only works inside of an async function
@@ -39,14 +39,39 @@ console.log();
 //     await myAsyncFunction();
 // }
 
-const dealWithPromise = async () => {
-    const data1 = await myAsyncFunction(); // here, we wait until this is done before moving on
-    const data2 = await myAsyncFunction(); // this code doesn't execute until the previous line returns its promise
-    console.log(data1); // this code doesn't execute either until the previous line returns its promise
-    console.log(data2); // this one proceeds normally
+// const dealWithPromise = async () => {
+//     const data1 = await myAsyncFunction(); // here, we wait until this is done before moving on
+//     const data2 = await myAsyncFunction(); // this code doesn't execute until the previous line returns its promise
+//     console.log(data1); // this code doesn't execute either until the previous line returns its promise
+//     console.log(data2); // this one proceeds normally
+// }
+
+// dealWithPromise();
+
+// console.log();
+
+// create a function that returns a promise after a certain period of time
+// async function myTimedOutAsyncFunction() {
+//     setTimeout(() => {
+//         return 'We came, we waited, we conquered.';
+//     }, 2000);
+// }
+
+function myTimedOutSyncFunction(param) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (param === 0)
+                resolve('We came, we waited, we conquered.');
+            else
+                reject('We failed.');
+        }, 2000)
+    })
 }
 
-dealWithPromise();
+// create a function that requires waiting for the previous one
+async function waitForPromise()  {
+    const data1 = await myTimedOutSyncFunction(0).catch((error) => error);
+    console.log(data1);
+}
 
-console.log();
-
+waitForPromise();
