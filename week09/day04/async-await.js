@@ -57,21 +57,83 @@
 //     }, 2000);
 // }
 
-function myTimedOutSyncFunction(param) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (param === 0)
-                resolve('We came, we waited, we conquered.');
-            else
-                reject('We failed.');
-        }, 2000)
-    })
+// function myTimedOutSyncFunction(param) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (param === 0)
+//                 resolve('We came, we waited, we conquered.');
+//             else
+//                 reject('We failed.');
+//         }, 2000)
+//     })
+// }
+
+// // create a function that requires waiting for the previous one
+// async function waitForPromise()  {
+//     const data1 = await myTimedOutSyncFunction(0).catch((error) => error);
+//     console.log(data1);
+// }
+
+// waitForPromise();
+
+async function validateInput(input) {
+    if (input === 'YES')
+        return "Let's go to Mars!"; // this returns a fulfilled promise
+    else if (input === 'MAYBE')
+        return "I'll get back to you." // this ALSO returns a fulfilled promise
+    else
+        throw 'Take it easy, Elon.'; // this returns a rejected promise
 }
 
-// create a function that requires waiting for the previous one
-async function waitForPromise()  {
-    const data1 = await myTimedOutSyncFunction(0).catch((error) => error);
-    console.log(data1);
+async function instantRejection() {
+    throw 'Yer out!';
 }
 
-waitForPromise();
+/**
+ * same as this:
+ * 
+ * async function testValidation() {}
+ */
+
+const testValidation = async () => {
+    try {
+        const yes = await validateInput('YES'); // when we await, the value returned is the data within the Promise
+        console.log(yes);
+
+        // this one rejects its promise, so we skip to the catch block
+        const rejection = await instantRejection();
+        console.log(rejection);
+
+        const maybe = await validateInput('MAYBE');
+        console.log(maybe);
+
+        const no = await validateInput('NO');
+        console.log('Does this print?');
+    } catch (error) { // this line catches ALL rejected promises from ANY async functions in the try block
+        console.log('Our validation failed...');
+        console.log(error);
+    }
+}
+
+testValidation();
+
+// MINI-REVIEW
+// new Promises take in a function with two parameters -- resolve, reject
+// const newestPromise = new Promise((resolve, reject) => {
+//     let x = 5;
+//     if (x === 6)
+//         resolve('Resolved!');
+//     else
+//         reject('Rejected!');
+// })
+
+async function checkForOddSum(num1, num2) {
+    if ((num1 + num2) % 2 === 1)
+        return 'Fulfilled -- this is an odd number!';
+    else
+        throw 'Rejected -- this is not an odd number!';
+}
+
+checkForOddSum(4, 5)
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
