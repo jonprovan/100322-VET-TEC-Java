@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: lightsteelblue;
+    justify-content: flex-end;
+}
+
+div {
+    height: 80px;
+}
+
+#main-text {
+    padding: 12px 24px 12px 24px;
+    height: 56px;
+    font-size: 24px;
+}
+
+#box-one, #box-two {
+    width: 80px;
+}
+
+#box-one {
+    background-color: blanchedalmond;
+}
+
+#box-two {
+    background-color: darkgoldenrod;
+}
