@@ -68,7 +68,7 @@ export class CardsComponent {
   }
 
   addPokemon(name: string, type: string, color: string): void {
-    this.pokemonList.push({ name: name, type: type, color: color});
+    this.pokemonList.push( { name: name, type: type, color: color } );
   }
 
 }
