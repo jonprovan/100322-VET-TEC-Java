@@ -1,27 +1,63 @@
 <main>
 
-    <section>
-        <!-- double curly braces binds to a variable in the 
-                associated .ts file -->
-        <!-- this DOES NOT grab values from any other .ts file -->
-        <h2>{{ pokemonOneName }}</h2>
-        <h3>{{ pokemonOneType }}</h3>
-        <p>{{ pokemonOneColor }}</p>
-    </section>
+    <!-- ng-container is a semantic free, style-free container
+         for which we can create display conditions -->
+    <!-- for each pokemon of the pokemonList,
+         display what's in the ng-container -->
+    <ng-container *ngFor="let pokemon of pokemonList">
+        <app-card [pokemon]="pokemon"></app-card>
+    </ng-container>
 
-    <section>
-        <h2>{{ pokemonTwo.name }}</h2>
-        <h3>{{ pokemonTwo.type }}</h3>
-        <p>{{ pokemonTwo.color }}</p>
-    </section>
+    <button (click)="addPokemon('Mr. Mime', 'Psychic', 'Pink, White & Blue')">MIME ME!!</button>
 
-    <!-- () indicate event binding
-    whenever the event inside occurs, it triggers the action -->
-    <button (click)="changeName('Lickitung')">Change Name!</button>
-    <button (click)="changeName('Charizard')">Change Back!</button>
-    <br><br>
-    <button (click)="changeColor('Pale Yellow')">Change Color!</button>
-    <button (click)="changeColor('Blanched Almond')">Change Back!</button>
+    <!-- *ngIf -- if the statement in the quotes is false
+                    do not display what's in the ng-container -->
+    <ng-container *ngIf="false")>
+
+        <br><br><br><br>
+
+        <!-- using property binding with [] -->
+        <app-card [pokemon]="pokemonThree"></app-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        <section>
+            <!-- double curly braces binds to a variable in the 
+                    associated .ts file -->
+            <!-- this DOES NOT grab values from any other .ts file -->
+            <h2>{{ pokemonOneName }}</h2>
+            <h3>{{ pokemonOneType }}</h3>
+            <p>{{ pokemonOneColor }}</p>
+        </section>
+
+        <section>
+            <!-- can also bind to properties of an object this way -->
+            <h2>{{ pokemonTwo.name }}</h2>
+            <h3>{{ pokemonTwo.type }}</h3>
+            <p>{{ pokemonTwo.color }}</p>
+        </section>
+
+        <!-- () indicate event binding
+        whenever the event inside occurs, it triggers the action -->
+        <button (click)="changeName('Lickitung')">Change Name!</button>
+        <button (click)="changeName('Charizard')">Change Back!</button>
+        <br><br>
+        <button (click)="changeColor('Pale Yellow')">Change Color!</button>
+        <button (click)="changeColor('Blanched Almond')">Change Back!</button>
+
+    </ng-container>
     
 
 </main>

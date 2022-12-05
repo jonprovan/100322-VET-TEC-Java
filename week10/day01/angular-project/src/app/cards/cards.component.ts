@@ -7,6 +7,30 @@ import { Component } from '@angular/core';
 })
 export class CardsComponent {
 
+  
+  pokemonList: any = [
+    {
+      name: 'Charizard',
+      type: 'Fire',
+      color: 'Burnt Umber'
+    },
+    {
+      name: 'Mimikyu',
+      type: 'Ghost',
+      color: 'Blanched Almond'
+    },
+    {
+      name: 'Arcanine',
+      type: 'Fire',
+      color: 'Orange, Cream & Black'
+    },
+    {
+      name: 'Ampharos',
+      type: 'Electric',
+      color: 'Black & Yellow'
+    }
+  ];
+
   // TypeScript wants you to declare variable types
   // do so with a colon after the variable name, then the type
   pokemonOneName: string = 'Charizard';
@@ -17,6 +41,12 @@ export class CardsComponent {
     name: 'Mimikyu',
     type: 'Ghost',
     color: 'Blanched Almond'
+  }
+
+  pokemonThree: any = {
+    name: 'Arcanine',
+    type: 'Fire',
+    color: 'Orange, Cream & Black'
   }
 
 
@@ -34,7 +64,11 @@ export class CardsComponent {
   }
 
   changeColor(newColor: string): void {
-    this.pokemonTwo.color = newColor;
+    this.pokemonThree.color = newColor;
+  }
+
+  addPokemon(name: string, type: string, color: string): void {
+    this.pokemonList.push({ name: name, type: type, color: color});
   }
 
 }
