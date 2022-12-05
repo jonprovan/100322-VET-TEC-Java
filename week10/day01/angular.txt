@@ -1,0 +1,69 @@
+THE ANGULAR FRAMEWORK
+
+-- Angular is a JavaScript framework for SPA (single-page application) development
+-- developed by Google and used in all their online applications
+
+-- Incorporates JavaScript (technically TypeScript), HTML and CSS
+
+-- a single-page application can appear to have as many "pages" as you like from a user perspective
+-- BUT, it really only has one under the hood
+-- different "pages" are loaded into your components via a router
+
+-- the application only loads/refreshes what has changed
+
+-- new pages don't make additional HTTP calls (unless they're specifically required by a function, etc.)
+
+-- in order for the application to deploy properly, EVERYTHING in every component must compile
+
+-- "state" is/are the current values of various properties
+  -- state is maintained, and any change to state that has to do with the view will result in a change to the view
+  -- if you have a <p> tag whose content is being pulled from some JS variable, and the variable changes value,
+      the view will update to reflect the new state
+
+-- the "model" is the data from which the view is constructed
+-- the "view" is what the user sees
+-- when the model is updated, so is the view
+
+-- pages are assembled from components
+    -- each component consists of some TypeScript, some HTML, and some CSS
+    -- each component has its own set of files
+        -- HTML
+        -- CSS
+        -- TypeScript
+        -- testing file
+
+TO INSTALL THE ANGULAR CLI (command line interface) -- npm install -g @angular/cli
+
+-- npm (node package manager) grabs all the dependencies/packages that Angular needs to run
+-- install
+-- -g is global install, meaning you can now access the CLI from wherever
+
+-- Angular uses the ng prefix for all its actions, short for A-ng-ular
+
+-- for help and to see if your install ran correctly, type ng help
+-- for help on a specific command, type ng <commandname> --help
+
+-- to create a new project, navigate to where you want it to live (it will create its own folder)
+    -- then type ng new <projectName>
+
+-- navigate to the root directory of your project
+
+-- to create a server to launch your site
+    -- ng serve
+    -- ng serve --open    // will open a browser window
+    -- ng serve --live-reload
+
+-- if you download an Angular app which has gitignored the dependencies
+    -- navigate to root directory and run this ------    npm i
+
+
+// INSIDE YOUR APPLICATION
+
+.gitignore = all the things that WON'T be uploaded to gitHub
+.package-json = keeps track of all your software dependencies 
+                (software your app uses in the background)
+
+To generate a new component, use this:
+
+-- ng g component <componentname>
+    -- e.g. ng g component header -- creates a new component called header
