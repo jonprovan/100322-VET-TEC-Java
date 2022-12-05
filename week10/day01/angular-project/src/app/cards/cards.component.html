@@ -1,0 +1,27 @@
+<main>
+
+    <section>
+        <!-- double curly braces binds to a variable in the 
+                associated .ts file -->
+        <!-- this DOES NOT grab values from any other .ts file -->
+        <h2>{{ pokemonOneName }}</h2>
+        <h3>{{ pokemonOneType }}</h3>
+        <p>{{ pokemonOneColor }}</p>
+    </section>
+
+    <section>
+        <h2>{{ pokemonTwo.name }}</h2>
+        <h3>{{ pokemonTwo.type }}</h3>
+        <p>{{ pokemonTwo.color }}</p>
+    </section>
+
+    <!-- () indicate event binding
+    whenever the event inside occurs, it triggers the action -->
+    <button (click)="changeName('Lickitung')">Change Name!</button>
+    <button (click)="changeName('Charizard')">Change Back!</button>
+    <br><br>
+    <button (click)="changeColor('Pale Yellow')">Change Color!</button>
+    <button (click)="changeColor('Blanched Almond')">Change Back!</button>
+    
+
+</main>

@@ -1,0 +1,15 @@
+* {
+    margin: 0px;
+}
+
+main {
+    padding: 24px;
+}
+
+section {
+    background-color: rgb(255, 187, 221);
+    border-radius: 8px;
+    width: 300px;
+    padding: 10px;
+    margin: 0px 8px 8px 0px;
+}
