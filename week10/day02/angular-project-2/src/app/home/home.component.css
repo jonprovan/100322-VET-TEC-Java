@@ -1,0 +1,17 @@
+main {
+    padding: 24px;
+}
+
+h2 {
+    margin-bottom: .5em;
+    font-style: italic;
+    font-size: 18px;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+p:last-of-type {
+    margin-bottom: 0px;
+}
