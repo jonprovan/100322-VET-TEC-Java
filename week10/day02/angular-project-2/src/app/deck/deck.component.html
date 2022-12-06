@@ -1,5 +1,42 @@
 <main>
 
+    <!-- the hashtag creates a scriptable id we can use to run functions on the form itself -->
+    <form #signCreationForm>
+        <h3>CREATE A SIGN</h3>
+
+        <div>
+            <label for="sign">Sign: </label>
+            <!-- we need id to link to the label -->
+            <!-- we need name for ngModel to work -->
+            <!-- ngModel links the value in the field to the associated .ts variable -->
+            <!-- [( )] indicates two-way binding
+                            -- from a change event on the field to the variable
+                                and from a variable change to the field -->
+            <input [(ngModel)]="sign" id="sign" name="sign" type="text" placeholder="Enter sign...">
+        </div>
+
+        <div>
+            <label for="symbol">Symbol: </label>
+            <input [(ngModel)]="symbol" id="symbol" name="symbol" type="text" placeholder="Enter symbol...">
+        </div>
+
+        <div>
+            <label for="element">Element: </label>
+            <input [(ngModel)]="element" id="element" name="element" type="text" placeholder="Enter element...">
+        </div>
+
+        <!-- as we change the values in the fields, we can see them update here in realtime -->
+        <p>Name current value: {{ sign }}</p>
+        <p>Symbol current value: {{ symbol }}</p>
+        <p>Element current value: {{ element }}</p>
+
+        <!-- clicking the button runs our method AND uses the form scriptable id to clear it -->
+        <!-- this DOES ALSO reset the variables to empty strings -->
+        <button (click)="addSign(); signCreationForm.reset()" >Add My Sign</button>
+
+        <button (click)="addSignUsingModel(); signCreationForm.reset()">Add My Sign Using Model</button>
+    </form>
+
     <ng-container *ngFor="let card of deck">
         <app-card [card]="card" ></app-card>
     </ng-container>

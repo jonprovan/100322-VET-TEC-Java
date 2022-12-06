@@ -1,3 +1,21 @@
 main {
     padding: 24px;
 }
+
+form {
+    float: right;
+}
+
+div {
+    margin: 8px 0px;
+}
+
+input {
+    border: solid 1px black;
+}
+
+button {
+    display: block;
+    padding: 6px;
+    margin-top: 12px;
+}
