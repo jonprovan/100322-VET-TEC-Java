@@ -1,5 +1,13 @@
 <main>
 
+    <!-- in the component we want to listen to
+            we add event binding to the new event we created -->
+    <!-- when the event fires, we run the updateString function -->
+    <!-- it takes in $event, which is the Angular event object -->
+    <!-- the object outputs data of its type (string here) -->
+    <app-output-test (eventToSend)="updateString($event)"
+                     [sentString]="stringToDisplay" ></app-output-test>
+
     <!-- the hashtag creates a scriptable id we can use to run functions on the form itself -->
     <form #signCreationForm>
         <h3>CREATE A SIGN</h3>
@@ -35,6 +43,8 @@
         <button (click)="addSign(); signCreationForm.reset()" >Add My Sign</button>
 
         <button (click)="addSignUsingModel(); signCreationForm.reset()">Add My Sign Using Model</button>
+
+        <p style="margin-top: 20px; color: red; font-weight: bold;">{{ stringToDisplay }}</p>
     </form>
 
     <ng-container *ngFor="let card of deck">

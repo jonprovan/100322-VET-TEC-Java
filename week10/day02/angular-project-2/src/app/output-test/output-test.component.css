@@ -1,0 +1,17 @@
+div {
+    border: solid 1px black;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+input {
+    border: solid 1px black;
+    margin-right: 12px;
+}
+
+button {
+    padding: 4px;
+    margin-right: 12px;
+}

@@ -1,0 +1,12 @@
+<!-- we want to send data from child to parent -->
+<!-- we CANNOT use @Input() for this -->
+<!-- we have to set up an EventEmitter and use @Output() -->
+
+<div>
+    <p>OUTPUT TO COME FROM HERE</p>
+    <!-- this input is bound to the stringToSend variable -->
+    <input [(ngModel)]="stringToSend" type="text" name="stringToSend">
+    <button (click)="sendStringEvent()">SEND OUTPUT</button>
+    <!-- here, we're monitoring the variable's value -->
+    <span>stringToSend = {{ stringToSend }} sentString = {{ sentString }}</span>
+</div>

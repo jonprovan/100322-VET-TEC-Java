@@ -13,6 +13,8 @@ export class DeckComponent {
   symbol: string = '';
   element: string = '';
 
+  stringToDisplay: string = '';
+
   // creating a deck of sign cards to start with
   deck: any = [
     {
@@ -68,6 +70,12 @@ export class DeckComponent {
                                    this.element);
     // then we just add the new object
     this.deck.push(newSign);
+  }
+
+  // create a function that executes when the event we're
+  // listening for fires
+  updateString(newString: string): void {
+    this.stringToDisplay = newString;
   }
 
 }
