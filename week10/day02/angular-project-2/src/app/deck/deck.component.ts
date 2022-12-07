@@ -18,31 +18,37 @@ export class DeckComponent {
   // creating a deck of sign cards to start with
   deck: any = [
     {
+      id: 1,
       sign: 'Taurus',
       symbol: 'Bull',
       element: 'Earth'
     },
     {
+      id: 2,
       sign: 'Leo',
       symbol: 'Lion',
       element: 'Fire'
     },
     {
+      id: 3,
       sign: 'Aquarius',
       symbol: 'Water Bearer',
       element: 'Air'
     },
     {
+      id: 4,
       sign: 'Libra',
       symbol: 'Scales',
       element: 'Air'
     },
     {
+      id: 5,
       sign: 'Cancer',
       symbol: 'Crab',
       element: 'Water'
     },
     {
+      id: 6,
       sign: 'Virgo',
       symbol: 'Virgin',
       element: 'Earth'
@@ -76,6 +82,23 @@ export class DeckComponent {
   // listening for fires
   updateString(newString: string): void {
     this.stringToDisplay = newString;
+  }
+
+  // a function for updating a card 
+  // when the user clicks the button in the card
+  updateSign(newSign: string, index: number) {
+    this.deck[index].sign = newSign;
+  }
+
+  // updating the card via ID
+  updateSignViaId(newSign: any): void {
+    // look through each card in our current deck
+    for (let card of this.deck) {
+      // if the card's id matches the emitted id
+      if (card.id === newSign[1])
+        // assign the new value for sign to the card's sign
+        card.sign = newSign[0];
+    }
   }
 
 }

@@ -4,4 +4,14 @@
         <li>{{ card.symbol }}</li>
         <li>{{ card.element }}</li>
     </ul>
+    <div>
+        <label for="newSign">New Sign: </label>
+        <input [(ngModel)]="newSign" type="text" id="newSign" name="newSign" placeholder="Update sign...">
+        <button (click)="updateSign()">UPDATE SIGN</button>
+    </div>
+    <div>
+        <label for="newSignViaId">New Sign Via ID: </label>
+        <input [(ngModel)]="newSignViaId" type="text" id="newSignViaId" name="newSignViaId" placeholder="Update sign via ID...">
+        <button (click)="updateSignViaId()">UPDATE SIGN VIA ID</button>
+    </div>
 </section>

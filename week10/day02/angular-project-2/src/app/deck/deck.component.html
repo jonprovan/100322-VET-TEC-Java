@@ -47,8 +47,10 @@
         <p style="margin-top: 20px; color: red; font-weight: bold;">{{ stringToDisplay }}</p>
     </form>
 
-    <ng-container *ngFor="let card of deck">
-        <app-card [card]="card" ></app-card>
+    <ng-container *ngFor="let card of deck; let i = index;">
+        <app-card [card]="card"
+                  (updateSignEvent)="updateSign($event, i)"
+                  (updateSignViaIdEvent)="updateSignViaId($event)" ></app-card>
     </ng-container>
 
 </main>
