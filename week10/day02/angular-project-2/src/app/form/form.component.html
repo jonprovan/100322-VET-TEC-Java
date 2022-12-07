@@ -1,1 +1,125 @@
-<p>form works!</p>
+<main>
+    <form id="personForm" #personForm>
+
+        <h2>ADDING PEOPLE TO TABLE</h2>
+
+        <div>
+            <label for="firstName">First Name: </label>
+            <input [(ngModel)]="newPerson.firstName"
+                   (change)="checkForMeph()"
+                   type="text"
+                   id="firstName"
+                   name="firstName"
+                   placeholder="Enter first name..."
+                   required
+                   minlength="5"
+                   maxlength="20"
+                   #firstName="ngModel" >
+            <!-- .invalid == something's wrong
+                 .dirty == the user typed something
+                 .touched == the user clicked on it, then clicked out -->
+            <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                <!-- did they violate the "required" property? -->
+                <span *ngIf="firstName.errors?.['required']">First name is required!</span>
+                <!-- did they violate the minlength property? -->
+                <span *ngIf="firstName.errors?.['minlength']">Must be 5 characters or more!</span>
+            </span>
+
+            <span *ngIf="isMeph">Name cannot be Mephistopheles!!</span>
+        </div>
+
+        <div>
+            <label for="lastName">Last Name: </label>
+            <input [(ngModel)]="newPerson.lastName"
+                   type="text"
+                   id="lastName"
+                   name="lastName"
+                   placeholder="Enter last name..."
+                   #lastName >
+        </div>
+
+        <div>
+            <label for="dateOfBirth">Date Of Birth: </label>
+            <input [(ngModel)]="newPerson.dateOfBirth"
+                   type="date"
+                   id="dateOfBirth"
+                   name="dateOfBirth"
+                   #dateOfBirth >
+        </div>
+
+        <div>
+            <label for="favoriteColor">Favorite Color: </label>
+            <input [(ngModel)]="newPerson.favoriteColor"
+                   type="color"
+                   id="favoriteColor"
+                   name="favoriteColor"
+                   #favoriteColor >
+        </div>
+
+        <div>
+            <label for="bankAccountNumber">Bank Account Number: </label>
+            <!-- step is how large the increment is when we click the arrows -->
+            <input [(ngModel)]="newPerson.bankAccountNumber"
+                   type="number"
+                   id="bankAccountNumber"
+                   name="bankAccountNumber"
+                   step="1000"
+                   min="1000000000"
+                   max="9999999999"
+                   #bankAccountNumber="ngModel" >
+            <span *ngIf="bankAccountNumber.invalid 
+                     && (bankAccountNumber.dirty || bankAccountNumber.touched)">
+                <!-- is the number too small or too large, based on the min/max values? -->
+                <span *ngIf="bankAccountNumber.errors?.['min'] 
+                          || bankAccountNumber.errors?.['max']">Must be 10 digits!</span>
+            </span>
+        </div>
+
+        <div>
+            <label for="firstPet">First Pet: </label>
+            <input [(ngModel)]="newPerson.firstPet"
+                   type="text"
+                   id="firstPet"
+                   name="firstPet"
+                   placeholder="Enter first pet..."
+                   #firstPet >
+        </div>
+
+        <button (click)="addPerson(); personForm.reset()">ENTER PERSON</button>
+
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Of Birth</th>
+                <th>Favorite Color</th>
+                <th>Bank Account Number</th>
+                <th>First Pet</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        <!-- go through our array of people -->
+        <ng-container *ngFor="let person of people">
+
+            <!-- create a row for each person -->
+            <tr>
+                <!-- create a td for each property and plug in values -->
+                <td>{{ person.firstName }}</td>
+                <td>{{ person.lastName }}</td>
+                <td>{{ person.dateOfBirth }}</td>
+                <td>{{ person.favoriteColor }}</td>
+                <td>{{ person.bankAccountNumber }}</td>
+                <td>{{ person.firstPet }}</td>
+            </tr>
+
+        </ng-container>
+
+        </tbody>
+
+    </table>
+</main>

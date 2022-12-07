@@ -1,0 +1,31 @@
+main {
+    padding: 24px;
+}
+
+form {
+    margin-bottom: 48px;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+input {
+    border: solid 1px black;
+    padding: 5px;
+    margin-right: 24px;
+}
+
+span {
+    color: red;
+}
+
+button {
+    padding: 6px;
+    border: solid 1px black;
+    border-radius: 6px;
+}
+
+th {
+    padding-right: 10px;
+}
