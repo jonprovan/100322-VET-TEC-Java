@@ -54,4 +54,15 @@ export class FormComponent {
       this.isMeph = false;
   }
 
+  // a method to check if the people array is "full"
+  // to disable the form submission if it is
+  // if we want to use something like this, 
+  // add the method to the [disabled] prop for the button
+  isFull(): boolean {
+    if(this.people.length === 3)
+      return true;
+    else
+      return false;
+  }
+
 }

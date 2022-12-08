@@ -47,6 +47,15 @@
         <p style="margin-top: 20px; color: red; font-weight: bold;">{{ stringToDisplay }}</p>
     </form>
 
+    <form style="padding: 0px 24px;">
+        <h3>ALTER CARD</h3>
+        <label for="cardNumber">Card Number: </label>
+        <input [(ngModel)]="cardNumber" type="number" id="cardNumber" name="cardNumber">
+        <label for="newSymbol">New Symbol: </label>
+        <input [(ngModel)]="newSymbol" type="text" id="newSymbol" name="newSymbol">
+        <button (click)="changeSymbol()">Alter Card</button>
+    </form>
+
     <ng-container *ngFor="let card of deck; let i = index;">
         <app-card [card]="card"
                   (updateSignEvent)="updateSign($event, i)"

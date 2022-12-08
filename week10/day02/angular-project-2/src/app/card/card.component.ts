@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent {
+
+// we implement the OnInit interface just like we would in Java
+// we must provide implementation for the ngOnInit() function in this class
+// OnInit allows us to run code after the component is initialized
+
+// we implement the OnChanges interface as well
+// we must provide implemention for the ngOnChanges function
+// OnChanges allows us to run code whenever one of the data members changes
+export class CardComponent implements OnInit, OnChanges {
 
   // @ indicates a decorator
   @Input() card: any;
@@ -22,6 +30,38 @@ export class CardComponent {
   // a variable to hold the value of our input field
   newSign: string = '';
   newSignViaId: string = '';
+
+
+  // this method will execute AFTER the data-bound properties have been initialized
+  ngOnInit() {
+    console.log("Card Component Initialized!");
+    // this function DOES have access to the component instance's data members
+    console.log(this.card.sign);
+    const section = document.getElementById('bg');
+    section!.id = this.card.id;
+    switch (this.card.element) {
+      case 'Fire':
+        section!.style.backgroundColor = 'red';
+        break;
+      case 'Earth':
+        section!.style.backgroundColor = 'tan';
+        break;
+      case 'Air':
+        section!.style.backgroundColor = 'lightgray';
+        break;
+      case 'Water':
+        section!.style.backgroundColor = 'lightblue';
+        break;  
+    }
+  }
+
+  // this function will execute whenever one of the data members changes
+  // EVEN IF the state for that member is maintained elsewhere
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Inside ngOnChanges method...');
+    console.log(changes);
+  }
+
 
   // a function to run when we click the button
   updateSign(): void {

@@ -35,7 +35,7 @@
                    id="lastName"
                    name="lastName"
                    placeholder="Enter last name..."
-                   #lastName >
+                   #lastName="ngModel" >
         </div>
 
         <div>
@@ -44,7 +44,7 @@
                    type="date"
                    id="dateOfBirth"
                    name="dateOfBirth"
-                   #dateOfBirth >
+                   #dateOfBirth="ngModel" >
         </div>
 
         <div>
@@ -53,7 +53,7 @@
                    type="color"
                    id="favoriteColor"
                    name="favoriteColor"
-                   #favoriteColor >
+                   #favoriteColor="ngModel" >
         </div>
 
         <div>
@@ -82,10 +82,16 @@
                    id="firstPet"
                    name="firstPet"
                    placeholder="Enter first pet..."
-                   #firstPet >
+                   #firstPet="ngModel" >
         </div>
 
-        <button (click)="addPerson(); personForm.reset()">ENTER PERSON</button>
+        <button [disabled]="firstName.invalid 
+                         || lastName.invalid
+                         || dateOfBirth.invalid
+                         || favoriteColor.invalid
+                         || bankAccountNumber.invalid
+                         || firstPet.invalid"
+                (click)="addPerson(); personForm.reset()">ENTER PERSON</button>
 
     </form>
 

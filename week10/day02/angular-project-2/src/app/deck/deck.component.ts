@@ -60,6 +60,7 @@ export class DeckComponent {
     // adds the card to the deck array using the variable values from the .ts file
     this.deck.push(
         {
+          id: this.deck.length + 1,
           sign: this.sign,  // each one calls its corresponding variable
           symbol: this.symbol,
           element: this.element
@@ -71,7 +72,8 @@ export class DeckComponent {
     // inside a function, so must use let/const
     // type of the variable is the model itself -- Card
     // then the new keyword and the constructor
-    const newSign: Card = new Card(this.sign,
+    const newSign: Card = new Card(this.deck.length + 1,
+                                   this.sign,
                                    this.symbol, 
                                    this.element);
     // then we just add the new object
@@ -98,6 +100,17 @@ export class DeckComponent {
       if (card.id === newSign[1])
         // assign the new value for sign to the card's sign
         card.sign = newSign[0];
+    }
+  }
+
+  cardNumber: number = 0;
+  newSymbol: string = '';
+
+  // function to change a card's symbol, finding it by id
+  changeSymbol() {
+    for (let card of this.deck) {
+      if (card.id === this.cardNumber)
+        card.symbol = this.newSymbol;
     }
   }
 
