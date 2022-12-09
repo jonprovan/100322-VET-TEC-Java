@@ -14,6 +14,8 @@ import { CardComponent } from './card/card.component';
 import { OutputTestComponent } from './output-test/output-test.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { CharacterComponent } from './character/character.component';
+import { PickinTeamsComponent } from './pickin-teams/pickin-teams.component';
+import { NameCardComponent } from './name-card/name-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CharacterComponent } from './character/character.component';
     CardComponent,
     OutputTestComponent,
     ReactiveFormComponent,
-    CharacterComponent
+    CharacterComponent,
+    PickinTeamsComponent,
+    NameCardComponent
   ],
   imports: [
     BrowserModule,

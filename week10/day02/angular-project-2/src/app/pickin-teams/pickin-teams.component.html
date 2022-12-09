@@ -1,0 +1,37 @@
+<main>
+    <!-- <img src="../../assets/images/teams.jpg" alt="Go team!"> -->
+    <img [src]="currentImage.src" [alt]="currentImage.alt">
+
+    <h2>PICKIN' TEAMS! <button (click)="switchImages()">Switch Images</button></h2>
+
+    <section>
+        <h3>NAME POOL</h3>
+        <ng-container *ngFor="let name of namePool; let i = index">
+            <app-name-card [name]="name"
+                           [location]="inNamePool"
+                           (teamChangeEvent)="changeTeam(i, inNamePool, $event)"></app-name-card>
+        </ng-container>
+        <h4 *ngIf="namePool.length === 0">Everyone has a team!</h4>
+    </section>
+
+    <section>
+        <h3>TEAM A</h3>
+        <ng-container *ngFor="let name of teamA; let i = index">
+            <app-name-card [name]="name"
+                           [location]="inTeamA"
+                           (teamChangeEvent)="changeTeam(i, inTeamA, $event)"></app-name-card>
+        </ng-container>
+        <h4 *ngIf="teamA.length === 0">Team A is empty!</h4>
+    </section>
+
+    <section>
+        <h3>TEAM ONE</h3>
+        <ng-container *ngFor="let name of teamOne; let i = index">
+            <app-name-card [name]="name"
+                           [location]="inTeamOne"
+                           (teamChangeEvent)="changeTeam(i, inTeamOne, $event)"></app-name-card>
+        </ng-container>
+        <h4 *ngIf="teamOne.length === 0">Team One is empty!</h4>
+    </section>
+
+</main>

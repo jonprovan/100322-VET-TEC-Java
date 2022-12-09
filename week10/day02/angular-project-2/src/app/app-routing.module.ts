@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DeckComponent } from './deck/deck.component';
 import { FormComponent } from './form/form.component';
 import { HomeComponent } from './home/home.component';
+import { PickinTeamsComponent } from './pickin-teams/pickin-teams.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 // this variable contains an array of objects
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'reactive-form',
     component: ReactiveFormComponent
+  },
+  {
+    path: 'pickin-teams',
+    component: PickinTeamsComponent
   }
 ];
 
