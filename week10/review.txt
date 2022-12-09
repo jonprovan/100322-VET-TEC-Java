@@ -1,0 +1,42 @@
+Topics to Study
+---------------
+- What is Angular?
+       -- JavaScript framework that makes our life easier
+       -- it's specifically for building single-page applications
+       -- it uses the idea of components to break an application down into reusable parts
+- What is npm?
+- What is a component?
+       -- a piece of the application
+       -- it wraps up the HTML/CSS/JS of that piece that is put into the application
+       -- reusable pieces 
+- routing
+- forms
+- template-driven forms
+- reactive forms
+- ngModel
+- form validation
+- data binding
+- event binding
+- ng commands we've used
+    -- ng new project-name // new project
+    -- ng g component component-name // creates component (ng g c also works)
+    -- ng g class class-name // creates models
+    -- ng serve --open // spins up a server (--o also works)
+
+- decorators (@Component, @Input, etc)
+- passing data parent to child
+- passing data child to parent
+- EventEmitter
+- Component lifecycle hooks (ngOnInit, ngOnChange, etc)
+     -- important ones to know are ngOnInit, ngAfterViewInit, ngOnDestroy
+     -- for doing stuff when it is created, displayed, or destroyed
+     -- https://angular.io/guide/lifecycle-hooks
+- TypeScript (data types, functions, classes, arrays, objects)
+
+
+Resources:
+https://www.typescriptlang.org/docs/handbook/intro.html
+https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+
+Angular Tutorial (Goes beyond what we did this week, but good for next week's topics as well)
+https://angular.io/tutorial
