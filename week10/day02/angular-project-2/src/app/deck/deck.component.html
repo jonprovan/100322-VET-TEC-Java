@@ -49,10 +49,14 @@
 
     <form style="padding: 0px 24px;">
         <h3>ALTER CARD</h3>
-        <label for="cardNumber">Card Number: </label>
-        <input [(ngModel)]="cardNumber" type="number" id="cardNumber" name="cardNumber">
-        <label for="newSymbol">New Symbol: </label>
-        <input [(ngModel)]="newSymbol" type="text" id="newSymbol" name="newSymbol">
+        <div>
+            <label for="cardNumber">Card Number: </label>
+            <input [(ngModel)]="cardNumber" type="number" id="cardNumber" name="cardNumber">
+        </div>
+        <div>
+            <label for="newSymbol">New Symbol: </label>
+            <input [(ngModel)]="newSymbol" type="text" id="newSymbol" name="newSymbol">
+        </div>
         <button (click)="changeSymbol()">Alter Card</button>
     </form>
 

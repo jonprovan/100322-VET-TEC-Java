@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DeckComponent } from './deck/deck.component';
 import { FormComponent } from './form/form.component';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 // this variable contains an array of objects
 // each object outlines a route
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'deck',
     component: DeckComponent
+  },
+  {
+    path: 'reactive-form',
+    component: ReactiveFormComponent
   }
 ];
 

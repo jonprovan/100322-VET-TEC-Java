@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { FormComponent } from './form/form.component';
 import { DeckComponent } from './deck/deck.component';
 import { CardComponent } from './card/card.component';
 import { OutputTestComponent } from './output-test/output-test.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { CharacterComponent } from './character/character.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { OutputTestComponent } from './output-test/output-test.component';
     FormComponent,
     DeckComponent,
     CardComponent,
-    OutputTestComponent
+    OutputTestComponent,
+    ReactiveFormComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

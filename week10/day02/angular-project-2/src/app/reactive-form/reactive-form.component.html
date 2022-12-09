@@ -1,0 +1,70 @@
+<main>
+    <app-character [name]="newCharacter.name"
+                   [class]="newCharacter.class"
+                   [race]="newCharacter.race"
+                   [alignment]="newCharacter.alignment"
+                   [primaryWeapon]="newCharacter.primaryWeapon"
+                   [characterLevel]="newCharacter.characterLevel"></app-character>
+
+    <form [formGroup]="characterForm">
+        <h2>ANGULAR REACTIVE FORM</h2>
+        <h3>Create your Dungeons & Dragons character!</h3>
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" formControlName="name">
+            <!-- we can now access the value of this field by just saying name -->
+            <!-- because we created a getter for it in the .ts file -->
+            <!-- checking for null first so the rest of the statements evaluate -->
+            <span *ngIf="name != null && !name.valid && (name.dirty || name.touched)">
+                <!-- [hidden] is opposite of *ngIf -->
+                <!-- hides the element if the boolean statement is true -->
+                <span [hidden]="!name.errors?.['required']">Name is required!</span>
+                <span [hidden]="name.errors?.['minLength'] || name.errors?.['required']">Must be at least 5 characters!</span>
+            </span>
+        </div>
+        <div>
+            <label for="class">Class: </label>
+            <input type="text" id="class" name="class" formControlName="class">
+            <span *ngIf="class != null && !class.valid && (class.dirty || class.touched)">
+                <span [hidden]="!class.errors?.['required']">Class is required!</span>
+            </span>
+        </div>
+        <div>
+            <label for="race">Race: </label>
+            <input type="text" id="race" name="race" formControlName="race">
+            <span *ngIf="race != null && !race.valid && (race.dirty || race.touched)">
+                <span [hidden]="!race.errors?.['required']">Race is required!</span>
+            </span>
+        </div>
+        <div>
+            <label for="alignment">Alignment: </label>
+            <input type="text" id="alignment" name="alignment" formControlName="alignment">
+            <span *ngIf="alignment != null && !alignment.valid && (alignment.dirty || alignment.touched)">
+                <span [hidden]="!alignment.errors?.['required']">Alignment is required!</span>
+            </span>
+        </div>
+        <div>
+            <label for="primaryWeapon">Primary Weapon: </label>
+            <input type="text" id="primaryWeapon" name="primaryWeapon" formControlName="primaryWeapon">
+            <span *ngIf="primaryWeapon != null && !primaryWeapon.valid && (primaryWeapon.dirty || primaryWeapon.touched)">
+                <span [hidden]="!primaryWeapon.errors?.['required']">Primary Weapon is required!</span>
+            </span>
+        </div>
+        <div>
+            <label for="characterLevel">Character Level: </label>
+            <input type="number" id="characterLevel" name="characterLevel" formControlName="characterLevel">
+            <span *ngIf="characterLevel != null && !characterLevel.valid && (characterLevel.dirty || characterLevel.touched)">
+                <span [hidden]="!characterLevel.errors?.['required']">Character Level is required!</span>
+                <span [hidden]="!characterLevel.errors?.['min']">Must be at least 1!</span>
+                <span [hidden]="!characterLevel.errors?.['max']">Must be at most 20!</span>
+            </span>
+        </div>
+
+        <button (click)="onSubmit()" [disabled]="!name!.valid 
+                                       || !class!.valid
+                                       || !race!.valid
+                                       || !alignment!.valid
+                                       || !primaryWeapon!.valid
+                                       || !characterLevel!.valid">SUBMIT FORM</button>
+    </form>
+</main>

@@ -4,6 +4,7 @@ main {
 
 form {
     float: right;
+    clear: both;
 }
 
 div {

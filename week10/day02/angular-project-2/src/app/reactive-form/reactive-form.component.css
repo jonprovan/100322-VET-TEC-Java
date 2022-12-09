@@ -1,0 +1,23 @@
+main {
+    padding: 24px;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input {
+    border: solid 1px black;
+    padding: 5px
+}
+
+span {
+    color: red;
+    margin-left: 8px;
+    font-weight: bold;
+}
