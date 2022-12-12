@@ -1,0 +1,14 @@
+.siteHeader {
+    display: flex;
+}
+
+.title {
+    flex: 1;
+    /* unnecessary while using flex: 1 */
+    /* width: 100%; */
+    margin: 0px;
+    padding: .5em 24px;
+    background-color: rgb(208, 190, 245);
+}
+
+/* .headerAside {} */

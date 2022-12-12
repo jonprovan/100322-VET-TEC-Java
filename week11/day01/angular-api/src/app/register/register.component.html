@@ -1,0 +1,28 @@
+<main>
+
+    <h2>REGISTER NOW!</h2>
+
+    <!-- first name, last name, email, password -->
+
+    <form [formGroup]="registrationForm" class="registrationForm">
+
+        <label for="firstName" class="formLabel">First Name</label>
+        <input type="text" formControlName="firstName" class="formField" name="firstName" id="firstName" placeholder="Enter first name...">
+
+        <label for="lastName" class="formLabel">Last Name</label>
+        <input type="text" formControlName="lastName" class="formField" name="lastName" id="lastName" placeholder="Enter last name...">
+
+        <label for="email" class="formLabel">E-Mail</label>
+        <input type="text" formControlName="email" class="formField" name="email" id="email" placeholder="Enter e-mail...">
+
+        <label for="password" class="formLabel">Password</label>
+        <input type="password" formControlName="password" class="formField" name="password" id="password" placeholder="Enter password...">
+
+        <label for="confirmPassword" class="formLabel">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" class="formField" name="confirmPassword" id="confirmPassword" placeholder="Confirm password...">
+
+        <button type="submit" class="submitButton">REGISTER</button>
+
+    </form>
+
+</main>

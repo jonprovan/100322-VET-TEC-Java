@@ -1,0 +1,8 @@
+.siteFooter {
+    text-align: center;
+    font-style: italic;
+    font-size: 14px;
+    background-color: rgb(208, 190, 245);
+    padding: .5em;
+    border-top: solid 2px gray;
+}
