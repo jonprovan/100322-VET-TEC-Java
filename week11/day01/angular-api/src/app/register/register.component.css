@@ -25,6 +25,14 @@ h2 {
     width: 200px;
 }
 
+.invalid {
+    color: red;
+    margin-bottom: 0px 0px 12px 0px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+}
+
 .submitButton {
     display: block;
     font-weight: bold;

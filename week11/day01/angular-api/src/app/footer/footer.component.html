@@ -1,5 +1,13 @@
 <footer class="siteFooter">
 
-    &copy; Copyright 2022 Good Times McGee — Get psyched!
+    &copy; Copyright 2022 Good Times McGee — Get psyched! 
+    
+    <!-- with property binding -->
+    <!-- text inside quotes is TypeScript -->
+    <a [href]="mailToString">{{ email }}</a>
+
+    <!-- same thing but with variable binding -->
+    <!-- text inside quotes is HTML -->
+    <!-- <a href="mailto:{{ email }}">{{ email }}</a> -->
 
 </footer>
