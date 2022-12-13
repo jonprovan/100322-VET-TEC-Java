@@ -1,3 +1,32 @@
-th {
+.searchDiv {
+    margin-bottom: 12px;
+}
+
+.searchButton {
+    margin-right: 12px;
+}
+
+.searchInput {
+    margin-right: 12px;
+}
+
+.cocktailTable {
+    border-collapse: collapse;
     text-align: left;
+}
+
+.cocktailTable th, .cocktailTable td {
+    padding: 8px;
+}
+
+.cocktailTable td:first-of-type {
+    font-weight: bold;
+}
+
+.oddRow {
+    background-color: lightgrey;
+}
+
+.evenRow {
+    background-color: rgb(228, 228, 228);
 }

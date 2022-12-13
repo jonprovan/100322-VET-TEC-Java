@@ -22,4 +22,30 @@ export class CocktailService {
     const randomURL = this.url + 'random.php';
     return this.httpClient.get<any>(randomURL, { observe: 'response'});
   }
+
+  // function to get all cocktails with the first letter a
+  // the API doesn't care about case...in this case (haha)
+  getByFirstLetter(firstLetter: string): Observable<HttpResponse<any>> {
+    const firstLetterURL = this.url + 'search.php?f=' + firstLetter;
+    return this.httpClient.get<any>(firstLetterURL, { observe: 'response'});
+  }
+
+  // function to search by string
+  getBySearchString(searchString: string): Observable<HttpResponse<any>> {
+    const searchStringURL = this.url + 'search.php?s=' + searchString;
+    return this.httpClient.get<any>(searchStringURL, { observe: 'response'});
+  }
+
+  // function to search by alcoholic/non-alcoholic
+  getByAlcoholic(alcoholic: boolean): Observable<HttpResponse<any>> {
+    let alcoholicString = '';
+    if (alcoholic)
+      alcoholicString = 'Alcoholic';
+    else
+      alcoholicString = 'Non_Alcoholic'
+    const alcoholicURL = this.url + 'filter.php?a=' + alcoholicString;
+    return this.httpClient.get<any>(alcoholicURL, { observe: 'response'});
+  }
+  // filter.php?a=Alcoholic
+
 }

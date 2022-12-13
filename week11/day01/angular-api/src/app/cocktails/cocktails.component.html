@@ -1,27 +1,69 @@
 <main>
     <h2>COCKTAILS</h2>
 
-    <h3>API RESPONSE</h3>
+    <!-- button to display random cocktail -->
+    <div class="searchDiv">
+        <button class="searchButton" (click)="displayRandom()">RANDOM COCKTAIL</button>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Drink</th>
-                <th>Glass</th>
-                <th>Ingredients</th>
-                <th>Instructions</th>
-            </tr>
-        </thead>
+    <div class="searchDiv">
+        <button class="searchButton" (click)="searchByFirstLetter()">SEARCH BY FIRST LETTER:</button>
+        <input class="searchInput" [(ngModel)]="firstLetterToSearch" type="text" name="firstLetterToSearch">
+    </div>
 
-        <tbody>
-            <ng-container *ngFor="let cocktail of cocktails">
+    <div class="searchDiv">
+        <button class="searchButton" (click)="searchByString()">SEARCH BY STRING:</button>
+        <input class="searchInput" [(ngModel)]="stringToSearch" type="text" name="stringToSearch">
+    </div>
+
+    <div>
+        <button class="searchButton" (click)="searchByAlcoholic(true)">SHOW ALCOHOLIC</button>
+        <button class="searchButton" (click)="searchByAlcoholic(false)">SHOW NON-ALCOHOLIC</button>
+    </div>
+
+
+    <ng-container *ngIf="cocktails">
+        <h3>API RESPONSE</h3>
+
+        <table class="cocktailTable">
+            <thead>
                 <tr>
-                    <td>{{ cocktail.strDrink }}</td>
-                    <td>{{ cocktail.strGlass }}</td>
-                    <td>{{ cocktail.strIngredient1 }}</td>
-                    <td>{{ cocktail.strInstructions }}</td>
+                    <th>Drink</th>
+                    <!-- the question mark is necessary
+                         because, before the HTTP response has returned
+                         the cocktails array is empty
+                         once the array is filled by the initial random cocktail
+                         the error no longer throws -->
+                    <ng-container *ngIf="cocktails[0]?.strGlass">
+                        <th>Glass</th>
+                        <th>Ingredients</th>
+                        <th>Instructions</th>
+                    </ng-container>
                 </tr>
-            </ng-container>
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let cocktail of cocktails; let i = index">
+                    <!-- ngClass binds styles to tags
+                        in this case, we're using conditionals to determine
+                        which style to use (based on the index) -->
+                    <tr [ngClass]="{
+                            'evenRow': i % 2 === 0,
+                            'oddRow': i % 2 !== 0
+                        }">
+                        <td>{{ cocktail.strDrink }}</td>
+                        <!-- ? here, too -->
+                        <ng-container *ngIf="cocktails[0]?.strGlass">
+                            <td>{{ cocktail.strGlass }}</td>
+                            <td>{{ cocktail.strIngredient1 }}<ng-container *ngIf="cocktail.strIngredient2">, {{ cocktail.strIngredient2 }}</ng-container>
+                                <ng-container *ngIf="cocktail.strIngredient3">, {{ cocktail.strIngredient3 }}</ng-container>
+                                <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
+                            </td>
+                            <td>{{ cocktail.strInstructions }}</td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </ng-container>
 </main>
