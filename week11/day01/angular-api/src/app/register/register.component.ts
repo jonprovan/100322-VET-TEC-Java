@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 // import here to post to our service
 import { UserService } from '../services/user.service';
+// must import the environment to use its contents
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +12,10 @@ import { UserService } from '../services/user.service';
 })
 
 export class RegisterComponent {
+
+  // here we initialize a class variable with the
+  // environment variable's value
+  envTestVariable: string = environment.envTestVariable;
 
   // must include the FormBuilder here to have access to it
   // same thing for our UserService
@@ -66,6 +72,17 @@ export class RegisterComponent {
   onSubmit(): void {
     this.formTest = this.registrationForm.value;
     this.userService.updateUser(this.registrationForm.value);
+  }
+
+  // a boolean to keep track of whether the passwords match
+  passwordsMatch: boolean = false;
+
+  // a function to check if the passwords match
+  checkPasswords(): void {
+    // if the passwords match, passwordsMatch becomes true
+    // otherwise, it becomes false
+    this.passwordsMatch = 
+      (this.password!.value === this.confirmPassword!.value);
   }
 
 }

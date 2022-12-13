@@ -50,7 +50,8 @@
                class="formField" 
                name="password" 
                id="password" 
-               placeholder="Enter password...">
+               placeholder="Enter password..."
+               (change)="checkPasswords()">
         <p class="invalid" *ngIf="password!.invalid && (password!.touched || password!.dirty)">
             <span *ngIf="password!.errors?.['required']">Password is required!</span>
             <span *ngIf="password!.errors?.['minlength'] 
@@ -63,16 +64,20 @@
                class="formField" 
                name="confirmPassword" 
                id="confirmPassword" 
-               placeholder="Confirm password...">
-        <p class="invalid" *ngIf="confirmPassword!.invalid && (confirmPassword!.touched || confirmPassword!.dirty)">
-            <span *ngIf="confirmPassword!.errors?.['required']">Password confirmation is required!</span>
+               placeholder="Confirm password..."
+               (change)="checkPasswords()">
+        <p class="invalid" *ngIf="(confirmPassword!.invalid || !passwordsMatch) && (confirmPassword!.touched || confirmPassword!.dirty)">
+            <!-- <span *ngIf="confirmPassword!.errors?.['required']">Password confirmation is required!</span>
             <span *ngIf="confirmPassword!.errors?.['minlength'] 
-                      || confirmPassword!.errors?.['maxlength']">Password confirmation must be exactly 8 characters!</span>
+                      || confirmPassword!.errors?.['maxlength']">Password confirmation must be exactly 8 characters!</span> -->
+            <span *ngIf="!passwordsMatch">Passwords must match!</span>
         </p>
 
-        <button type="submit" (click)="onSubmit()" [disabled]="registrationForm.invalid" class="submitButton">REGISTER</button>
+        <button type="submit" (click)="onSubmit()" [disabled]="registrationForm.invalid || !passwordsMatch" class="submitButton">REGISTER</button>
 
     </form>
+
+    <p>{{ envTestVariable }}</p>
 
     <div>
         <h3>Data From Form</h3>

@@ -2,4 +2,12 @@
     height: 100%;
     width: 150px;
     background-color: rgb(116, 174, 255);
+    text-align: center;
+}
+
+.asideText {
+    margin: 0px;
+    padding-top: 14px;
+    font-weight: bold;
+    font-style: italic;
 }
