@@ -12,18 +12,14 @@ import { Observable } from 'rxjs';
 export class CocktailService {
 
   url: string = environment.apiURL;
-  cocktails: any = {};
 
-  constructor(private httpClient: HttpClient) {
-    this.cocktails = this.getRandom();
-    console.log(this.cocktails);
-  }
+  constructor(private httpClient: HttpClient) { }
 
   // function to get one random cocktail from the API
   // and load it into our cocktails variable
   // returns an Observable HTTPResponse
   getRandom(): Observable<HttpResponse<any>> {
     const randomURL = this.url + 'random.php';
-    return this.httpClient.get<any>(randomURL, { observe: 'response'})
+    return this.httpClient.get<any>(randomURL, { observe: 'response'});
   }
 }

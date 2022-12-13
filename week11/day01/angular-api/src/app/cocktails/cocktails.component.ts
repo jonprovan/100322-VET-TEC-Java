@@ -8,10 +8,16 @@ import { CocktailService } from '../services/cocktail.service';
 })
 export class CocktailsComponent {
 
-  cocktails: any = {};
+  cocktails: any = [];
 
   constructor(private cocktailService: CocktailService) {
-    this.cocktails = this.cocktailService.cocktails;
+    // here we subscribe to the return of a method
+    this.cocktailService.getRandom().subscribe(data => {
+      // seeing what's in the response
+      console.log(data);
+      // assigning the desired portion of the response to our local variable
+      this.cocktails = data.body.drinks;
+    })
   }
 
 }

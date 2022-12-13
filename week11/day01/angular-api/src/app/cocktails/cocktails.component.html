@@ -14,12 +14,14 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <ng-container *ngFor="let cocktail of cocktails">
+                <tr>
+                    <td>{{ cocktail.strDrink }}</td>
+                    <td>{{ cocktail.strGlass }}</td>
+                    <td>{{ cocktail.strIngredient1 }}</td>
+                    <td>{{ cocktail.strInstructions }}</td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </main>
