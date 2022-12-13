@@ -21,7 +21,7 @@ export class UserService {
   // a BehaviorSubject is something whose state change is tracked
   // as if shifts from one thing to another
   private userSubject = new BehaviorSubject<any>({
-    firstName: 'Default',
+    firstName: 'Joe',
     lastName: 'User',
     email: '123@abc.com',
     password: '12345',

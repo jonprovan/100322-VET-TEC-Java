@@ -5,5 +5,6 @@
 export const environment = {
     production: false,
     // this is a property we can grab like any other object prop
-    envTestVariable: 'We are in development.'
+    envTestVariable: 'We are in development.',
+    apiURL: 'https://www.thecocktaildb.com/api/json/v1/1/'
 }

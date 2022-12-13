@@ -1,0 +1,25 @@
+WHAT IS AN API?
+
+API stands for Application Programming Interface
+
+-- Is a set of rules and protocols for communicating between programs
+
+-- I create a program/system/server/etc., and if you want to communicate with it, here are the guidelines
+
+-- An interface does two main things:
+
+    1. Enforce a certain set of rules about what you can/can't do with a piece of software/class/etc.
+    2. Hide the details of the implementation
+
+We don't need to know HOW the API gets us the information, we just need to know that, when we ask it a certain question or make a certain request, it returns information in a certain predictable format.
+
+To do this, the API creator provides us with endpoints
+-- an endpoint is a specifically-formatted URL to which we can make a request and get back a certain type of information
+
+Example:
+
+GET request to https://www.puppies4days.com/v1/request.php?name=husky
+
+Might return an array of all dog breeds including the string 'husky', where each item in the array is an object with properties name, genus, species, color, etc.
+
+The response object is in a consistent, predictable format.

@@ -1,0 +1,18 @@
+.navBar {
+    background-color: rgb(233, 233, 233);
+    text-align: center;
+}
+
+.navLink {
+    display: inline-block;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #242424;
+    transition: .2s;
+}
+
+.navLink:hover {
+    background-color: #242424;
+    color: white;
+}
