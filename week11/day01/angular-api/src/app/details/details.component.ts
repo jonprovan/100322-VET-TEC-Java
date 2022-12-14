@@ -17,15 +17,16 @@ export class DetailsComponent {
 
   constructor(private cocktailService: CocktailService) {
     this.cocktailService.getRandom().subscribe(data => {
-      this.cocktail = data.body.drinks[0];
+      this.rawCocktail = data.body.drinks[0];
+      this.cleanCocktail();
     })
   }
 
-  // cleanCocktail(): void {
-  //   for (let property in this.rawCocktail) {
-  //     if (this.rawCocktail[property] != null)
-  //       this.cocktail.property = this.rawCocktail[property];
-  //   }
-  // }
+  cleanCocktail(): void {
+    for (let property in this.rawCocktail) {
+      if (this.rawCocktail[property])
+        this.cocktail[property] = this.rawCocktail[property];
+    }
+  }
 
 }

@@ -25,6 +25,54 @@
     </div>
 
 
+    <ng-container *ngIf="currentUserFavorites.length">
+        <h3>MY FAVORITES</h3>
+
+        <table class="cocktailTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Drink</th>
+                    <!-- the question mark is necessary
+                         because, before the HTTP response has returned
+                         the cocktails array is empty
+                         once the array is filled by the initial random cocktail
+                         the error no longer throws -->
+                    <ng-container *ngIf="currentUserFavorites[0]?.strGlass">
+                        <th>Glass</th>
+                        <th>Ingredients</th>
+                        <th>Instructions</th>
+                    </ng-container>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let cocktail of currentUserFavorites; let i = index">
+                    <!-- ngClass binds styles to tags
+                        in this case, we're using conditionals to determine
+                        which style to use (based on the index) -->
+                    <tr [ngClass]="{
+                            'evenRow': i % 2 === 0,
+                            'oddRow': i % 2 !== 0
+                        }">
+                        <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
+                        <td>{{ cocktail.strDrink }}</td>
+                        <!-- ? here, too -->
+                        <ng-container *ngIf="currentUserFavorites[0]?.strGlass">
+                            <td>{{ cocktail.strGlass }}</td>
+                            <td>{{ cocktail.strIngredient1 }}<ng-container *ngIf="cocktail.strIngredient2">, {{ cocktail.strIngredient2 }}</ng-container>
+                                <ng-container *ngIf="cocktail.strIngredient3">, {{ cocktail.strIngredient3 }}</ng-container>
+                                <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
+                            </td>
+                            <td>{{ cocktail.strInstructions }}</td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </ng-container>
+
+
     <ng-container *ngIf="cocktails">
         <h3>API RESPONSE</h3>
 
@@ -54,7 +102,8 @@
                     <tr [ngClass]="{
                             'evenRow': i % 2 === 0,
                             'oddRow': i % 2 !== 0
-                        }">
+                        }" 
+                        (click)="addToFavorites(cocktail)">
                         <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
                         <td>{{ cocktail.strDrink }}</td>
                         <!-- ? here, too -->

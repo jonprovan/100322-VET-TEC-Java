@@ -69,5 +69,15 @@ export class UserService {
   //   confirmPassword: '12345'
   // }
 
+  addToFavorites(cocktail: any): void {
+    // look through users in the array
+    for (let user of this.users) {
+      // check if it matches our current user
+      if (user.email === this.currentUser.value.email) {
+        // push to that user's favorites array
+        user.favorites.push(cocktail);
+      }
+    }
+  }
 
 }

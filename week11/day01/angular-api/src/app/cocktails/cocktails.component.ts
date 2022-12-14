@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CocktailService } from '../services/cocktail.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-cocktails',
@@ -9,17 +10,24 @@ import { CocktailService } from '../services/cocktail.service';
 export class CocktailsComponent {
 
   cocktails: any = [];
+  currentUserFavorites: any = [];
 
   firstLetterToSearch: string = '';
   stringToSearch: string = '';
 
-  constructor(private cocktailService: CocktailService) {
+  constructor(private cocktailService: CocktailService,
+              private userService: UserService) {
+
     // here we subscribe to the return of a method
     this.cocktailService.getRandom().subscribe(data => {
       // seeing what's in the response
       console.log(data);
       // assigning the desired portion of the response to our local variable
       this.cocktails = data.body.drinks;
+    })
+
+    this.userService.user.subscribe(data => {
+      this.currentUserFavorites = data.favorites;
     })
   }
 
@@ -96,4 +104,13 @@ export class CocktailsComponent {
       this.cocktails = data.body.drinks;
     });
   }
+
+
+  // function to add to the user's favorites
+  addToFavorites(cocktail: any): void {
+    // checking for duplicates
+    if (!this.currentUserFavorites.includes(cocktail))
+      this.userService.addToFavorites(cocktail);
+  }
+
 }
