@@ -1,0 +1,46 @@
+<main>
+    <h2>DETAILS</h2>
+
+    <!-- PIPES -->
+
+    <!-- a pipe is a tool that allows to transform data
+         based on a set of rules -->
+
+    <!-- we call it on the HTML page using {{ data | pipename }} -->
+
+    <!-- <p>Unaltered String -- {{ pipeString }}</p>
+    <p>With UpperCase pipe -- {{ pipeString | uppercase }}</p>
+    <p>With LowerCase pipe -- {{ pipeString | lowercase }}</p>
+    <p>With TitleCase pipe -- {{ pipeString | titlecase }}</p>
+
+    <p>Unaltered Date -- {{ pipeDate }}</p>
+    <p>With Date pipe (default) -- {{ pipeDate | date }}</p>
+    <p>With Date pipe (date:'full') -- {{ pipeDate | date:'full' }}</p> -->
+    
+    <img src="{{ cocktail.strDrinkThumb }}" alt="{{ cocktail.strDrink }}">
+    <h3>{{ cocktail.strDrink | uppercase }}</h3>
+
+    <table class="cocktailTable">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- the keyvalue pipe breaks up the object into an iterable series of
+                 key/value pair objects -->
+            <ng-container *ngFor="let property of cocktail | keyvalue; 
+                                  let even = even; 
+                                  let odd = odd">
+                <tr *ngIf="property.value" [ngClass]="{ 'evenRow': even, 'oddRow': odd }">
+                    <td>{{ property.key }}</td>
+                    <td>{{ property.value }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+
+    </table>
+
+</main>

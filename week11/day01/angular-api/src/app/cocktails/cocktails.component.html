@@ -31,6 +31,7 @@
         <table class="cocktailTable">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Drink</th>
                     <!-- the question mark is necessary
                          because, before the HTTP response has returned
@@ -54,6 +55,7 @@
                             'evenRow': i % 2 === 0,
                             'oddRow': i % 2 !== 0
                         }">
+                        <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
                         <td>{{ cocktail.strDrink }}</td>
                         <!-- ? here, too -->
                         <ng-container *ngIf="cocktails[0]?.strGlass">

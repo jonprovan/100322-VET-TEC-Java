@@ -63,8 +63,6 @@ export class CocktailsComponent {
         }
       }
 
-
-
       // THIS IS THE DEPRECATED (but still functional) WAY TO DO IT!
       // first callback function is for a successful operation
       // the names of the variables, in this case, don't matter, just the order
@@ -78,8 +76,8 @@ export class CocktailsComponent {
       //   console.log(failure.status);
       //   this.cocktails = null;
       // }
-
     );
+    this.firstLetterToSearch = '';
   }
 
   // function to display results of our service's getBySearchString function
@@ -87,6 +85,7 @@ export class CocktailsComponent {
     this.cocktailService.getBySearchString(this.stringToSearch).subscribe(data => {
       console.log(data);
       this.cocktails = data.body.drinks;
+      this.stringToSearch = '';
     });
   }
 
