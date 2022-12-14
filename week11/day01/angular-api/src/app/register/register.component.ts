@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 // must import the environment to use its contents
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,9 @@ export class RegisterComponent {
 
   // must include the FormBuilder here to have access to it
   // same thing for our UserService
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private router: Router) {}
 
   registrationForm = this.fb.group(
     {
@@ -69,9 +73,20 @@ export class RegisterComponent {
   }
 
   // to apply form values to my formTest variable for display
+  // old version!!
+  // onSubmit(): void {
+  //   this.formTest = this.registrationForm.value;
+  //   this.userService.updateUser(this.registrationForm.value);
+  // }
+
+  // new version!
   onSubmit(): void {
-    this.formTest = this.registrationForm.value;
-    this.userService.updateUser(this.registrationForm.value);
+    this.userService.registerUser(new User(this.firstName?.value!,
+                                           this.lastName?.value!,
+                                           this.email?.value!,
+                                           this.password?.value!));
+    // using our imported router, we navigate to the component at the specified path
+    this.router.navigate(['../login']);
   }
 
   // a boolean to keep track of whether the passwords match

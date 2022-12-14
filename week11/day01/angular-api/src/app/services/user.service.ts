@@ -5,6 +5,7 @@
 // an injectable is something Angular can insert wherever we need it
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user';
 
 // services have the @Injectable() decorator
 @Injectable({
@@ -18,31 +19,42 @@ export class UserService {
 
   constructor() { }
 
+  // an array of pre-existing users we can add to as people register
+  users: User[] = [
+    new User('Raymond', 'Hernandez', 'numberonealcoholic@aa.com', 'tequila1'),
+    new User('Brian', 'Parmalee', 'thebigcheeze@aol.com', 'cheezplz'),
+    new User('admin', 'istrator', 'admin@gmail.com', 'tsinimda')
+  ]
+
   // a BehaviorSubject is something whose state change is tracked
   // as if shifts from one thing to another
-  private userSubject = new BehaviorSubject<any>({
-    firstName: 'Joe',
-    lastName: 'User',
-    email: '123@abc.com',
-    password: '12345',
-    confirmPassword: '12345'
-  });
+  private currentUser = new BehaviorSubject<User>(new User('','','',''));
 
   // this sets up the user variable to refer to the contents
   // of the userSubject variable as something whose changes
   // we can watch and respond to
-  user = this.userSubject.asObservable();
+  user = this.currentUser.asObservable();
 
   // this accomplishes the same goal
-  getUserSubject(): any {
-    return this.userSubject.asObservable();
-  }
+  // getUserSubject(): any {
+  //   return this.currentUser.asObservable();
+  // }
 
   // to update the data inside the BehaviorSubject
-  updateUser(newUserInfo: any): void {
+  loginUser(newUser: User): void {
     // this takes the input object
     // and stores it as the next state of the subject
-    this.userSubject.next(newUserInfo);
+    this.currentUser.next(newUser);
+  }
+
+  logoutUser(): void {
+    this.currentUser.next(new User('','','',''));
+  }
+
+  // to add a user to our array for future login
+  // using our new class as a parameter type
+  registerUser(newUser: User) {
+    this.users.push(newUser);
   }
 
 

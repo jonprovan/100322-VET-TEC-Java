@@ -5,16 +5,19 @@
     <div class="searchDiv">
         <button class="searchButton" (click)="displayRandom()">RANDOM COCKTAIL</button>
     </div>
+    <form>
+        <div class="searchDiv">
+            <button class="searchButton" (click)="searchByFirstLetter()">SEARCH BY FIRST LETTER:</button>
+            <input class="searchInput" [(ngModel)]="firstLetterToSearch" type="text" name="firstLetterToSearch">
+        </div>
+    </form>
 
-    <div class="searchDiv">
-        <button class="searchButton" (click)="searchByFirstLetter()">SEARCH BY FIRST LETTER:</button>
-        <input class="searchInput" [(ngModel)]="firstLetterToSearch" type="text" name="firstLetterToSearch">
-    </div>
-
-    <div class="searchDiv">
-        <button class="searchButton" (click)="searchByString()">SEARCH BY STRING:</button>
-        <input class="searchInput" [(ngModel)]="stringToSearch" type="text" name="stringToSearch">
-    </div>
+    <form>
+        <div class="searchDiv">
+            <button class="searchButton" (click)="searchByString()">SEARCH BY STRING:</button>
+            <input class="searchInput" [(ngModel)]="stringToSearch" type="text" name="stringToSearch">
+        </div>
+    </form>    
 
     <div>
         <button class="searchButton" (click)="searchByAlcoholic(true)">SHOW ALCOHOLIC</button>

@@ -33,14 +33,53 @@ export class CocktailsComponent {
 
   // function to display the results of our service's getByFirstLetter function
   searchByFirstLetter(): void {
-    this.cocktailService.getByFirstLetter(this.firstLetterToSearch).subscribe(data => {
-      console.log(data);
+    this.cocktailService.getByFirstLetter(this.firstLetterToSearch).subscribe(
+      
+      // handling errors in our GET request
+      // these are observer arguments
+      // one object with different properties for success/failure
+      // the preferred way to do this now
+      {
+        // next is for a successful response
+        // you MUST use next
+        next: (data) => {
+          console.log(data);
+          this.cocktails = data.body.drinks;
+        },
+        // error is for a failed attempt
+        // you MUST use error
+        error: (err) => {
+          console.log(err);
+          // you still have access to the properties of the HttpErrorResponse object
+          console.log(err.status);
+          this.cocktails = null;
+        },
+        // complete is for a void-return completion
+        // in our case, it's acting like a finally block
+        // you MUST use complete
+        // you have to take in no parameters for this one
+        complete: () => {
+          console.log("HTTP request complete!");
+        }
+      }
 
-      if (data.status == 404)
-        console.log('Unsuccessful request!')
-      else
-        this.cocktails = data.body.drinks;
-    });
+
+
+      // THIS IS THE DEPRECATED (but still functional) WAY TO DO IT!
+      // first callback function is for a successful operation
+      // the names of the variables, in this case, don't matter, just the order
+      // success => {
+      //   console.log(success);
+      //   this.cocktails = success.body.drinks;
+      // },
+      // // second one is for a failed operation
+      // failure => {
+      //   console.log(failure);
+      //   console.log(failure.status);
+      //   this.cocktails = null;
+      // }
+
+    );
   }
 
   // function to display results of our service's getBySearchString function

@@ -1,4 +1,6 @@
 <nav class="navBar">
-    <a class="navLink" routerLink="register">REGISTER</a>
-    <a class="navLink" routerLink="cocktails">COCKTAILS</a>
+    <a *ngIf="!userFirstName" class="navLink" routerLink="register">REGISTER</a>
+    <a *ngIf="!userFirstName" class="navLink" routerLink="login">LOGIN</a>
+    <a *ngIf="userFirstName" class="navLink" routerLink="cocktails">COCKTAILS</a>
+    <a *ngIf="userFirstName" class="navLink" (click)="logout()" routerLink="login">LOGOUT</a>
 </nav>

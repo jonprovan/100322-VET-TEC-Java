@@ -2,6 +2,17 @@
 
     <h2>LOG IN</h2>
 
-    <!-- first name, last name, email, password -->
+    <form class="loginForm">
+        <label for="email" class="formLabel">E-Mail Address</label>
+        <input [(ngModel)]="email" type="text" id="email" name="email" placeholder="Enter e-mail address..." class="formField">
+
+        <label for="password" class="formLabel">Password</label>
+        <input [(ngModel)]="password" type="password" id="password" name="password" placeholder="Enter password..." class="formField">
+
+        <button class="submitButton" (click)="login()">LOG IN</button>
+    </form>
+
+    <button style="margin-top: 24px;" (click)="devLogin()" class="submitButton">DEV LOG IN</button>
+    
 
 </main>
