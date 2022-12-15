@@ -1,0 +1,21 @@
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+div {
+    margin-bottom: 12px;
+}
+
+button {
+    margin-right: 12px;
+}
+
+label {
+    margin-right: 6px;
+}
+
+input {
+    width: 50px;
+    margin-right: 12px;
+}

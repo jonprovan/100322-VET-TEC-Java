@@ -68,7 +68,8 @@
                             <td>{{ cocktail.strInstructions }}</td>
                             <td>
                                 <button (click)="removeFromFavorites(cocktail)">REMOVE</button>
-                                <button (click)="getDetails(cocktail)">DETAILS</button>
+                                <!-- <button (click)="getDetails(cocktail)">DETAILS</button> -->
+                                <button (click)="getDetailsViaRoute(cocktail.idDrink)">DETAILS</button>
                             </td>
                         </ng-container>
                     </tr>
@@ -121,7 +122,8 @@
                             <td>{{ cocktail.strInstructions }}</td>
                             <td>
                                 <button (click)="addToFavorites(cocktail)">ADD</button>
-                                <button (click)="getDetails(cocktail)">DETAILS</button>
+                                <!-- <button (click)="getDetails(cocktail)">DETAILS</button> -->
+                                <button (click)="getDetailsViaRoute(cocktail.idDrink)">DETAILS</button>
                             </td>
                         </ng-container>
                     </tr>

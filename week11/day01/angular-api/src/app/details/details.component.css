@@ -22,3 +22,8 @@
 img {
     width: 200px;
 }
+
+button {
+    display: block;
+    margin-bottom: 24px;
+}

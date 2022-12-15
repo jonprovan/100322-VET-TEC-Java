@@ -132,9 +132,14 @@ export class CocktailsComponent {
   }
 
   // function to get cocktail details
-  getDetails(cocktail: any) {
+  getDetails(cocktail: any): void {
     this.cocktailService.updateDetailsCocktail(cocktail);
     this.router.navigate(['../details']);
+  }
+
+  // passing the id as a parameter to the details component
+  getDetailsViaRoute(id: string): void {
+    this.router.navigate(['../details/' + id]);
   }
 
 }

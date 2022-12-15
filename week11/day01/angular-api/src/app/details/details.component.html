@@ -17,6 +17,8 @@
     <p>With Date pipe (default) -- {{ pipeDate | date }}</p>
     <p>With Date pipe (date:'full') -- {{ pipeDate | date:'full' }}</p> -->
     
+    <button (click)="addToFavorites()">ADD TO FAVORITES</button>
+
     <img src="{{ cocktail.strDrinkThumb }}" alt="{{ cocktail.strDrink }}">
     <h3>{{ cocktail.strDrink | uppercase }}</h3>
 

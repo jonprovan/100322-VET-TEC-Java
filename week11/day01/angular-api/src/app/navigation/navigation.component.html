@@ -2,6 +2,7 @@
     <a *ngIf="!userFirstName" class="navLink" routerLink="register">REGISTER</a>
     <a *ngIf="!userFirstName" class="navLink" routerLink="login">LOGIN</a>
     <a *ngIf="userFirstName" class="navLink" routerLink="cocktails">COCKTAILS</a>
-    <a class="navLink" routerLink="details">DETAILS</a>
+    <a *ngIf="userFirstName" class="navLink" routerLink="requests">REQUESTS</a>
+    <!-- <a class="navLink" routerLink="details">DETAILS</a> -->
     <a *ngIf="userFirstName" class="navLink" (click)="logout()" routerLink="login">LOGOUT</a>
 </nav>

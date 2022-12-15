@@ -1,0 +1,67 @@
+<main>
+    <h2>REQUESTS</h2>
+
+    <!-- this API returns object with four fields:
+            id
+            title
+            body
+            userId
+    -->
+
+    <div>
+        <button (click)="getAll()">GET ALL</button>
+    </div>
+
+    <div>
+        <button (click)="create()">CREATE</button>
+        <label>Title:</label>
+        <input [(ngModel)]="requestObject.title" name="requestObject.title" type="text">
+        <label>Body:</label>
+        <input [(ngModel)]="requestObject.body" name="requestObject.body" type="text">
+        <label>User ID:</label>
+        <input [(ngModel)]="requestObject.userId" name="requestObject.userId" type="text">
+    </div>
+
+    <div>
+        <button (click)="update()">UPDATE</button>
+        <label>ID:</label>
+        <input [(ngModel)]="requestObject.id" name="requestObject.id" type="text">
+        <label>Title:</label>
+        <input [(ngModel)]="requestObject.title" name="requestObject.title" type="text">
+        <label>Body:</label>
+        <input [(ngModel)]="requestObject.body" name="requestObject.body" type="text">
+        <label>User ID:</label>
+        <input [(ngModel)]="requestObject.userId" name="requestObject.userId" type="text">
+    </div>
+
+    <div>
+        <button (click)="delete()">DELETE</button>
+        <label>ID:</label>
+        <input [(ngModel)]="requestObject.id" name="requestObject.id" type="text">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>BODY</th>
+                <th>USER ID</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <ng-container *ngFor="let item of responseBody">
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.body }}</td>
+                    <td>{{ item.userId }}</td>
+                </tr>
+            </ng-container>
+
+        </tbody>
+    </table>
+
+</main>

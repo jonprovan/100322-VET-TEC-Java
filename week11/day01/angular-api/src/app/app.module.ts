@@ -16,6 +16,7 @@ import { HeaderAsideComponent } from './header-aside/header-aside.component';
 import { RegisterComponent } from './register/register.component';
 import { CocktailsComponent } from './cocktails/cocktails.component';
 import { DetailsComponent } from './details/details.component';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DetailsComponent } from './details/details.component';
     HeaderAsideComponent,
     RegisterComponent,
     CocktailsComponent,
-    DetailsComponent
+    DetailsComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
