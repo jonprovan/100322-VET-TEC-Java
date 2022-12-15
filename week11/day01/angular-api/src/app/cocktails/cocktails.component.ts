@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CocktailService } from '../services/cocktail.service';
 import { UserService } from '../services/user.service';
 
@@ -10,13 +11,15 @@ import { UserService } from '../services/user.service';
 export class CocktailsComponent {
 
   cocktails: any = [];
+  tempCocktails: any = [];
   currentUserFavorites: any = [];
 
   firstLetterToSearch: string = '';
   stringToSearch: string = '';
 
   constructor(private cocktailService: CocktailService,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
 
     // here we subscribe to the return of a method
     this.cocktailService.getRandom().subscribe(data => {
@@ -100,8 +103,18 @@ export class CocktailsComponent {
   // function to display results of our service's getByAlcoholic function
   searchByAlcoholic(alcoholic: boolean): void {
     this.cocktailService.getByAlcoholic(alcoholic).subscribe(data => {
-      console.log(data);
-      this.cocktails = data.body.drinks;
+      // clearing our temp array to push individual items to
+      this.tempCocktails = [];
+      
+      // getting details by id for each drink
+      for (let drink of data.body.drinks) {
+        this.cocktailService.getById(drink.idDrink).subscribe(data => {
+          this.tempCocktails.push(data.body.drinks[0]);
+        })
+      }
+
+      // replacing our display array with the temp one
+      this.cocktails = this.tempCocktails;
     });
   }
 
@@ -111,6 +124,17 @@ export class CocktailsComponent {
     // checking for duplicates
     if (!this.currentUserFavorites.includes(cocktail))
       this.userService.addToFavorites(cocktail);
+  }
+
+  // function to remove from the user's favorites
+  removeFromFavorites(cocktail: any): void {
+    this.userService.removeFromFavorites(cocktail);
+  }
+
+  // function to get cocktail details
+  getDetails(cocktail: any) {
+    this.cocktailService.updateDetailsCocktail(cocktail);
+    this.router.navigate(['../details']);
   }
 
 }

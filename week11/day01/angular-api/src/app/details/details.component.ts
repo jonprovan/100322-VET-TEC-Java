@@ -16,8 +16,8 @@ export class DetailsComponent {
   cocktail: any = {};
 
   constructor(private cocktailService: CocktailService) {
-    this.cocktailService.getRandom().subscribe(data => {
-      this.rawCocktail = data.body.drinks[0];
+    this.cocktailService.detailsCocktailObservable.subscribe(data => {
+      this.rawCocktail = data;
       this.cleanCocktail();
     })
   }

@@ -69,6 +69,7 @@ export class UserService {
   //   confirmPassword: '12345'
   // }
 
+  // to add a drink to the current user's favorites
   addToFavorites(cocktail: any): void {
     // look through users in the array
     for (let user of this.users) {
@@ -76,6 +77,15 @@ export class UserService {
       if (user.email === this.currentUser.value.email) {
         // push to that user's favorites array
         user.favorites.push(cocktail);
+      }
+    }
+  }
+
+  // to remove a drink from the current user's favorites
+  removeFromFavorites(cocktail: any) {
+    for (let user of this.users) {      
+      if (user.email === this.currentUser.value.email) {
+        user.favorites.splice(user.favorites.indexOf(cocktail), 1);
       }
     }
   }

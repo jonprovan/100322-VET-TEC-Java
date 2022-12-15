@@ -34,3 +34,8 @@
 .cocktailTable img {
     width: 100px;
 }
+
+.cocktailTable td button {
+    display: block;
+    margin-bottom: 4px;
+}

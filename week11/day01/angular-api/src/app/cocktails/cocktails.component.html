@@ -42,6 +42,7 @@
                         <th>Glass</th>
                         <th>Ingredients</th>
                         <th>Instructions</th>
+                        <th>Actions</th>
                     </ng-container>
                 </tr>
             </thead>
@@ -65,6 +66,10 @@
                                 <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
                             </td>
                             <td>{{ cocktail.strInstructions }}</td>
+                            <td>
+                                <button (click)="removeFromFavorites(cocktail)">REMOVE</button>
+                                <button (click)="getDetails(cocktail)">DETAILS</button>
+                            </td>
                         </ng-container>
                     </tr>
                 </ng-container>
@@ -90,6 +95,7 @@
                         <th>Glass</th>
                         <th>Ingredients</th>
                         <th>Instructions</th>
+                        <th>Actions</th>
                     </ng-container>
                 </tr>
             </thead>
@@ -102,8 +108,7 @@
                     <tr [ngClass]="{
                             'evenRow': i % 2 === 0,
                             'oddRow': i % 2 !== 0
-                        }" 
-                        (click)="addToFavorites(cocktail)">
+                        }">
                         <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
                         <td>{{ cocktail.strDrink }}</td>
                         <!-- ? here, too -->
@@ -114,6 +119,10 @@
                                 <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
                             </td>
                             <td>{{ cocktail.strInstructions }}</td>
+                            <td>
+                                <button (click)="addToFavorites(cocktail)">ADD</button>
+                                <button (click)="getDetails(cocktail)">DETAILS</button>
+                            </td>
                         </ng-container>
                     </tr>
                 </ng-container>

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 // Response is what allows us to handle what comes back
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 export class CocktailService {
 
   url: string = environment.apiURL;
+  private detailsCocktail = new BehaviorSubject<any>({});
+  detailsCocktailObservable = this.detailsCocktail.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -46,6 +48,15 @@ export class CocktailService {
     const alcoholicURL = this.url + 'filter.php?a=' + alcoholicString;
     return this.httpClient.get<any>(alcoholicURL, { observe: 'response'});
   }
-  // filter.php?a=Alcoholic
+  
+  // function to get an individual cocktail by id
+  getById(id: string): Observable<HttpResponse<any>> {
+    const idURL = this.url + 'lookup.php?i=' + id;
+    return this.httpClient.get<any>(idURL, { observe: 'response'});
+  }
+
+  updateDetailsCocktail(cocktail: any): void {
+    this.detailsCocktail.next(cocktail);
+  }
 
 }
