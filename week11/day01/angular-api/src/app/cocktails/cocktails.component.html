@@ -26,56 +26,62 @@
 
 
     <ng-container *ngIf="currentUserFavorites.length">
-        <h3>MY FAVORITES</h3>
 
-        <table class="cocktailTable">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Drink</th>
-                    <!-- the question mark is necessary
-                         because, before the HTTP response has returned
-                         the cocktails array is empty
-                         once the array is filled by the initial random cocktail
-                         the error no longer throws -->
-                    <ng-container *ngIf="currentUserFavorites[0]?.strGlass">
-                        <th>Glass</th>
-                        <th>Ingredients</th>
-                        <th>Instructions</th>
-                        <th>Actions</th>
-                    </ng-container>
-                </tr>
-            </thead>
+        <h3><button class="toggleButton" (click)="toggleFavorites()">
+            MY FAVORITES <span *ngIf="favoritesVisible">&#9660;</span>
+            <span *ngIf="!favoritesVisible">&#9654;</span>   
+        </button></h3>
 
-            <tbody>
-                <ng-container *ngFor="let cocktail of currentUserFavorites; let i = index">
-                    <!-- ngClass binds styles to tags
-                        in this case, we're using conditionals to determine
-                        which style to use (based on the index) -->
-                    <tr [ngClass]="{
-                            'evenRow': i % 2 === 0,
-                            'oddRow': i % 2 !== 0
-                        }">
-                        <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
-                        <td>{{ cocktail.strDrink }}</td>
-                        <!-- ? here, too -->
+        <ng-container *ngIf="favoritesVisible">
+            <table class="cocktailTable">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Drink</th>
+                        <!-- the question mark is necessary
+                            because, before the HTTP response has returned
+                            the cocktails array is empty
+                            once the array is filled by the initial random cocktail
+                            the error no longer throws -->
                         <ng-container *ngIf="currentUserFavorites[0]?.strGlass">
-                            <td>{{ cocktail.strGlass }}</td>
-                            <td>{{ cocktail.strIngredient1 }}<ng-container *ngIf="cocktail.strIngredient2">, {{ cocktail.strIngredient2 }}</ng-container>
-                                <ng-container *ngIf="cocktail.strIngredient3">, {{ cocktail.strIngredient3 }}</ng-container>
-                                <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
-                            </td>
-                            <td>{{ cocktail.strInstructions }}</td>
-                            <td>
-                                <button (click)="removeFromFavorites(cocktail)">REMOVE</button>
-                                <!-- <button (click)="getDetails(cocktail)">DETAILS</button> -->
-                                <button (click)="getDetailsViaRoute(cocktail.idDrink)">DETAILS</button>
-                            </td>
+                            <th>Glass</th>
+                            <th>Ingredients</th>
+                            <th>Instructions</th>
+                            <th>Actions</th>
                         </ng-container>
                     </tr>
-                </ng-container>
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    <ng-container *ngFor="let cocktail of currentUserFavorites; let i = index">
+                        <!-- ngClass binds styles to tags
+                            in this case, we're using conditionals to determine
+                            which style to use (based on the index) -->
+                        <tr [ngClass]="{
+                                'evenRow': i % 2 === 0,
+                                'oddRow': i % 2 !== 0
+                            }">
+                            <td><img src="{{ cocktail.strDrinkThumb }}/preview"></td>
+                            <td>{{ cocktail.strDrink }}</td>
+                            <!-- ? here, too -->
+                            <ng-container *ngIf="currentUserFavorites[0]?.strGlass">
+                                <td>{{ cocktail.strGlass }}</td>
+                                <td>{{ cocktail.strIngredient1 }}<ng-container *ngIf="cocktail.strIngredient2">, {{ cocktail.strIngredient2 }}</ng-container>
+                                    <ng-container *ngIf="cocktail.strIngredient3">, {{ cocktail.strIngredient3 }}</ng-container>
+                                    <ng-container *ngIf="cocktail.strIngredient4">, {{ cocktail.strIngredient4 }}</ng-container>
+                                </td>
+                                <td>{{ cocktail.strInstructions }}</td>
+                                <td>
+                                    <button (click)="removeFromFavorites(cocktail)">REMOVE</button>
+                                    <!-- <button (click)="getDetails(cocktail)">DETAILS</button> -->
+                                    <button (click)="getDetailsViaRoute(cocktail.idDrink)">DETAILS</button>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </ng-container>
     </ng-container>
 
 

@@ -9,7 +9,7 @@ import { RequestsComponent } from './requests/requests.component';
 const routes: Routes = [
   {
     path: '',
-    component: RequestsComponent
+    component: LoginComponent
   },
   {
     path: 'register',

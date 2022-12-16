@@ -39,3 +39,11 @@
     display: block;
     margin-bottom: 4px;
 }
+
+.toggleButton {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0px;
+}

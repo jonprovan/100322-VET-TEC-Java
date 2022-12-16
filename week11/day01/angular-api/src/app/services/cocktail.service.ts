@@ -11,6 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CocktailService {
 
+  // base URL from environment.ts
   url: string = environment.apiURL;
   private detailsCocktail = new BehaviorSubject<any>({});
   detailsCocktailObservable = this.detailsCocktail.asObservable();
@@ -54,6 +55,11 @@ export class CocktailService {
     const idURL = this.url + 'lookup.php?i=' + id;
     return this.httpClient.get<any>(idURL, { observe: 'response'});
   }
+
+  // function to get an individual cocktail by id if I plug the URL in directly instead of assembling it
+  // getById(id: string): Observable<HttpResponse<any>> {
+  //   return this.httpClient.get<any>('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + id, { observe: 'response'});
+  // }
 
   updateDetailsCocktail(cocktail: any): void {
     this.detailsCocktail.next(cocktail);

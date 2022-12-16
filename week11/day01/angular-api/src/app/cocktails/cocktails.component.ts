@@ -13,6 +13,7 @@ export class CocktailsComponent {
   cocktails: any = [];
   tempCocktails: any = [];
   currentUserFavorites: any = [];
+  favoritesVisible: boolean = true;
 
   firstLetterToSearch: string = '';
   stringToSearch: string = '';
@@ -140,6 +141,11 @@ export class CocktailsComponent {
   // passing the id as a parameter to the details component
   getDetailsViaRoute(id: string): void {
     this.router.navigate(['../details/' + id]);
+  }
+
+  // to toggle our favorites on and off
+  toggleFavorites() {
+    this.favoritesVisible = !this.favoritesVisible;
   }
 
 }
