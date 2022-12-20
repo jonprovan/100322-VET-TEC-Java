@@ -129,4 +129,56 @@ WHERE college_code = 12345; -- cannot delete if there is a student that is refer
 -- solution: delete or update that student before deleting this school
 UPDATE student
 SET college_code = NULL
-WHERE student_id = 7;
+WHERE student_id IN (9, 11); -- IN lets us match mutliple values without 
+-- WHERE student_id = 9 OR student_id = 11;
+
+-- Check if it worked
+SELECT * FROM student;
+
+-- Try again delete from college
+DELETE FROM college
+WHERE college_code = 12345;
+
+-- DEFINITION OF A JOIN
+-- a join allows us to combine data from two tables, such that records are combined from each table
+-- based on a condition we give it
+-- For a LEFT JOIN
+    -- NOTE: If there is no matching row from the other table, it fills the columns with nulls
+-- Goal: Run a simple LEFT JOIN
+SELECT * 
+FROM 
+  student LEFT JOIN college
+    USING(college_code); -- This is how I specify the join column if they are named the same
+    
+-- update a record to assign a college to a student
+UPDATE STUDENT 
+SET college_code = 012345
+WHERE student_id IN (5, 9, 22,430, 239 ); -- this is a list NOT a range
+
+-- instead of using IN, if we want a range use BETWEEN or logical operators
+SELECT student_name
+FROM student
+WHERE student_id BETWEEN 5 AND 9; -- or WHERE student_id >= 5 AND student_id <= 9
+
+
+SELECT * 
+FROM 
+  student LEFT JOIN college
+    USING(college_code);
+
+ SELECT * 
+FROM 
+  student INNER JOIN college
+    USING(college_code);   
+    
+SELECT * 
+FROM 
+  student RIGHT JOIN college
+USING(college_code);
+
+SELECT *
+FROM college LEFT JOIN student
+USING (college_code);
+
+INSERT INTO college
+VALUES (012346, 'Stanford', 'CA');
