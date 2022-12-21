@@ -127,7 +127,7 @@
                             </td>
                             <td>{{ cocktail.strInstructions }}</td>
                             <td>
-                                <button (click)="addToFavorites(cocktail)">ADD</button>
+                                <button *ngIf="!currentUserFavorites.includes(cocktail)" (click)="addToFavorites(cocktail)">ADD</button>
                                 <!-- <button (click)="getDetails(cocktail)">DETAILS</button> -->
                                 <button (click)="getDetailsViaRoute(cocktail.idDrink)">DETAILS</button>
                             </td>

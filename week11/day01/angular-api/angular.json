@@ -58,6 +58,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -70,6 +78,9 @@
             },
             "development": {
               "browserTarget": "angular-api:build:development"
+            },
+            "staging": {
+              "browserTarget": "angular-api:build:staging"
             }
           },
           "defaultConfiguration": "development"
