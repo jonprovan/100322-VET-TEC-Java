@@ -29,7 +29,7 @@ public class DinoRace {
 	
 	public DinoRace(int duration, ArrayList<Dinosaur> dinos) {
 		this.raceDuration = duration;
-		this.dinos = dinos;
+		setDinos(dinos);
 	}
 
 
