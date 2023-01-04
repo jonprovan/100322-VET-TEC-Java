@@ -45,10 +45,10 @@ public class DinoRace {
 			throw new IllegalArgumentException("List of dinosaurs cannot be null.");
 		}
 		if (dinos.size() < MIN_NUM_RACERS) {
-			throw new IllegalArgumentException("List of dinosaurs cannot be null.");
+			throw new IllegalArgumentException("Must have at least two racers.");
 		}
 		if (dinos.size() > MAX_NUM_RACERS) {
-			throw new IllegalArgumentException("List of dinosaurs cannot be null.");
+			throw new IllegalArgumentException("Can't have more than 20 racers.");
 		}
 		this.dinos = dinos;
 	}

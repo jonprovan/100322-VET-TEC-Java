@@ -38,13 +38,14 @@ class DinoRaceTests {
 		// takes two parameters
 		// the class type of the exception that should be thrown
 		// a lambda function containing the code you want to test
-		assertThrows(IllegalArgumentException.class, () -> {
+		Throwable e = assertThrows(IllegalArgumentException.class, () -> {
 			DinoRace race = new DinoRace(3, null);
 		});
 
 		// You can have multiple asserts in the same test
-		// TODO add an assert to check the Exception thrown has the message "List of dinosaurs cannot be null."
-		
+		// TODO add an assert to check the Exception thrown has the messag String "List of dinosaurs cannot be null."
+		// The parameters are (expected value, actual value)
+		assertEquals("List of dinosaurs cannot be null.", e.getMessage());
 	}
 	
 	@Test
@@ -60,11 +61,12 @@ class DinoRaceTests {
 	
 	@Test
 	void createDinoRaceAndSetEmptyRacers() {
-		assertThrows(IllegalArgumentException.class, () -> {
+		Throwable e = assertThrows(IllegalArgumentException.class, () -> {
 			DinoRace race = new DinoRace(3, new ArrayList<Dinosaur>());
 		});
 		// You can have multiple asserts in the same test
-		// TODO add an assert to check the Exception thrown has the message "List of dinosaurs cannot be null."
+		// TODO add an assert to check the Exception thrown has the message "Must have at least two racers."
+		assertEquals("Must have at least two racers.", e.getMessage());
 	}
 	
 	@Test
@@ -74,9 +76,11 @@ class DinoRaceTests {
 			dinos.add(new Dinosaur());
 		}
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		Throwable e = assertThrows(IllegalArgumentException.class, () -> {
 			DinoRace race = new DinoRace(3, dinos);
 		});
+		
+		assertEquals("Can't have more than 20 racers.", e.getMessage());
 		
 	}
 
