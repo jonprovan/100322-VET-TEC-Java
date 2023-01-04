@@ -1,14 +1,10 @@
-package dino;
+package com.skillstorm.practice2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-
-import com.skillstorm.practice.DinoRace;
-import com.skillstorm.practice.models.Dinosaur;
 
 // JUnit test classes are not marked public
 // they are package private
@@ -64,12 +60,11 @@ class DinoRaceTests {
 	
 	@Test
 	void createDinoRaceAndSetEmptyRacers() {
-		Throwable e = assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			DinoRace race = new DinoRace(3, new ArrayList<Dinosaur>());
 		});
 		// You can have multiple asserts in the same test
 		// TODO add an assert to check the Exception thrown has the message "List of dinosaurs cannot be null."
-		assertEquals("List of dinosaurs cannot be null.", e.getMessage());
 	}
 	
 	@Test
@@ -86,24 +81,3 @@ class DinoRaceTests {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
