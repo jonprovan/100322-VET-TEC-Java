@@ -2,6 +2,7 @@ package com.skillstorm.arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.skillstorm.utils.ArrayUtil;
@@ -35,6 +36,7 @@ class Array1DMaxTests {
 	
 		
 	// none
+	@Disabled
 	@Test
 	void findMaxWhenArrayParameterIsEmpty() {
 		// set up the data

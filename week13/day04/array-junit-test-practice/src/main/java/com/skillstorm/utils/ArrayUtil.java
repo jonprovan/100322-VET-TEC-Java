@@ -3,8 +3,12 @@ package com.skillstorm.utils;
 public class ArrayUtil {
 	
 	public static int findMax(int[] numbers) {
+		// handle null
+		if (numbers == null || numbers.length < 1) {
+			throw new IllegalArgumentException("Please provide an array of numbers.");
+		}
 		int maxSoFar = 0;
-		for (int i = 0; i <= numbers.length; i++) {
+		for (int i = 0; i < numbers.length; i++) {
 			maxSoFar = Math.max(maxSoFar, numbers[i]);
 		}
 		return maxSoFar;
