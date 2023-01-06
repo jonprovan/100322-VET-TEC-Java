@@ -14,15 +14,9 @@ import java.util.Properties;
 
 public class InventoryDAO { // Data Access Object
 	
-	// step 1: load driver
-	static {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	// step 1: load driver (this is done in our config class)
+	static SalesDBConfig config = SalesDBConfig.getInstance();
+	
 
 	/*
 	 * Steps to use the JDBC connector: 1. Load the MySQL driver 2. Create the
@@ -30,29 +24,29 @@ public class InventoryDAO { // Data Access Object
 	 * Close the connection!
 	 * 
 	 */
-	// Step 1.5 Get the properties you will need to make the connection each time
-	private Properties getProperties() {
-		// first we have to read from the application.properties
-		try (InputStream input = InventoryDAO.class.getClassLoader().getResourceAsStream("application.properties")) {
-			Properties props = new Properties(); // from java.util.Properties makes grabbing the key-value pairs easy
-			props.load(input);
-
-			return props;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	// Step 1.5 Get the properties you will need to make the connection each time -- moved this to config class
+//	private Properties getProperties() {
+//		// first we have to read from the application.properties
+//		try (InputStream input = InventoryDAO.class.getClassLoader().getResourceAsStream("application.properties")) {
+//			Properties props = new Properties(); // from java.util.Properties makes grabbing the key-value pairs easy
+//			props.load(input);
+//
+//			return props;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 
 	public List<Item> findAll() {
 		// step 2: make the connection
-		Properties props = getProperties();
+//		Properties props = getProperties(); -- moved this to config class
+//
+//		String url = props.getProperty("db.url");
+//		String user = props.getProperty("db.user");
+//		String password = props.getProperty("db.password");
 
-		String url = props.getProperty("db.url");
-		String user = props.getProperty("db.user");
-		String password = props.getProperty("db.password");
-
-		try (Connection conn = DriverManager.getConnection(url, user, password)) {
+		try (Connection conn = config.getConnection()) {
 			// step 3: making the query
 			String sql = "SELECT * FROM inventory";
 			Statement stmt = conn.createStatement();
@@ -86,9 +80,8 @@ public class InventoryDAO { // Data Access Object
 
 	public Item findById(int id) {
 		// step 2: make connection
-		Properties props = getProperties();
-		try (Connection conn = DriverManager.getConnection(props.getProperty("db.url"), props.getProperty("db.user"),
-				props.getProperty("db.password"))) {
+//		Properties props = getProperties();
+		try (Connection conn = config.getConnection()) {
 
 			// step 3: make the query
 			String sql = "SELECT * FROM inventory WHERE item_id = " + id;
@@ -128,13 +121,13 @@ public class InventoryDAO { // Data Access Object
 
 	public List<Item> findByName(String itemName) {
 		// step 2: make the connection
-		Properties props = getProperties();
+//		Properties props = getProperties();
+//
+//		String url = props.getProperty("db.url");
+//		String user = props.getProperty("db.user");
+//		String password = props.getProperty("db.password");
 
-		String url = props.getProperty("db.url");
-		String user = props.getProperty("db.user");
-		String password = props.getProperty("db.password");
-
-		try (Connection conn = DriverManager.getConnection(url, user, password)) {
+		try (Connection conn = config.getConnection()) {
 			// step 3: making the query
 			// like SELECT * FROM inventory WHERE item_name LIKE '%" + itemName + "%'
 //			String sql = "SELECT * FROM inventory WHERE item_name LIKE '%" + itemName + "%'"; // DO NOT DO THIS

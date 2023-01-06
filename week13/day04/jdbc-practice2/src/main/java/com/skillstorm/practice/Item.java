@@ -25,7 +25,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return itemId + " " + itemName + "\n";
+		return itemId + " " + itemName;
 	}
 
 }

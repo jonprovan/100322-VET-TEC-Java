@@ -9,7 +9,7 @@ public class Driver {
 		List<Item> results = dao.findAll();
 		
 		results.stream().forEach(i -> System.out.print(i));
-//		results.stream().forEach(System.out::print); // another alternative to passing a lambda
+//		results.stream().forEach(System.out::print); // another alternative to passing a lambda explicitly
 		
 		Item item = dao.findById(1);
 		System.out.println("Item found " + item);
