@@ -119,7 +119,7 @@ public class InventoryDAO { // Data Access Object
 			// try-with-resources
 	}
 
-	public List<Item> findByName(String itemName) {
+	public List<Item> findByName(String itemName) { // TODO debug the ? notation for parameterized queries
 		// step 2: make the connection
 //		Properties props = getProperties();
 //
@@ -133,9 +133,9 @@ public class InventoryDAO { // Data Access Object
 //			String sql = "SELECT * FROM inventory WHERE item_name LIKE '%" + itemName + "%'"; // DO NOT DO THIS
 //			Statement stmt = conn.createStatement();
 			
-			String sql = "SELECT * FROM inventory WHERE item_name LIKE '%?%'"; // use placeholder ? for any strings you want concatenated in
+			String sql = "SELECT * FROM inventory WHERE item_name = ?"; // use placeholder ? for any strings you want concatenated in
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(0, itemName); // this will sanitize the string
+			stmt.setString(1, itemName ); // this will sanitize the string
 
 			// step 4: executing the query
 			ResultSet rs = stmt.executeQuery(sql);// returns the result set (only use on statemetns that contain a SELECT)
@@ -161,10 +161,55 @@ public class InventoryDAO { // Data Access Object
 		}
 
 	}
+	
+	public Item save(Item item) {
+		return null;
+	}
+	
+	public Item update(Item item) {
+		return null;
+	}
+	
 	/*
 	 * 
 	 * - Add CRUD functionality - findAll() - findById(int id) - findByName(String
 	 * name) - save(Item item) - update(Item item) - delete(int id)
 	 */
 
+	public void delete(Item item) {
+		// transaction = I want all of my statements to run successfully
+		// !!! if ANY of them fail, ROLLBACK aka undo the ones that worked
+		
+		try (Connection conn = config.getConnection()) {
+			String sql = "UPDATE items SET item_id = NULL WHERE item_id = ?";
+			String sql2 = "DELETE FROM inventory WHERE item_id = ?";
+			
+			PreparedStatement ps1 = conn.prepareStatement(sql);
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			
+			ps1.setInt(1, item.getItemId());
+			ps2.setInt(1, item.getItemId());
+			
+			// Start a transaction
+			conn.setAutoCommit(false); // Prevents each query from immediately altering the database
+			
+			int rowsAffected = ps1.executeUpdate(); // updates table with foreign keys referencing what I want to delete
+			System.out.print("Update effected " + rowsAffected + " rows");
+			int rowsAffected2 = ps2.executeUpdate(); // delete statement removes from table
+			
+			if (rowsAffected2 == 0)
+				conn.rollback();
+			else
+				conn.commit();
+			
+			conn.setAutoCommit(true);
+			// connection closes here bc of try-with-resources
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteAll(List<Item> items) {
+		
+	}
 }
