@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class InventoryDAO {
+public class InventoryDAO { // Data Access Object
 	
 
 	
@@ -73,8 +73,8 @@ public class InventoryDAO {
 					int id = rs.getInt("item_id");
 					// create an object
 					Item item = new Item();
-					item.itemName = name;
-					item.itemId = id;
+					item.setItemName(name);
+					item.setItemId(id);
 					// add it to my result list
 					items.add(item);
 				}
@@ -91,7 +91,46 @@ public class InventoryDAO {
 		
 	}
 	
-	
+	public Item findById(int id) {
+		// step 2: make connection
+		Properties props = getProperties();
+		try (Connection conn = DriverManager.getConnection(props.getProperty("db.url"), 
+															props.getProperty("db.user"), 
+															props.getProperty("db.password"))) {
+
+			// step 3: make the query 
+			String sql = "SELECT * FROM inventory WHERE item_id = " + id;
+			Statement stmt = conn.createStatement();
+			
+			// step 4: execute the query
+			if (stmt.execute(sql)) { // checks if there is a result set
+				ResultSet rs = stmt.getResultSet();
+				
+				// step 5: parse the results
+				if (rs.next()) { // we only are getting one record so no need to while loop
+					String name = rs.getString(2);
+					int itemId = rs.getInt(1);
+					// create an object
+					Item item = new Item();
+					// set the properties
+					item.setItemId(itemId);
+					item.setItemName(name);
+					// return the object
+					return item;
+//					System.out.println(name + " " + itemId);
+				} else {
+					System.out.println("The result set was empty!");
+				}
+				rs.close();
+				stmt.close(); // this will happen automatically when the connection is closed for us by the try-with-resources
+			}
+			// else
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} // in the finally make sure you close the connection if this is not a try-with-resources
+	}
 	
 	/*
 	 * 
