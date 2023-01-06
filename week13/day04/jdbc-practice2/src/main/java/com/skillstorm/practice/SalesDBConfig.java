@@ -31,7 +31,7 @@ public class SalesDBConfig {
 				
 				// Grab out the keys that I want
 				this.url = props.getProperty("db.url");
-				this.username = props.getProperty("db.username");
+				this.username = props.getProperty("db.user");
 				this.password = props.getProperty("db.password");
 			} catch (IOException e) {
 				e.printStackTrace();
