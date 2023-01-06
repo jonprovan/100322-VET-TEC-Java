@@ -5,9 +5,10 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
-public class SalesDAO {
+public class InventoryDAO {
 	
 
 	
@@ -34,12 +35,13 @@ public class SalesDAO {
 		
 		// first we have to read from the application.properties
 		try (InputStream input = 
-				SalesDAO.class.getClassLoader().getResourceAsStream("application.properties")) {
+				InventoryDAO.class.getClassLoader().getResourceAsStream("application.properties")) {
 			Properties props = new Properties(); // from java.util.Properties makes grabbing the key-value pairs easy
 			props.load(input);
 			
 			return props;
 		} catch (IOException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -51,6 +53,17 @@ public class SalesDAO {
 		String url = props.getProperty("db.url");
 		String user = props.getProperty("db.user");
 		String password = props.getProperty("db.password");
+		
+		try (Connection conn = DriverManager.getConnection(url, user, password)) {
+			// step 3: making the query
+			String sql = "SELECT * FROM inventory";
+			Statement stmt = conn.createStatement();
+			
+			// step 4: executing the query
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
