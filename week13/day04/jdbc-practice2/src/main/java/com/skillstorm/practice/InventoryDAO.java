@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class InventoryDAO {
@@ -46,7 +49,7 @@ public class InventoryDAO {
 		}
 	}
 	
-	public void findAll() {
+	public List<Item> findAll() {
 		// step 2: make the connection
 		Properties props = getProperties();
 
@@ -60,9 +63,29 @@ public class InventoryDAO {
 			Statement stmt = conn.createStatement();
 			
 			// step 4: executing the query
+			if (stmt.execute(sql)) { // returns true if the query has a result set
+				ResultSet rs = stmt.getResultSet();
+				
+				// step 5: parse the result set -- print out or parse and make a list
+				List<Item> items = new ArrayList<Item>(); // create a list to store the results
+				while (rs.next()) {
+					String name = rs.getString("item_name"); // I could use the column index remember it's NOT ZERO indexed
+					int id = rs.getInt("item_id");
+					// create an object
+					Item item = new Item();
+					item.itemName = name;
+					item.itemId = id;
+					// add it to my result list
+					items.add(item);
+				}
+				
+				return items;
+			}
+			return null;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 		
 		
