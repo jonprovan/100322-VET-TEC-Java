@@ -13,6 +13,16 @@ import java.util.List;
 import java.util.Properties;
 
 public class InventoryDAO { // Data Access Object
+	
+	// step 1: load driver
+	static {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/*
 	 * Steps to use the JDBC connector: 1. Load the MySQL driver 2. Create the
@@ -20,17 +30,8 @@ public class InventoryDAO { // Data Access Object
 	 * Close the connection!
 	 * 
 	 */
-
+	// Step 1.5 Get the properties you will need to make the connection each time
 	private Properties getProperties() {
-
-		// step 1: load driver
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		// first we have to read from the application.properties
 		try (InputStream input = InventoryDAO.class.getClassLoader().getResourceAsStream("application.properties")) {
 			Properties props = new Properties(); // from java.util.Properties makes grabbing the key-value pairs easy
