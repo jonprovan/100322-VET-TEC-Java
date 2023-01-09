@@ -1,0 +1,56 @@
+Which of the following phases are run when you do maven test?
+
+Maven Build Phases
+1. Validate YES
+2. Compile YES
+3. Test - runs unit tests YES
+4. Package - creates the JAR
+5. Verify - runs integration tests
+6. Install - installs the package into the local repository
+7. Deploy - pushes the package to the remote repository
+
+Which of the following will run the unit tests?
+
+maven compile
+
+Maven Build Phases
+1. Validate YES
+2. Compile YES
+3. Test -  NO
+4. Package - NO
+5. Verify - NO
+6. Install - NO
+7. Deploy - NO
+
+maven install
+
+Maven Build Phases
+1. Validate YES
+2. Compile YES
+3. Test -  YES
+4. Package - YES
+5. Verify - YES
+6. Install - YES
+7. Deploy - NO
+
+maven verify
+
+Maven Build Phases
+1. Validate YES
+2. Compile YES
+3. Test -  YES ***
+4. Package - YES
+5. Verify - YES
+6. Install - NO
+7. Deploy - NO
+
+maven test
+
+Maven Build Phases
+1. Validate YES
+2. Compile YES
+3. Test -  YES  ***
+4. Package - NO
+5. Verify - NO
+6. Install - NO
+7. Deploy - NO

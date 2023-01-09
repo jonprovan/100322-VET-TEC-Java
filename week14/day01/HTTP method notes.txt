@@ -1,0 +1,43 @@
+4 Most Common HTTP Request Types
+1 GET /images
+   headers:
+    Accept content types:
+      ex: text/html
+          images/png
+          images/*
+          */*
+Read of CRUD
+
+2 PUT
+- updating an existing resource by replacing an old item with a new item
+(like replacing a tire)
+Update of CRUD
+
+vs
+
+PATCH
+- updating an existing resource without completely replacing it
+like patching a tire
+
+3 POST
+- like posting a blog
+Create of CRUD
+
+
+4 DELETE
+- remove a resource
+Delete of CRUD
+
+
+safe methods - do not change the state of the database
+- GET
+- HEAD
+
+indempotent
+- it doesn't matter if the request runs once or twice or ten times
+- is it "safe to run it more than once" without side effects
+MOST are indempotent
+*** The one to remember is POST will keep having side-effects the 2nd, 3rd, 4th ... times it is run
+
+
+TODO download Postman - play around with making requests
