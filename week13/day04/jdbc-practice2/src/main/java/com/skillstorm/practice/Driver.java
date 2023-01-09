@@ -15,7 +15,7 @@ public class Driver {
 		System.out.println("Item found " + item);
 		dao.findById(100);
 		
-		// dao.findByName("bread");
+		 dao.findByName("bread");
 		
 		Item cheese = new Item();
 		cheese.setItemId(10);

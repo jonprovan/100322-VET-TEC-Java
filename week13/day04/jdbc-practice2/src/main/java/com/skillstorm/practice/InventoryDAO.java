@@ -138,7 +138,7 @@ public class InventoryDAO { // Data Access Object
 			stmt.setString(1, itemName ); // this will sanitize the string
 
 			// step 4: executing the query
-			ResultSet rs = stmt.executeQuery(sql);// returns the result set (only use on statemetns that contain a SELECT)
+			ResultSet rs = stmt.executeQuery();// returns the result set (only use on statements that contain a SELECT)
 
 			// step 5: parse the result set -- print out or parse and make a list
 			List<Item> items = new ArrayList<Item>(); // create a list to store the results
