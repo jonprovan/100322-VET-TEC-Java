@@ -1,13 +1,22 @@
 package com.skillstorm.practice.models;
 
 import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity // a class that maps an object's properties to a table's columns
 @Table(name = "shop") // don't need the parameter unless the table name doesn't match the class -- Spring Boot will map a class name GeneralShop to a table named general_shop
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Shop { // implements Serializable done for us by our above annotation Entity
 	
 	// Our model class needs to follow a couple rules for Spring to use it as an Entity
@@ -18,7 +27,7 @@ public class Shop { // implements Serializable done for us by our above annotati
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "shop_id")
+	@Column(name = "shop_id", updatable=false)
 	private int id;
 	
 	@Column(name = "name")
@@ -26,6 +35,17 @@ public class Shop { // implements Serializable done for us by our above annotati
 	
 	@Column(name = "open_weekends")
 	private boolean openWeekends;
+	
+	@OneToMany(mappedBy = "shop")
+	private List<Product> products;
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	public int getId() {
 		return id;

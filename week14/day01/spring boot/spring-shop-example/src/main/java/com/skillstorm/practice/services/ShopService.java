@@ -18,4 +18,6 @@ public interface ShopService {
 	
 	void delete(Shop shop);
 
+	void deleteById(int id);
+
 }

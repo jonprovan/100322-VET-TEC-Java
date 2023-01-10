@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,28 +57,34 @@ public class ShopController {
 //	@RequestMapping(value = "/shop", method = RequestMethod.POST)
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public @ResponseBody Shop save(Shop shop) {
-		System.out.println("Inside save");
-		return service.save(shop);
+	public @ResponseBody Shop save(@RequestBody Shop shop) {
+		System.out.println("Inside controller save " + shop);
+		Shop shopCreated = service.save(shop);
+		System.out.println("Inside controller save " + shopCreated);
+		return shopCreated;
 	}
 	
 //	@RequestMapping(value = "/shop", method = RequestMethod.PUT)
-	@PutMapping
-	public @ResponseBody Shop update(Shop shop) {
+	@PutMapping("/{id}")
+	public @ResponseBody Shop update(@RequestBody Shop shop, @PathVariable int id) {
 		System.out.println("Inside update");
-		return service.update(shop);
+		shop.setId(id);
+		return service.update(shop); // TODO if returns null update the status code to not 200 OK
 	}
 	
 //	@RequestMapping(value = "/shop", method = RequestMethod.DELETE)
-//	public @ResponseBody void deleteById(int id) {
-//		System.out.println("Inside deleteById");
-//		return null;
-//	}
+	@DeleteMapping("/{id}") // TODO 
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public @ResponseBody void deleteById(@PathVariable("id") int id) {
+		// Trying changing the return type to ResponseEntity<> with manually setting the response entity status code
+		System.out.println("Inside deleteById");
+		service.deleteById(id);
+	}
 	
 //	@RequestMapping(value = "/shop", method = RequestMethod.DELETE)
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public @ResponseBody void delete(Shop shop) {
+	public @ResponseBody void delete(@RequestBody Shop shop) {
 		System.out.println("Inside delete");
 		service.delete(shop);
 	}
