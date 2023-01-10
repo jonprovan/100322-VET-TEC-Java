@@ -67,4 +67,35 @@ help.md -- has tutorials/documentation links for each the dependencies we chose
    - This is a convenienceannotation that is equivalent to declaring 
       1. @Configuration 
       2. @EnableAutoConfiguration
-      3. @ComponentScan
+      3. @ComponentScan here is where it finds our @Service classes and creates an instance of them
+- @Controller this tells Spring Boot the class contains methods for interacting with HTTP Client Requests
+    - @RequestMapping lets us define in the API endpoint like `\shop`
+    - @ResponseBody
+    - @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
+    - @PathVariable you can specify the name and can specify required = true or required = false
+- @Service
+
+
+## How to name your API endpoints
+
+1. Do not put the HTTP method name in the API endpoint name
+    - BAD: /getshops and /saveshops
+    - GOOD: GET /shops and POST /shops
+2. Be consistend and don't have multiple endpoints for the same thing
+     - BAD: /shops and /stores both return your shop data
+3. Implement hierarchy
+    - hierarchy like /users/29/orders so this gets the user with id 29 's orders 
+    - or even like /users/29/orders/432  so this gets the user with id 29 's order with order number 432
+4. Filtering
+    - https://myapp.com/movies?title=glass%20onion use parameters (exception to this rule is filtering by id where you will define an enpoint with the id in thet path like /users/29)
+    - https://myapp.com/movies?limit=10&offset=20 we can even have multiple parameters
+    NOtation is ? followed by key-value pairs (multiple key-value pairs separate by &)
+5. Versioning
+     - You don't want to change the response json format or the user's code will break when they try to parse it
+     - so if you're going to do that define a new endpoint 
+     - anticipating this, include a version number in your endpoints
+     - https://www.myapp.com/v1/movies
+        {"title":"Glass Onion", "director":"?", "length":120}
+       if we change this to 
+         {"title":"Glass Onion", "director":"?", "length":{"hours"=2, "minutes":30}}
+       better put this at a new api endpoint called /v2/movies
