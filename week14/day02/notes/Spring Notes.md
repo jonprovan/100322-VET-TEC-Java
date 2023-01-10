@@ -11,7 +11,8 @@
 
 # Steps we are taking today
 - Create a new Spring Boot project with 3 dependencies (Spring Data JPA, MySQL Driver, Spring Web)
-- Create a schema in our database (MySQL workbench) called Store and Products (one to many relationship between store and products)
+- Create a schema in our database (MySQL workbench) called Store (will have two tables Store and Products - one to many relationship between store and products) 
+    ex: groceryStore has eggs, ice, milk vs hardwareStore has hammer, nails
 - Fill in the application.properties file (in order to start up the application we need these values defined)
 
 ```
@@ -22,6 +23,39 @@ spring.datasource.username=root
 spring.datasource.password=root
 ```
 
+- Set up folder structure described below (models, respositories, services, controllers packages all under src/main/java/com/skillstorm)
+- Set up the controller API end points with method stubs
+    - Test the API end points with Postman to see if the requests are making it to our API end points
+- Set up ther service class with methods for each CRUD functionality (stub methods for now)
+    - Inject the service into the controller class by adding a property to the ShopController class 
+    ```
+    @Autowired
+    private ShopService service;
+    ```
+    - Call the service methods (which are still stubs) from the controller methods and retest the API endpoints making sure the controller and service methods are being called
+- Set up the ShopRepository by making an interface that extends CrudRepository
+```
+@Repository
+public interface ShopRepository extends CrudRepository<Shop, Integer> {
+    // 
+}
+```
+- Set up the Model classes and annotate them to map each attribute to a column in your table
+    - Inject the repository into the ShopServiceImpl class by using `@Autowired private ShopRepository repo;`
+    - Call the repository methods inside the Service class's methods
+        - Remember findById returns an Optional, check if the id exists in the database before calling repository save update or deleteById, 
+    - Restart the application and test the enpoints in Postman (if you're application.properties has .ddl-auto=update the tables will be generated for you on application startup)
+- - Repeat steps for Product
+- Join the Shop and Product tables by adding to the Shop class:
+```
+```
+and to the Product class:
+```
+```
+- TODO many-to-many relationship
+- TODO Add a generated query using JPA keywords ex: for product getByNameLike(String name); 
+    https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords
+    https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details 
 
 ## Project Structure
 
@@ -59,7 +93,10 @@ help.md -- has tutorials/documentation links for each the dependencies we chose
 ## What is Spring Boot doing for us and what do we need to implement?
 - https://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/_images/RequestLifecycle.png
 - 
-
+We are working on three layers: 
+    1. repository (and model)
+    2. service
+    3. contr/oller 
 
 ## Spring Annotations
 
@@ -69,12 +106,24 @@ help.md -- has tutorials/documentation links for each the dependencies we chose
       2. @EnableAutoConfiguration
       3. @ComponentScan here is where it finds our @Service classes and creates an instance of them
 - @Controller this tells Spring Boot the class contains methods for interacting with HTTP Client Requests
+- TODO change @Controller to @RestController to avoid putting @ResponseBody on every method's return type (use @Controller for returninf html views and @RestController for returning json data)
     - @RequestMapping lets us define in the API endpoint like `\shop`
     - @ResponseBody
     - @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
     - @PathVariable you can specify the name and can specify required = true or required = false
+    - @RequestBody let's you grab the object from the body of the request and pass it in as a parameter to the controller's method (ex: save(@ResponseBody Shop shop))
 - @Service
+- @Repository
+- @Entity
+    - @Table
+    - @Column
+    - @Id
+    - @GeneratedValue(strategy = GenerationType.IDENTITY)
+    - @OneToMany
+    - @ManyToOne
+    - TODO create a many-to-many relationship
 
+##  TODO Rest principles
 
 ## How to name your API endpoints
 
@@ -99,3 +148,7 @@ help.md -- has tutorials/documentation links for each the dependencies we chose
        if we change this to 
          {"title":"Glass Onion", "director":"?", "length":{"hours"=2, "minutes":30}}
        better put this at a new api endpoint called /v2/movies
+
+## TODO Add notes on Dependency Injection and Java Beans definitions
+
+## TODO Review JDBC vs JPA 
