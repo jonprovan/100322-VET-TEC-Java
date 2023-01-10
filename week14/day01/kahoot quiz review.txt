@@ -1,0 +1,24 @@
+Kahoot Quiz Review
+
+1. Frontend should NOT connect directly to the database because all the frontend code is public, and we do not want to expose our database credentials.
+
+That's why we have a backend with a public api that the front end calls instead. Only the backend knows the credentials, and the backend is private.
+
+2. UX stands for User Experience
+vs
+   UI stands for User Interface
+
+3. 
+- server-side rendering 
+   = the server builds all the pieces of the HTML file before sending it to the client 
+- client-side rendering
+   = the server sends a pretty much empty HTML file and a big JS file with the code your browser runs to build out the HTML file 
+
+4. 
+HTTP = port 80
+HTTPS = port 443
+SSH = port 22
+TelNet = port 23
+
+5. HTTPS the S stands for Secure
+= HTTPS is end-to-end encrypted whereas HTTP sends messages in plain text
