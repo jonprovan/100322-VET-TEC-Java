@@ -147,7 +147,7 @@ TODO change @Controller to @RestController to avoid putting @ResponseBody on eve
     - @ManyToOne
     - TODO create a many-to-many relationship
 
-##  TODO Rest principles
+##  Rest principles
 
 - REST stands "REpresentational State Transfer"
     - It is the defacto way of setting up web APIs
@@ -232,18 +232,18 @@ https://restfulapi.net/
     - one fun thing we can do is turn on a logger that shows the generated queries and ddl statements
 
     Inside application.properties (dont do this in production but for now it's ok to take a peak at what it's doing)
-    ```
+
+```
 spring.jpa.show-sql=true
 
 spring.jpa.properties.hibernate.format_sql=true
-    ```
+```
 
 ### Creating a logger 
 
 - Use the sl4j logger (or any logger you want but the below example only applies to sl4j)
-- Set the logging level in application.properties
-```
 
+```
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -252,7 +252,8 @@ class MyClass {
          ...
 }
 ```
-application.properiets
+
+- Set the logging level in application.properties
 ```
 logging.level.org.springframework.web: DEBUG
 ```
