@@ -1,5 +1,7 @@
 package com.skillstorm.practice.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public ProductDto findById(@PathVariable int id) {
-		return null;
+	public Product findById(@PathVariable int id) {
+		return service.findById(id);
 	}
 	
 	// java.lang.IllegalStateException: Ambiguous handler methods mapped for '/products/1'
@@ -56,6 +58,16 @@ public class ProductController {
 	@DeleteMapping
 	public void delete(@RequestBody Product product) {
 		service.delete(product);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void delte(@PathVariable int id) {
+		service.deleteById(id);
+	}
+	
+	@DeleteMapping("/all") // not the best solution, TODO handle the ambiguous delete mapping
+	public void deleteAll(@RequestBody List<Product> products) {
+		service.deleteAll(products);
 	}
 
 }

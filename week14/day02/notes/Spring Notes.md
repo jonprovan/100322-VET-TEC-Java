@@ -204,3 +204,15 @@ https://restfulapi.net/
 ## TODO Add notes on Dependency Injection and Java Beans definitions
 
 ## TODO Review JDBC vs JPA 
+
+- JPA - Java Persistency API
+- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details 
+- Instead of writing queries it can generate it based on keywords that we put in our method signature
+    https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords 
+
+### Which type of repository (DAO data access object) should we use?
+
+ * CrudRepository provides CRUD functions
+ * PagingAndSortingRepository provides methods to do pagination and sort records
+ * JpaRepository provides JPA related methods such as flushing the persistence context and delete records in a batch
+ 

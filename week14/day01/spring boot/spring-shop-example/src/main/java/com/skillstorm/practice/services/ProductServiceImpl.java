@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Iterable<Product> findByName(String name) {
-		return repo.findByNameLikeIgnoreCase(name);
+		return repo.findByNameContaining(name);
 	}
 
 	@Override
