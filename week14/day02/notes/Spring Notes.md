@@ -1,6 +1,6 @@
 # Spring Notes
 
-## Review of Yesterday
+## Review of Yesterday (Monday)
 
 - We created an empty Spring Boot project
    - Important settings: Java 8, Maven, Jar
@@ -9,7 +9,7 @@
 - Open the Boot Dashboard (Window>Show View > Other> Other > Boot Dashboard)
    - Use the dashboard to start the server, in the console you should see it start on 8080
 
-# Steps we are taking today
+# Steps we are taking today (Tuedsay)
 - Create a new Spring Boot project with 3 dependencies (Spring Data JPA, MySQL Driver, Spring Web)
 - Create a schema in our database (MySQL workbench) called Store (will have two tables Store and Products - one to many relationship between store and products) 
     ex: groceryStore has eggs, ice, milk vs hardwareStore has hammer, nails
@@ -26,7 +26,7 @@ spring.datasource.password=root
 - Set up folder structure described below (models, respositories, services, controllers packages all under src/main/java/com/skillstorm)
 - Set up the controller API end points with method stubs
     - Test the API end points with Postman to see if the requests are making it to our API end points
-- Set up ther service class with methods for each CRUD functionality (stub methods for now)
+- Set up ther service interface and implemenation class with methods for each CRUD functionality (stub methods for now)
     - Inject the service into the controller class by adding a property to the ShopController class 
     ```
     @Autowired
@@ -90,6 +90,19 @@ help.md -- has tutorials/documentation links for each the dependencies we chose
    - Spring Session
    - Spring Cloud (microservices)
 
+
+## What is Spring Boot
+https://spring.io/projects/spring-boot
+- Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
+- We take an opinionated view of the Spring platform and third-party libraries so you can get started with minimum fuss. Most Spring Boot applications need minimal Spring configuration.
+	- Opinionated means they decide how it is configured instead of giving us the flexibility to configure it and organize the project however we want
+
+### Features
+- Create stand-alone Spring application
+- Embedded Tomcat server
+- Provides opinionated 'starter' dependencies 
+- no XML configuration files required (we used annotations)
+
 ## What is Spring Boot doing for us and what do we need to implement?
 - https://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/_images/RequestLifecycle.png
 - 
@@ -106,7 +119,8 @@ We are working on three layers:
       2. @EnableAutoConfiguration
       3. @ComponentScan here is where it finds our @Service classes and creates an instance of them
 - @Controller this tells Spring Boot the class contains methods for interacting with HTTP Client Requests
-- TODO change @Controller to @RestController to avoid putting @ResponseBody on every method's return type (use @Controller for returninf html views and @RestController for returning json data)
+- @RestController
+TODO change @Controller to @RestController to avoid putting @ResponseBody on every method's return type (use @Controller for returninf html views and @RestController for returning json data)
     - @RequestMapping lets us define in the API endpoint like `\shop`
     - @ResponseBody
     - @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
@@ -125,6 +139,40 @@ We are working on three layers:
 
 ##  TODO Rest principles
 
+- REST stands "REpresentational State Transfer"
+    - It is the defacto way of setting up web APIs
+    - Other web API alternatives are SOAP or GraphQL
+- Great for Data transfer (not HTML pages but data like JSON or XML)
+
+https://restfulapi.net/ 
+1. Uniform Interface
+    - The same resource should not  be available at two different paths ex: /products and /items 
+    - even worse if you had to do /products and /item/27 (consistent naming)
+2. Client-Server
+    - The client and server should be completely seperate so that they client only knows about the server through the API endpoints and the data format sent back
+3. Stateless
+    - Each request from the client to the server must include all the data necessary to process the request
+    - The server cannot take advantage of any previously stored context info
+    We cannot depend on our request always going to the same server, it might go down and our request might go to a different instance of the application running on a seprate server, or there might just be multiple that traffic is redirected between
+4. Cacheable
+    - The cacheable constraint requires that a response should implicitly or explicitly label itself as cacheable or non-cacheable
+        - if cacheable, it should specify a time period
+        - cacheable means the client application can save the response data to use later, so if the same request needs to be made and the old cacheable response has not expired, it can save time and usse that data instead
+5. Layered System
+    - Gateways (we'll talk about during microservices week) between the client and the server )
+    - The client is "agnostic" to the number of layers, they always send the request in the same manner
+6. Code-on-demand
+    - optional
+    It just means the client can request and recieve executable scripts
+    - in other words, the respone might contain code that the client can then run themselves
+
+
+## DTO = Data Transfer Object
+- The data we send to the user does not need to be identical the the data stored the database
+    - Create a new class (DONT annoted as an entity because it does not directly map to any tables in our database)
+    https://miro.medium.com/max/1400/1*I7lmEQZX6m2Ow__RtAJcBQ.png 
+    https://i.ytimg.com/vi/dBVd1SsfqLc/maxresdefault.jpg 
+
 ## How to name your API endpoints
 
 1. Do not put the HTTP method name in the API endpoint name
@@ -139,6 +187,10 @@ We are working on three layers:
     - https://myapp.com/movies?title=glass%20onion use parameters (exception to this rule is filtering by id where you will define an enpoint with the id in thet path like /users/29)
     - https://myapp.com/movies?limit=10&offset=20 we can even have multiple parameters
     NOtation is ? followed by key-value pairs (multiple key-value pairs separate by &)
+    Note: Amazon uses path variable and request params https://www.amazon.com/cat-toys/s?k=cat+toys 
+          Target uses path  variables https://www.target.com/c/toothpaste-oral-care-personal 
+          Half Price books uses request params https://hpb.com/products/?keywords=HARRY+POTTER
+          So you do you, just be consistent with your design decisions
 5. Versioning
      - You don't want to change the response json format or the user's code will break when they try to parse it
      - so if you're going to do that define a new endpoint 

@@ -21,7 +21,7 @@ import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.services.ShopService;
 
 
-@Controller // This
+@Controller // This is better for controllers that return views (html pages)
 @RequestMapping("/shop")
 public class ShopController {
 	
