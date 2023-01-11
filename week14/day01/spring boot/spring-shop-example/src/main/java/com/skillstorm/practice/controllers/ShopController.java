@@ -2,6 +2,8 @@ package com.skillstorm.practice.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import com.skillstorm.practice.services.ShopService;
 @RequestMapping("/shop")
 public class ShopController {
 	
+	Logger log = LoggerFactory.getLogger(getClass());
+	
 	@Autowired // this gets created for us
 	private ShopService service; // this is property dependency injection (rather than constructor dependency injection)
 	
@@ -41,7 +45,7 @@ public class ShopController {
 // Method 3
 	@GetMapping // convenience annotation that lets us avoid passing a bunch of parameters
 	public @ResponseBody Iterable<Shop> findAll() {
-		System.out.println("Inside findAll");
+		log.debug("Inside findAll");
 		
 		return service.findAll();
 	}

@@ -3,20 +3,24 @@ package com.skillstorm.practice.models;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity // a class that maps an object's properties to a table's columns
 @Table(name = "shop") // don't need the parameter unless the table name doesn't match the class -- Spring Boot will map a class name GeneralShop to a table named general_shop
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Shop { // implements Serializable done for us by our above annotation Entity
 	
 	// Our model class needs to follow a couple rules for Spring to use it as an Entity
@@ -36,14 +40,34 @@ public class Shop { // implements Serializable done for us by our above annotati
 	@Column(name = "open_weekends")
 	private boolean openWeekends;
 	
-	@OneToMany(mappedBy = "shop")
-	private List<Product> products;
+	// Version 2:
+	@ManyToMany
+	@JoinTable(
+			name = "shop_stock",
+			joinColumns = @JoinColumn(name = "shop_id"), // name of column of owner class
+			inverseJoinColumns = @JoinColumn(name = "product_id") // name of the column of the target class
+			)
+	@JsonIgnore
+	private Set<Product> products;
 	
-	public List<Product> getProducts() {
+	// Version 1:
+//	@OneToMany(mappedBy = "shop", cascade = CascadeType.ALL )
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	private List<Product> products;
+	
+//	public List<Product> getProducts() {
+//		return products;
+//	}
+//
+//	public void setProducts(List<Product> products) {
+//		this.products = products;
+//	}
+
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 

@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -23,10 +26,32 @@ public class Product {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name = "shop_id")
-	@JsonIdentityReference(alwaysAsId = true)
-	private Shop shop;
+	// Version 2:
+	@ManyToMany(mappedBy = "products") // name of PROPERTY in the OWNER class
+	@JsonIgnore
+	private Set<Shop> shops;
+	
+	// Version 1: 
+//	@ManyToOne
+//	@JoinColumn(name = "shop_id")
+//	@JsonIdentityReference(alwaysAsId = true)
+//	private Shop shop;
+
+//	public Shop getShop() {
+//		return shop;
+//	}
+//
+//	public void setShop(Shop shop) {
+//		this.shop = shop;
+//	}
+	
+	public Set<Shop> getShops() {
+		return shops;
+	}
+
+	public void setShops(Set<Shop> shops) {
+		this.shops = shops;
+	}
 
 	public int getId() {
 		return id;
@@ -52,17 +77,9 @@ public class Product {
 		this.description = description;
 	}
 
-	public Shop getShop() {
-		return shop;
-	}
-
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
-
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", shop=" + shop + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	
 	

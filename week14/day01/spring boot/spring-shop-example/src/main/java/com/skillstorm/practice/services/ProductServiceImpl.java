@@ -2,6 +2,8 @@ package com.skillstorm.practice.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	ProductRepository repo;
+	
+	Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Override
 	public Iterable<Product> findAll() {
@@ -34,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
 		// if save ignores the id (you could set it to 0) then it would not be indempotent and would create a new one every time
 		// save is looking at the id and will overwrite it if it already exists
 		// to prevent this behavior do a check:
+		log.info(product.toString());
 		if (!repo.existsById(product.getId())) {
 			return repo.save(product);
 		}

@@ -48,9 +48,19 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
 - - Repeat steps for Product
 - Join the Shop and Product tables by adding to the Shop class:
 ```
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") // above the class
+
+```
+
+```
+@OneToMany(mappedBy = "shop") // above the list of products property
+
 ```
 and to the Product class:
 ```
+@ManyToOne
+@JoinColumnname = "shop_id")
+@JsonIdentityReference(alwaysAsId = true)
 ```
 - TODO many-to-many relationship
 - TODO Add a generated query using JPA keywords ex: for product getByNameLike(String name); 
@@ -203,12 +213,48 @@ https://restfulapi.net/
 
 ## TODO Add notes on Dependency Injection and Java Beans definitions
 
+- Dependency Injection
+    - 3 types
+        1. constructor 
+        2. setter
+        3. property (this is what we are using by @Autowired)
+
 ## TODO Review JDBC vs JPA 
 
 - JPA - Java Persistency API
 - https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details 
 - Instead of writing queries it can generate it based on keywords that we put in our method signature
     https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords 
+- Hibernate vs JPA when using that term innerchangeably 
+    - Hibernate is actually an implementation of the JPA standard others include OpenJPA
+    - all of these are used for Object Relational Mapping
+    - Spring Boot we are using Data JPA which is using Hibernate
+    - one fun thing we can do is turn on a logger that shows the generated queries and ddl statements
+
+    Inside application.properties (dont do this in production but for now it's ok to take a peak at what it's doing)
+    ```
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+    ```
+
+### Creating a logger 
+
+- Use the sl4j logger (or any logger you want but the below example only applies to sl4j)
+- Set the logging level in application.properties
+```
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+class MyClass {
+	Logger log = LoggerFactory.getLogger(getClass());
+         ...
+}
+```
+application.properiets
+```
+logging.level.org.springframework.web: DEBUG
+```
 
 ### Which type of repository (DAO data access object) should we use?
 

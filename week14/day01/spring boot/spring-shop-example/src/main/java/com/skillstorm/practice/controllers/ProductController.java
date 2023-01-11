@@ -3,6 +3,8 @@ package com.skillstorm.practice.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.practice.dtos.ProductDto;
@@ -45,27 +48,35 @@ public class ProductController {
 //	}
 //	
 	
+	// 200 successful or 404 not found or 400 bad request if couldn't find it
 	@PutMapping("/{id}")
-	public Product update(@RequestBody Product product, @PathVariable int id) {
-		return service.update(product, id);
+	public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable int id) {
+		Product result = service.update(product, id);
+		if (result == null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(product);
 	}
 	
 	@PostMapping
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public Product save(@RequestBody Product product) {
 		return service.save(product);
 	}
 	
 	@DeleteMapping
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@RequestBody Product product) {
 		service.delete(product);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}") 
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delte(@PathVariable int id) {
 		service.deleteById(id);
 	}
 	
 	@DeleteMapping("/all") // not the best solution, TODO handle the ambiguous delete mapping
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteAll(@RequestBody List<Product> products) {
 		service.deleteAll(products);
 	}
