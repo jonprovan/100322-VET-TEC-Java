@@ -21,8 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findById(id).orElse(null); // you could store the optional and do a ifPresent() check then .get() else return null
 	}
 
 	@Override
@@ -32,7 +31,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product save(Product product) {
-		// TODO Auto-generated method stub
+		// if save ignores the id (you could set it to 0) then it would not be indempotent and would create a new one every time
+		// save is looking at the id and will overwrite it if it already exists
+		// to prevent this behavior do a check:
+		if (!repo.existsById(product.getId())) {
+			return repo.save(product);
+		}
 		return null;
 	}
 
@@ -48,20 +52,18 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void delete(Product product) {
-		// TODO Auto-generated method stub
-		
+		repo.delete(product);
 	}
 
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+		if (repo.existsById(id)) // this is to make our deletebyid more rebust (ex: if we run this twice in a row by accident)
+			repo.deleteById(id); // this is throwing an error if we try to delete a nonexistent row 
 	}
 
 	@Override
 	public void deleteAll(List<Product> products) {
-		// TODO Auto-generated method stub
-		
+		repo.deleteAll(products);
 	}
 
 }
