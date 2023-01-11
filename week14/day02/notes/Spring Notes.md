@@ -234,6 +234,7 @@ https://restfulapi.net/
     Inside application.properties (dont do this in production but for now it's ok to take a peak at what it's doing)
     ```
 spring.jpa.show-sql=true
+
 spring.jpa.properties.hibernate.format_sql=true
     ```
 
