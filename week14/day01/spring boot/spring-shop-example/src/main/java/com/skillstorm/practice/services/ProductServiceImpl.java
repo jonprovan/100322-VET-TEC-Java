@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product update(Product product, int id) {
-		if (product == null || !repo.existsById(id)) {
+		if (!repo.existsById(id)) {
 			return null;
 		} else {
 			product.setId(id);
