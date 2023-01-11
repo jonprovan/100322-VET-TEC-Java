@@ -68,7 +68,7 @@ public class ShopController {
 	@PutMapping("/{id}")
 	public @ResponseBody Shop update(@RequestBody Shop shop, @PathVariable int id) {
 		System.out.println("Inside update");
-		shop.setId(id);
+		shop.setId(id); // probably better to do this in the Service layer, controller should just forward everything to the service
 		return service.update(shop); // TODO if returns null update the status code to not 200 OK
 	}
 	

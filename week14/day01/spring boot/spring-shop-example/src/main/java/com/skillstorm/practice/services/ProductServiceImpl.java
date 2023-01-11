@@ -37,9 +37,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product update(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product update(Product product, int id) {
+		if (product == null || !repo.existsById(id)) {
+			return null;
+		} else {
+			product.setId(id);
+			return repo.save(product);
+		}
 	}
 
 	@Override
