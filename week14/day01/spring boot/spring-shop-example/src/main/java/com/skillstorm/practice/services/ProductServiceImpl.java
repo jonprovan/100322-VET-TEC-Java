@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.practice.models.Product;
+import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.repositories.ProductRepository;
 
 @Service
@@ -34,11 +35,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Product save(Product product) {
 		// if save ignores the id (you could set it to 0) then it would not be indempotent and would create a new one every time
 		// save is looking at the id and will overwrite it if it already exists
 		// to prevent this behavior do a check:
-		log.info(product.toString());
+		log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + product.toString());
 		if (!repo.existsById(product.getId())) {
 			return repo.save(product);
 		}
@@ -69,6 +71,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteAll(List<Product> products) {
 		repo.deleteAll(products);
+	}
+
+	@Override
+	public Iterable<Shop> findStoresByProductId(int id) {
+		log.debug("======================================================\n" 
+					+ "HERE I AM IN ProductServiceImpl findStoresByProductId!");
+		return repo.findStoresByProductId(id);
+	}
+	
+	@Override
+	public Iterable<Product> findByDescriptionContaining(String name) {
+		return repo.findByDescriptionContaining("%" + name + "%");
 	}
 
 }

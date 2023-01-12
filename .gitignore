@@ -9,7 +9,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-application.properties
 
 
 # External tool builders

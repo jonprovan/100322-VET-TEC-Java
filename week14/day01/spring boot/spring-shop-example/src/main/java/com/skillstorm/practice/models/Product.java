@@ -1,14 +1,22 @@
 package com.skillstorm.practice.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.*;
 
 
 @Entity
@@ -27,7 +35,9 @@ public class Product {
 	private String description;
 	
 	// Version 2:
-	@ManyToMany(mappedBy = "products") // name of PROPERTY in the OWNER class
+	@ManyToMany(fetch = FetchType.LAZY, // don't be lazy and use .EAGER
+		      mappedBy = "products") // name of PROPERTY in the OWNER class
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 	@JsonIgnore
 	private Set<Shop> shops;
 	
@@ -45,12 +55,28 @@ public class Product {
 //		this.shop = shop;
 //	}
 	
+	public Product() { }
+	
+	public Product(String name, String description) {
+		this.name = name;
+		this.description = description;
+		this.shops = new HashSet<>();
+	}
+	
 	public Set<Shop> getShops() {
 		return shops;
 	}
 
 	public void setShops(Set<Shop> shops) {
 		this.shops = shops;
+	}
+	
+	public void addShop(Shop shop) {
+		this.shops.add(shop);
+	}
+	
+	public void removeShop(Shop shop) {
+		this.shops.remove(shop);
 	}
 
 	public int getId() {

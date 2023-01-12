@@ -239,7 +239,20 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 ```
 
+Instead to see the parameters as well, you can do:
+```
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+```
+
 ### Creating a logger 
+
+1. Create the logger
+2. Make sure the level of logging that is turned on is high enough, so your logs aren't "turned off"
+(tip: put something long, and eye catching to find your logs in the mess of all the logs ========================================== )
+
+
 
 - Use the sl4j logger (or any logger you want but the below example only applies to sl4j)
 
@@ -258,9 +271,60 @@ class MyClass {
 logging.level.org.springframework.web: DEBUG
 ```
 
+- NOTE: Yesterday (Wednesday) we created a logger and set the log level
+
+1. Trace - The most fine grained level of logging (you are logging a lot at every single step or method of your code)
+2. Debug - This is less fine grained than trace, you are only looking at peices that you are interested in
+3. Info - The standard log level that indicates that something happened
+4. Warn - This log level indicates that something unexpected happened but didn't break anything
+5. Error - This log level indicates that something unexpected happened and broke something
+6. Fatal - This log level indates that something happened and is unrecoverable
+
+- Why do we use a logger?
+    - So far we've been using print lines, which we'll have to go find and delete before pushing to production
+    - If we instead use a logger, we don't have to go track them down and delete them, we just "flip a switch" and turn them off from application.properties
+
 ### Which type of repository (DAO data access object) should we use?
 
  * CrudRepository provides CRUD functions
  * PagingAndSortingRepository provides methods to do pagination and sort records
  * JpaRepository provides JPA related methods such as flushing the persistence context and delete records in a batch
+
+
  
+ # How to fix our many-to-many relationship
+
+ - To get rid of the circular reference in the JSON use the annotation @JsonIgnore in the target class (of the owner-target relationship)
+
+ ``` 
+ object references an unsaved transient instance - save the transient instance before flushing: com.skillstorm.practice.models.Product; nested exception is java.lang.IllegalStateException: org.hibernate.TransientObjectException: 
+ ```
+
+ - Check that your Cascade types are correct
+ - Cascade types include:
+
+JPA
+ 1. ALL
+ 2. PERSIST
+ 3. MERGE
+ 4. REMOVE
+ 5. REFRESH
+ 6. DETACH
+ HIBERNATE
+ 7. SAVE_UPDATE
+ 8. REPLICATE
+ 9. LOCK
+
+ - Use the following imports and cascade setting on both sides of your many-to-many
+
+ ```
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
+
+ ```
+
+ - To read more about the cascade tpes available https://www.baeldung.com/jpa-cascade-types 
+
+ NOTE: Also set the fetch type to `fetch = FetchType.LAZY` on the list property in the "target" side of the owner-target relationship

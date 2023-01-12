@@ -3,6 +3,7 @@ package com.skillstorm.practice.services;
 import java.util.List;
 
 import com.skillstorm.practice.models.Product;
+import com.skillstorm.practice.models.Shop;
 
 public interface ProductService {
 	
@@ -23,5 +24,9 @@ public interface ProductService {
 	void deleteById(int id);
 	
 	void deleteAll(List<Product> products);
+	
+	Iterable<Shop> findStoresByProductId(int id);
+	
+	Iterable<Product> findByDescriptionContaining(String name);
 
 }

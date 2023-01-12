@@ -1,21 +1,28 @@
 package com.skillstorm.practice.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @Entity // a class that maps an object's properties to a table's columns
 @Table(name = "shop") // don't need the parameter unless the table name doesn't match the class -- Spring Boot will map a class name GeneralShop to a table named general_shop
@@ -42,12 +49,12 @@ public class Shop { // implements Serializable done for us by our above annotati
 	
 	// Version 2:
 	@ManyToMany
+	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinTable(
 			name = "shop_stock",
 			joinColumns = @JoinColumn(name = "shop_id"), // name of column of owner class
 			inverseJoinColumns = @JoinColumn(name = "product_id") // name of the column of the target class
 			)
-	@JsonIgnore
 	private Set<Product> products;
 	
 	// Version 1:
@@ -62,6 +69,14 @@ public class Shop { // implements Serializable done for us by our above annotati
 //	public void setProducts(List<Product> products) {
 //		this.products = products;
 //	}
+	
+	public Shop() { }
+	
+	public Shop(String name, boolean openWeekends) {
+		this.name = name;
+		this.openWeekends = openWeekends;
+		this.products = new HashSet<>();
+	}
 
 	public Set<Product> getProducts() {
 		return products;
@@ -69,6 +84,14 @@ public class Shop { // implements Serializable done for us by our above annotati
 
 	public void setProducts(Set<Product> products) {
 		this.products = products;
+	}
+	
+	public void addProduct(Product product) {
+		this.products.add(product);
+	}
+	
+	public void removeProduct(Product product) {
+		this.products.remove(product);
 	}
 
 	public int getId() {
@@ -102,7 +125,6 @@ public class Shop { // implements Serializable done for us by our above annotati
 	
 	// TODO add more properties
 	
-	// TODO add list of products to join the tables
 	
 	
 }

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.practice.dtos.ProductDto;
 import com.skillstorm.practice.models.Product;
+import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.services.ProductService;
 
 @RestController
@@ -28,15 +28,23 @@ public class ProductController {
 	ProductService service;
 	
 	@GetMapping
-	public Iterable<Product> findAll(@RequestParam(name = "name", required = false) String name) {
-		if (name == null)
-			return service.findAll();
-		return service.findByName(name);
+	public Iterable<Product> findAll(@RequestParam(name = "name", required = false) String name, 
+									@RequestParam(name = "description", required = false) String description) {
+		if (name != null)
+			return service.findByName(name); // TODO handle if BOTH name and description given instead of defaulting to just name
+		if (description != null)
+			return service.findByDescriptionContaining(description);
+		return service.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public Product findById(@PathVariable int id) {
 		return service.findById(id);
+	}
+	
+	@GetMapping("/{id}/shops")
+	public Iterable<Shop> findStoresByProductId(@PathVariable int id) {
+		return service.findStoresByProductId(id);
 	}
 	
 	// java.lang.IllegalStateException: Ambiguous handler methods mapped for '/products/1'

@@ -2,9 +2,11 @@ package com.skillstorm.practice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.skillstorm.practice.models.Product;
+import com.skillstorm.practice.models.Shop;
 
 /*
  * 
@@ -23,6 +25,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	// instead use the keyword CONTAINING
 	Iterable<Product> findByNameContaining(String name);
 	
-//	@Query("") // can write your own query in JPQL (different syntax than SQL we've been using)
-//	Iterable<Product> findByDescription(String description);
+	@Query(value = "SELECT * FROM product WHERE description LIKE ?1 ;", nativeQuery = true) // can write your own query in JPQL (different syntax than SQL we've been using)
+	Iterable<Product> findByDescriptionContaining(String description); // must pre and append the % in the service
+	
+	// This is a JPQL query (Java Persistence Query Language) 
+	@Query("SELECT s FROM Product p JOIN p.shops s WHERE p.id = :id")
+	Iterable<Shop> findStoresByProductId(@Param("id") int id);
 }
