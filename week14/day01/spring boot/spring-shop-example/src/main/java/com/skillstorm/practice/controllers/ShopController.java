@@ -23,8 +23,13 @@ import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.services.ShopService;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
+
 @Controller // This is better for controllers that return views (html pages)
 @RequestMapping("/shop")
+@Tag(name = "Shop API", description = "A place to manage the shops that exist")
 public class ShopController {
 	
 	Logger log = LoggerFactory.getLogger(getClass());
@@ -44,6 +49,7 @@ public class ShopController {
 	
 // Method 3
 	@GetMapping // convenience annotation that lets us avoid passing a bunch of parameters
+	@Operation(summary = "some summary here", description = "some description here")
 	public @ResponseBody Iterable<Shop> findAll() {
 		log.debug("Inside findAll");
 		

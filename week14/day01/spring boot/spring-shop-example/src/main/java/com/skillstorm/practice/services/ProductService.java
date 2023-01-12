@@ -2,6 +2,7 @@ package com.skillstorm.practice.services;
 
 import java.util.List;
 
+import com.skillstorm.practice.models.MyCustomException;
 import com.skillstorm.practice.models.Product;
 import com.skillstorm.practice.models.Shop;
 
@@ -17,7 +18,7 @@ public interface ProductService {
 	
 	Product save(Product product);
 	
-	Product update(Product product, int id);
+	Product update(Product product, int id) throws MyCustomException;
 	
 	void delete(Product product);
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.practice.models.MyCustomException;
 import com.skillstorm.practice.models.Product;
 import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.services.ProductService;
@@ -58,11 +59,11 @@ public class ProductController {
 	
 	// 200 successful or 404 not found or 400 bad request if couldn't find it
 	@PutMapping("/{id}")
-	public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable int id) {
+	public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable int id) throws MyCustomException {
 		Product result = service.update(product, id);
-		if (result == null)
-			return ResponseEntity.notFound().build();
-		return ResponseEntity.ok(product);
+//		if (result == null)
+//			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping

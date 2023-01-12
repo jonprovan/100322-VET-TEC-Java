@@ -29,6 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	Iterable<Product> findByDescriptionContaining(String description); // must pre and append the % in the service
 	
 	// This is a JPQL query (Java Persistence Query Language) 
-	@Query("SELECT s FROM Product p JOIN p.shops s WHERE p.id = :id")
-	Iterable<Shop> findStoresByProductId(@Param("id") int id);
+	@Query("SELECT s FROM Product p JOIN p.shops s WHERE p.id = :id") // :id is a named parameter // I could have done ?1
+	Iterable<Shop> findStoresByProductId(@Param("id") int id); // Annotate the parameter the @Param("whateveryounamedit")
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skillstorm.practice.models.MyCustomException;
 import com.skillstorm.practice.models.Product;
 import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.repositories.ProductRepository;
@@ -48,9 +49,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product update(Product product, int id) {
+	public Product update(Product product, int id) throws MyCustomException {
 		if (!repo.existsById(id)) {
-			return null;
+			throw new MyCustomException("Update didn't work bc there is no existing record with the given id " + id +"."); // TODO make a custom exception to throw here
 		} else {
 			product.setId(id);
 			return repo.save(product);
@@ -63,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(int id) { // TODO we could let it throw the error and add to our GlobalExceptionHanlder class a method to create the HTTP response in this situation
 		if (repo.existsById(id)) // this is to make our deletebyid more rebust (ex: if we run this twice in a row by accident)
 			repo.deleteById(id); // this is throwing an error if we try to delete a nonexistent row 
 	}
