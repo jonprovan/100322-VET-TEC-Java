@@ -12,11 +12,11 @@ public interface ProductService {
 	
 	Iterable<Product> findAll();
 	
-	Product findById(int id);
+	Product findById(int id) throws MyCustomException;
 	
 	Iterable<Product> findByName(String name);
 	
-	Product save(Product product);
+	Product save(Product product) throws MyCustomException;
 	
 	Product update(Product product, int id) throws MyCustomException;
 	

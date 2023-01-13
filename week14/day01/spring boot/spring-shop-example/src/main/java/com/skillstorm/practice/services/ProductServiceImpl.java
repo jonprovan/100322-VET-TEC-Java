@@ -1,6 +1,7 @@
 package com.skillstorm.practice.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +27,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product findById(int id) {
-		return repo.findById(id).orElse(null); // you could store the optional and do a ifPresent() check then .get() else return null
+	public Product findById(int id) throws MyCustomException {
+		Optional<Product> result =  repo.findById(id); // you could store the optional and do a ifPresent() check then .get() else return null
+		if (!result.isPresent())
+			throw new MyCustomException("No product exists with id of " + id + ".");
+		return result.get();
 	}
 
 	@Override
@@ -35,9 +39,9 @@ public class ProductServiceImpl implements ProductService {
 		return repo.findByNameContaining(name);
 	}
 
-	@Override
+	@Override // THIS IS A CONTRIVED EXAMPLE FOR THE GLOBALEXCEPTIONHANDLER, SAVE DOES NOT NEED TO DO ANY LOGIC
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Product save(Product product) {
+	public Product save(Product product) throws MyCustomException {
 		// if save ignores the id (you could set it to 0) then it would not be indempotent and would create a new one every time
 		// save is looking at the id and will overwrite it if it already exists
 		// to prevent this behavior do a check:
@@ -45,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 		if (!repo.existsById(product.getId())) {
 			return repo.save(product);
 		}
-		return null;
+		throw new MyCustomException("A product already exists with id of " + product.getId() + ".");
 	}
 
 	@Override

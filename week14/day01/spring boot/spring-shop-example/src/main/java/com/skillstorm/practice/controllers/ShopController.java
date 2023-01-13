@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.Operation;
 
 
 @Controller // This is better for controllers that return views (html pages)
-@RequestMapping("/shop")
+@RequestMapping("/shops")
 @Tag(name = "Shop API", description = "A place to manage the shops that exist")
 public class ShopController {
 	

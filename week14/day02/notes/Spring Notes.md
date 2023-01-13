@@ -268,6 +268,7 @@ class MyClass {
 
 - Set the logging level in application.properties
 ```
+logging.level.root=WARN 
 logging.level.org.springframework.web: DEBUG
 ```
 
@@ -328,3 +329,84 @@ import org.hibernate.annotations.CascadeType;
  - To read more about the cascade tpes available https://www.baeldung.com/jpa-cascade-types 
 
  NOTE: Also set the fetch type to `fetch = FetchType.LAZY` on the list property in the "target" side of the owner-target relationship
+
+ # Writing Complex Queries in Spring Boot with Data JPA
+
+ 1. check if the repository type you extended comes with that query/statement already implemented
+ 2. look at the jpa generated query documentation for the keywords list to see if you can just define the method signature and have the query generated for you
+ 3. if neither of the above contain the query you want to make, write it yourself!
+    - Option 1: JPQL (java persistence query language) -- this looks like a query, but we are using the names of classes and properties NOT tables and columns
+        - You need a method signature in Repository inteface 
+        - You need the @Query("   ") annotation
+        - To use parameters:
+            Option 1: Named parameters with :id in the query string instead of ? for the placeholders
+                       and myMethod(@Param("id") int id) in the method signature
+            Option 2: Numbered question marks for the parameters (make sure they match the order of the method's parameters!)
+            ex: SELECT * FROM product WHERE id = ?1
+                myMethod(int id);
+    - Option 2: SQL (whatever native sql language your database is using) -- this is the exact same query you run in your MySQL Workbench
+        - You need to tell it this is a MySQL query
+        - @Query(value = "    ", nativeQuery = true) -- you can copy past the query from your workbench, avoid this if you can to maintain a layer of abstraction and use jpql
+
+
+# Swagger Document
+
+- Now we have built our Rest API, we need to document it
+    - To help users of API understand how we have set up the endpoints, the data format sent back, and the errors they can expect to have to handle
+- If we do this by hand in our ReadMe.md on our github for example, it could become out dated/ out of sync with our code pretty quickly
+    - Instead use a dodumentation generator like swagger
+
+- Add this dependency to your POM.xml
+
+```
+        <dependency>
+           <groupId>org.springdoc</groupId>
+           <artifactId>springdoc-openapi-ui</artifactId>
+           <version>1.6.8</version>
+        </dependency>
+```
+
+- We can add to the default generated documentation using annotations in our controller class at the class and method level
+    - At the class level we use
+    `@Tag(name = "name here", description = "description goes here")
+    - At the method level we use
+    `@Operation(summary = "summary here", description = "description here")
+
+- To find the webpage with your documentation, you can look at the logs using the setting in your application.properties:
+```
+logging.level.org.springframework.web=trace 
+```
+
+Which should show you:
+```
+	o.s.w.a.OpenApiWebMvcResource:
+	{GET [/v3/api-docs], produces [application/json]}: openapiJson(HttpServletRequest,String,Locale)
+	{GET [/v3/api-docs.yaml], produces [application/vnd.oai.openapi]}: openapiYaml(HttpServletRequest,String,Locale)
+2023-01-12 11:13:05.230 TRACE 31476 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerWelcomeWebMvc:
+	{GET [/swagger-ui.html]}: redirectToUi(HttpServletRequest)
+2023-01-12 11:13:05.231 TRACE 31476 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerConfigResource:
+	{GET [/v3/api-docs/swagger-config], produces [application/json]}: openapiJson(HttpServletRequest)
+```
+
+The one we care about is the HTML page at localhost:8080/swagger-ui.html
+
+# How to Use a Global Exception Handler to change the response code instead of in our Controller
+
+1. Create an exception class 
+2. Throw the exception from our service class instead of handing back null 
+3. Create a Global Exception Handler class 
+    - with a method to change the response code when an exception is thrown
+
+
+We have:
+1. created a custom exception class -- extended the Exception (checked exception) and defined two constructors (no-arg and a String message)
+2. throw our exception in the service update method
+    - this is a checked exception so must also declare throws MyException
+    - the interface method signature must also declare throws MyException
+3. Create the GloablExceptionHandler class
+    - put this in the controller folder (it interacts with the client)
+    - annotate it the @RestControllerAdvice
+    - Create a method that is annotated with the type of exception it needs to handle @ExceptionHandler(MyException.class) and the status code @ResponseSTatus(code = HttpStatus.BAD_REQUEST)
+    - Return type of your method can be anything!!! It will be converted to json in the body of the response (don't put too much info you don't want just anyone knowing the inner workings of your backend)

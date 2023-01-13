@@ -39,7 +39,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public Product findById(@PathVariable int id) {
+	public Product findById(@PathVariable int id) throws MyCustomException {
 		return service.findById(id);
 	}
 	
@@ -68,8 +68,9 @@ public class ProductController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Product save(@RequestBody Product product) {
+	public Product save(@RequestBody Product product) throws MyCustomException {
 		return service.save(product);
+		
 	}
 	
 	@DeleteMapping
