@@ -1,5 +1,6 @@
 package com.skillstorm.practice;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockitoSession;
 import static org.mockito.Mockito.times;
@@ -26,6 +27,7 @@ import com.skillstorm.practice.services.ProductService;
 
 @WebMvcTest(ProductController.class) // This is prevents the full application from loading and only test the controller layer
 // @SpringBootTest // this would set up the entire context (all the beans including the service and repo layer which we don't need)
+// @SpringBootTest(webEnvironment = WebEnvironment.MOCK) ofr WebEnvironment.DEFINED_PORT, WebEnvironment.RANDOM_PORT, WebEnvironment.NONE
 // @AutoConfigureMockMvc // This disables spring security if you decide to use that for your project (not needed here)
 class ProductControllerUnitTests {
 	
@@ -48,10 +50,11 @@ class ProductControllerUnitTests {
 		
 		// mock the method we expect our controller to need to call
 		Mockito.when(service.findById(anyInt())).thenReturn(product);
+
 		
 		// perform the HTTP Get request
 		mockMvc.perform( MockMvcRequestBuilders
-							.get("/products/1")
+							.get("/products/1") // Don't need the full URL localhost:8080 bc it is not spinning up our embedded server
 							.accept(MediaType.APPLICATION_JSON) )
 				.andExpect(status().isOk())
 				.andExpect(content().string(mapper.writeValueAsString(product)));
@@ -83,4 +86,49 @@ class ProductControllerUnitTests {
 		verify(service, times(1)).findById(anyInt());
 	}
 	
+	@Test
+	void testSaveSuccessful() throws JsonProcessingException, Exception {
+		// set up a product for the mock service layer to return to us
+		Product product = new Product("Flying", "The superpower to fly like a bird");
+		Mockito.when(service.save(any())).thenReturn(product);
+		
+		// perform the POST http request
+		mockMvc.perform( MockMvcRequestBuilders
+				.post("/products" )
+				.content(mapper.writeValueAsString(product))
+			    .contentType(MediaType.APPLICATION_JSON) )// make sure you set the contentType header on your mock HTTP POST request
+//				.accept(MediaType.APPLICATION_JSON) ) // isn't necessary for this test HTTP POST request to work
+		.andExpect(status().isCreated()) 
+		.andExpect(content().string(mapper.writeValueAsString(product)));
+		
+		verify(service, times(1)).save(any());
+	}
+	
+	@Test
+	void testSaveFailure() throws JsonProcessingException, Exception {
+		// set up a product for the mock service layer to return to us
+		Product product = new Product("Flying", "The superpower to fly like a bird");
+		Mockito.when(service.save(any())).thenThrow(new MyCustomException("A product already exists with id of " + product.getId() + "."));
+		
+		// perform the POST http request
+		mockMvc.perform( MockMvcRequestBuilders
+				.post("/products" )
+				.content(mapper.writeValueAsString(product))
+			    .contentType(MediaType.APPLICATION_JSON) )// make sure you set the contentType header on your mock HTTP POST request
+//				.accept(MediaType.APPLICATION_JSON) ) // isn't necessary for this test HTTP POST request to work
+		.andExpect(status().isBadRequest()) 
+		.andExpect(content().string("A product already exists with id of " + product.getId() + "."));
+		
+		verify(service, times(1)).save(any());
+	}
+	
+	@Test
+	void testUpdateSuccessful() {
+		// TODO 
+	}
+	
+	@Test
+	void testUpdateFailure() {
+		// TODO
+	}
 }
