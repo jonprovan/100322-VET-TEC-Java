@@ -1,6 +1,6 @@
 # Steps for Creating an EC2 Instance
 
-## EC2 = Elastic Compute Cloud
+EC2 = Elastic Compute Cloud
 
 - IaaS = Infrastructure as a service
    - This gives us more fine grained control over setting up the virtual machine like picking the operating system
@@ -19,12 +19,13 @@
 ## Getting Started in AWS
 
 - https://skillstorm.awsapps.com/start#/ and login
-VALERIE'S TROUBLESHOOTING
-- Make user you are using us-e-1 bc our Skillstorm accounts are restricted to it
-- Make sure you use t3.micro
-----------------------------------------------------------------------------------
 - Go under Nexgen Java Management Console
 - Search for EC2 and we are going to select Launch Instance
+---------------------------------------------------------------------------------
+VALERIE'S TROUBLESHOOTING
+- Make user you are using us-east as the location (listed next to your name in the top right corner of the managment console) bc our Skillstorm accounts are restricted to it
+- Make sure you use t3.micro (your accounts are restricted from using larger more expensive cpu options)
+----------------------------------------------------------------------------------
 - Add unique name
 - Keep default OS (Amazon Linux)
 - Instance Type we will NEEDS TO BE t3.micro you can also use t3.small and t3.medium (limitations on the accounts set up)
@@ -38,16 +39,27 @@ VALERIE'S TROUBLESHOOTING
 
 ## Launching EC2 instance and Spring Boot Project
 - launch instance
-- ssh to connect to it for the first time, you can use 
+- ssh to connect to it for the first time, from the directory with your .pem file in it
+    ssh -i "ec2-key.pem" ec2-user@ec2-3-whatever-yours-is.compute-1.amazonaws.com
+  To look at the working directory, you can use 
      pwd
-  to look at the working directory
-- in your project, run a maven clean install
-- move the .jar to a folder with the key you will need to ssh in to your ec2 instance
-    scp ...
-- install a jre on the ec2
-   1. ssh into the ec2 instance
+- In Spring Tool Suite right click on your project's POM.xml and Run As> maven install (or run a maven clean install)
+- move the .jar from the project's target folder to a folder with the key you will need to ssh in to your ec2 instance
+- from the directory with the key and jar run the command to copy the jar from your computer to the ec2 instance (and put it in the home/ec2-user directory)
+    scp -i "ec2-key.pem" demo.jar ec2-user@your-url-here.compute-1.amazonaws.com:/home/ec2-user
+- now you can ssh back into the ec2 instance with the same ssh command from  before
+- check that the .jar file was copied over by running the command 
+     ls
+- to run the jar, we need a jre installed
+   to install a jre on the ec2
+   1. ssh into the ec2 instance if you aren't already
    2. install java version 1.8
         sudo yum install java-1.8.0-openjdk
-        (check it worked by doing java -version)
+        (check it worked by doing running
+         java -version
+        )
 - start up your spring boot project using 
     java -jar demo.jar
+- in a browser, type in
+   your-url-here.compute-1.amazonaws.com:8080 (or whatever port you set up yours to run on)
+   (to get the url you can go to your ec2 instances in your aws managment console, and it will show the public dns in the information section)
