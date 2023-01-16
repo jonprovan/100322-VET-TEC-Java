@@ -27,7 +27,7 @@ VALERIE'S TROUBLESHOOTING
 - Search for EC2 and we are going to select Launch Instance
 - Add unique name
 - Keep default OS (Amazon Linux)
-- Instance Type we will stick with t2.micro (If you needed more processing power or memory you could use t2.small, medium etc. but more expensive per minute)
+- Instance Type we will NEEDS TO BE t3.micro you can also use t3.small and t3.medium (limitations on the accounts set up)
 - Generate a key-pair (RSA, .pem) DO NOT PUT THIS ON GITHUB
     NOTE: TODO get access to SkillStorm account to create key-pairs, 
 - Security Groups (use unique name)
