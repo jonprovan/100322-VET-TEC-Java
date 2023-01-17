@@ -43,6 +43,9 @@ VALERIE'S TROUBLESHOOTING
     ssh -i "ec2-key.pem" ec2-user@ec2-3-whatever-yours-is.compute-1.amazonaws.com
   To look at the working directory, you can use 
      pwd
+- Create a new spring-starter-project with just the spring web dependency for now (we will set up the database side of things later this week)
+    - Add an index.html page under the src/main/resources/static folder (this will load automatically when you go to localhost:8080 in your browser)
+    - That's it! (You can add a controller class with a get mapping to return some json if you like.)
 - In Spring Tool Suite right click on your project's POM.xml and Run As> maven install (or run a maven clean install)
 - move the .jar from the project's target folder to a folder with the key you will need to ssh in to your ec2 instance
 - from the directory with the key and jar run the command to copy the jar from your computer to the ec2 instance (and put it in the home/ec2-user directory)

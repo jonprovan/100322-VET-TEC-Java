@@ -1,0 +1,14 @@
+spring:
+  sql:
+    init:
+      platform: h2
+
+logging:
+  level:
+    com:
+      skillstorm:
+        demo: debug
+    org:
+      springframework:
+        web: INFO
+        security: INFO

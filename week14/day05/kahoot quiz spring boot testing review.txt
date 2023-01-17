@@ -1,0 +1,18 @@
+Kahoot Review
+
+1. Remember we have to import Junit4 ourselves if we want it along with spring-starter-test
+
+2. WebMvcMock does not spin up the embedded server, it just simulates sending requests.
+
+3. Mockito.when(myClass.myMethod(any())).thenReturn("") 
+or 
+                                        .thenThrow(new Exception());
+
+4. @SpringBootTest actually loads the full context and spins up our whole app so it does a lot more for us than WebMvcMock which is great unless we want to only test a slice of the application then it is wasteful and slow
+
+5. Yes, Patrick is teaching cloud next week
+
+TODO 
+- Spring Security example project
+- 2-3pm group work on Spring Boot shop example tests 
+(finish controller and service layer or play around with repository layer testing)
