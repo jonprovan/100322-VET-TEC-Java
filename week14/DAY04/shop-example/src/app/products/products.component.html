@@ -2,7 +2,9 @@
 <section>
     <h1>Products</h1>
     <div>
-        <app-card></app-card>
+        <ng-container *ngFor="let product of products">
+        <app-card [product]="product"></app-card>
+        </ng-container>
     </div>
 </section>
 

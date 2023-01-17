@@ -24,7 +24,9 @@ import com.skillstorm.practice.services.ProductService;
 
 @RestController
 @RequestMapping("/products")
-@CrossOrigin(origins = "localhost:4200") // Allow your frontend and backend to communicate
+@CrossOrigin(origins = "*") // Allow your frontend and backend to communicate
+// About CORS https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#examples_of_access_control_scenarios 
+// About CrossOrigin settings https://spring.io/guides/gs/rest-service-cors/ 
 public class ProductController {
 	
 	@Autowired
