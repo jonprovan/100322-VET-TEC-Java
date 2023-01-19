@@ -22,7 +22,7 @@ import com.skillstorm.practice.models.Product;
 import com.skillstorm.practice.models.Shop;
 import com.skillstorm.practice.services.ProductService;
 
-@RestController
+@RestController // this is a convenience annotation for @Controller and @RequestBody (so we don't need @RequestBody on every single method)
 @RequestMapping("/products")
 @CrossOrigin(origins = "*") // Allow your frontend and backend to communicate
 // About CORS https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#examples_of_access_control_scenarios 
