@@ -9,7 +9,7 @@ import com.skillstorm.models.Message;
 import com.skillstorm.services.MessageService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class MessageController {
 	
 	@Autowired
