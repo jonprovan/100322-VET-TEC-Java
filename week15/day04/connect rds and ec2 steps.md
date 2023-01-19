@@ -18,10 +18,12 @@
 
 ## Locally
 5) ssh into the EC2 to install java
-    ```sudo yum install java-1.8.0-openjdk
-    exit```
+    ```sudo yum install java-1.8.0-openjdk ```
+   ``` exit ```
+
 6) scp to put the jar onto the ec2
-    scp -i "ec2-key.pem" myapp.jar ec2-user@ec2-public-dns:/home/ec2-user
+    ``` scp -i "ec2-key.pem" myapp.jar ec2-user@ec2-public-dns:/home/ec2-user ```
+
 7) ssh in to run the jar
     ```java -jar myapp.jar```
   (Note: if you close the terminal, the process ends)
@@ -31,8 +33,9 @@
 9) If you want to run still when you close your ssh session
      ```nohup java -jar myapp.jar &```
 where & means run in background and nohup means run in background even after log out
-          OR (shortcut) ```java -jar myapp.jar ```
-                        hit `CTRL-Z` (makes it run in background)
+          OR (shortcut) 
+    ```java -jar myapp.jar ```
+    hit `CTRL-Z` (makes it run in background)
 
 - To kill the background process
     ```ps -ef | grep java```
