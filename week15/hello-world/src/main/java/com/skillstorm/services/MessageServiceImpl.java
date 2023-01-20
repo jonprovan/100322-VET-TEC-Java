@@ -16,5 +16,10 @@ public class MessageServiceImpl implements MessageService {
 	public Iterable<Message> findAll() {
 		return repo.findAll();
 	}
+	
+	@Override
+	public Message save(Message message) {
+		return repo.save(message);
+	}
 
 }
