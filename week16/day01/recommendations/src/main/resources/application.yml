@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  
+spring:
+  application:
+    name: recommendations-api
+    
+# remember each service needs to register itself with service discovery
+# so tell it where to go register itself

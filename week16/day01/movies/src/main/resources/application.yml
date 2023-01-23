@@ -1,0 +1,9 @@
+server:
+  port: 9010
+  
+spring:
+  application:
+    name: movies-api
+  
+# remember each service needs to register itself with service discovery
+# so tell it where to go register itself
