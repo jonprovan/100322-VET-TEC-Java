@@ -1,0 +1,12 @@
+# By convention, run the service discovery on 8761
+server:
+  port: 8760
+  
+spring:
+  application:
+    name: service-discovery
+    
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

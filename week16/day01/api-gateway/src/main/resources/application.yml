@@ -1,0 +1,18 @@
+# Convention is to put the API gateway on port 8125
+server: 
+  port: 8125
+  
+# hard code some routes for now that tell it where to forward requests
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: movies-api
+        uri: http://localhost:9010
+        predicates:
+        - Path=/movies/**
+      - id: recommendations-api
+        uri: http://localhost:8080
+        predicates:
+        - Path=/recommendations/**
+     

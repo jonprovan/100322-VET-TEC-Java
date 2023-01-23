@@ -7,3 +7,8 @@ spring:
     
 # remember each service needs to register itself with service discovery
 # so tell it where to go register itself
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+#    register-with-eureka: false
