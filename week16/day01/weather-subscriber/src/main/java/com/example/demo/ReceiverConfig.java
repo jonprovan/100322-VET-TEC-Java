@@ -12,7 +12,7 @@ public class ReceiverConfig {
 	
 	@Bean
 	public Queue weatherQueue() {
-		return new Queue("weather-report");
+		return new Queue("weather-report"); // durability doesn't survive server shutdown
 	}
 	
 	@Bean

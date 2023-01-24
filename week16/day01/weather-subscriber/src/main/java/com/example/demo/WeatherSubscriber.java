@@ -9,7 +9,7 @@ public class WeatherSubscriber {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
-	@RabbitListener(queues = "weather-queue")
+	@RabbitListener(queues = "weather-report")
 	public void receiver(@Payload WeatherReport report) {
 		// TODO save the report to our database or whatever
 		

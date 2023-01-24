@@ -17,7 +17,7 @@ public class SenderConfiguration {
 	
     @Bean
     public Queue weatherReport() {
-        return new Queue("weather-report");
+        return new Queue("weather-report"); // if you want the queue to persist set durability to true
     }
     
     @Bean
